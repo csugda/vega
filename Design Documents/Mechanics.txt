@@ -1,0 +1,43 @@
+-Collect Scrap/Etc for Currency
+
+-HitPoints/Life/Energy
+	-Getting hit, using skills, moving, etc use this resource
+	
+-Stamina/Secondary Resource
+	-Water
+		-Cooling for efficiency, etc
+		-This may be too complicated for our shortened scope
+
+-Point-And-Click
+	-Click a point and the character/robot goes there
+	-Hold button down to constantly move
+	
+	-The Sims (click and it goes)
+	-Diablo/League of Legends/etc (Hold to move)
+	
+-Respawn base
+	-Have a respawn base to start from
+	-IDEAS:
+		-Factory
+			-Build new robots every time you die
+			-Uses scrap to build
+			-Blueprints/modules
+			
+		-Random Body in random place
+			-You are a new robot in a new place
+			-etc
+
+-Progression
+	-Scrap for currency
+		-Used to by or upgrade parts/modules/etc
+	-Inventory
+		-Hold a certain amount of items/modules
+	-Energy reserves drain constantly
+	-Modules/AI
+		-Enemies and environment drop scrap
+		-Scrap can be used to upgrade/buy AI/Modules/AI
+		-Modules can include:
+			-AI Components
+			-Weapons/"gear"
+			-Blueprints (Factory style)
+		

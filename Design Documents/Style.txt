@@ -1,0 +1,22 @@
+-Rogue-like with survival/exploration aspects
+	-"2.5D" - 2D with depth
+		-Diablo/D2/D3
+		-Invisible Inc
+		-Etc		
+	
+-Other things in game
+	-Animals/Robots/etc
+		-Enemies
+			-Drones/robots
+			-Mutated animals/plants
+			
+			-Drop scrap/items/modules
+		-NPC/Good things?
+			-Maybe?
+			
+	-Chests/Loot Caches
+	-Other factories/corporations
+		-Guarded or unguarded
+		-Contain blueprints and fully assembled modules
+		-Probably lots of scrap
+			

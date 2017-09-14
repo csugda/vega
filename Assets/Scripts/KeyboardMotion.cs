@@ -24,4 +24,10 @@ public class KeyboardMotion : MonoBehaviour {
 		}
 		transform.position = new Vector3(transform.position.x + xOffset * speed, transform.position.y, transform.position.z + yOffset * speed);
 	}
+
+	// I put this function here so we don't have too many temp scripts.
+	public void OnMouseDown(int mouseButton, Vector3 pos, Transform t) {
+		
+		Debug.Log("MouseDown called. Clicked button " + mouseButton + " on (" + pos.x + ", " + pos.y + ", " + pos.z + ") " + t.name);
+	}
 }

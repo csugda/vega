@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class MenuController : MonoBehaviour
@@ -13,24 +14,22 @@ public class MenuController : MonoBehaviour
 
 
     /*
-     * I am defining a string array for each menu type in order to make the menu dyanmic, 
-     * setting the strings will determine which menu buttons appear, as long as they are cereated and named in menuCanvas
+     * menuOptions maps a string to a string[]. the string must be an object tag and the strings in the array must be buttons in the editor.
+     * these options are read in from the file "Assets/Resources/MenuOptions.txt" so any new options should be added as tags, and in the .txt
     */
-    private string[] walkMenu = { "WalkHere", "CloseMenu" };
-    private String[] playerMenu = { "CloseMenu" };
-
+    private Dictionary<string, string[]> menuOptions;
 
     void Start()
     {
+        menuOptions = new Dictionary<string, string[]>();
+        LoadMenuOptions();
         menuCanvas = menuGO.transform.Find("MenuCanvas");
         CloseMenu();
-        menuOpen = menuGO.activeSelf;
-        
     }
 
     public void OpenMenuButtonPressed(int button, Vector3 pos, Transform target)
     {
-        
+
         if (button != menuButton)
             return;
         if (menuOpen)
@@ -38,21 +37,20 @@ public class MenuController : MonoBehaviour
         else
         {
             menuGO.SetActive(true);
-            
+
             //set menu position 
             menuGO.transform.position = pos;
 
-            //set menu buttons
-            //TODO make this something that can be set in the editor
-            if (target.gameObject.name == "PlayerModel")
+            //set menu buttons based on tag of clicked object
+            string menuType = target.tag;
+            if (menuOptions.ContainsKey(menuType))
             {
-                OpenMenu(playerMenu);
+                OpenMenu(menuOptions[menuType]);
             }
-            else //at the moment the only options are walk or player.
+            else
             {
-                OpenMenu(walkMenu); //TODO: walkmenu is the default while walk is the only interaction
+                Debug.LogError("MenuController line 52: " + menuType + " is not a valid menu option. make sure that the tag is added to the text doccument");
             }
-            
             menuOpen = true;
         }
     }
@@ -65,7 +63,7 @@ public class MenuController : MonoBehaviour
             Transform child = menuCanvas.Find(s);
             if (child == null)
             {
-                Debug.LogError( s + " is not a valid menu button. Did you create it in the scene?");
+                Debug.LogError("MenuController line 66: " + s + " is not a valid menu button. Did you create it in the scene?");
                 continue;
             }
             else
@@ -79,12 +77,58 @@ public class MenuController : MonoBehaviour
     //close menu, setting all buttons to inactive.
     public void CloseMenu()
     {
-        
+
         foreach (Transform child in menuCanvas)
         {
             child.gameObject.SetActive(false);
         }
         menuGO.SetActive(false);
         menuOpen = false;
+    }
+
+
+    //read menu tag data from the file
+    private bool LoadMenuOptions()
+    {
+        try
+        {
+            string line;
+            StreamReader reader = new StreamReader("Assets/Resources/MenuOptions.txt");
+            using (reader)
+            {
+                do
+                {
+                    line = reader.ReadLine();
+                    if (line != null)
+                    {
+                        string[] entries = line.Split(',');
+                        if (entries.Length > 0)
+                        {
+                            string[] options = Split(entries, 1, entries.Length);
+                            menuOptions.Add(entries[0], options);
+                        }
+                    }
+                }
+                while (line != null);
+                reader.Close();
+                return true;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("{0}\n", e.Message);
+            return false;
+        }
+    }
+    private string[] Split(string[] sa, int start, int end)
+    {
+        string[] rtn = new string[end - start];
+        int j = 0;
+        for (int i = start; i < end; i++)
+        {
+            rtn[j] = sa[i];
+            ++j;
+        }
+        return rtn;
     }
 }

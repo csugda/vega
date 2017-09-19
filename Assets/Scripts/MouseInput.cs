@@ -16,8 +16,17 @@ public class MouseInput : MonoBehaviour {
 	public MouseEvent mouseButtonDown;// fires if the user pressed a mouse button this frame.
 	public MouseUpEvent mouseButtonUp;  // fires if the user released a mouse button this frame.
 
+	public MenuController menuController;
+
+	void Start () {
+		menuController = GetComponent<MenuController>();
+	}
+
 	void Update () {
 		for (int i = 0; i < 2; i++) {
+			// FIXME write a better solution to preventing moving when clicking on menu buttons.
+			if (i == 0 && menuController.menuOpen) continue;
+
 			if (Input.GetMouseButton(i) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && i == 0)) {
 				RaycastHit hit;
 				if (RaycastFromMouse(out hit)) {

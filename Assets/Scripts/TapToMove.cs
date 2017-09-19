@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TapToMove : MonoBehaviour
 {
+	public GameObject menuGO;
+
     //flag to check if the user has tapped / clicked. 
     //Set to true on click. Reset to false on reaching destination
     private bool flag = false;
@@ -49,13 +51,16 @@ public class TapToMove : MonoBehaviour
 			MoveTo(pos);
 		}
 	}
+	public void MoveToMenuGO() {
+		MoveTo(menuGO.transform.position);
+	}
 	// Moves the object to pos
 	void MoveTo(Vector3 pos) {
 		//set a flag to indicate to move the gameobject
 		flag = true;
-		//save the click / tap position
-		endPoint = pos;
-		//as we do not want to change the y axis value based on touch position, reset it to original y axis value
+		//save the click/tap position with object's original y axis value
+		endPoint = new Vector3(pos.x, yAxis, pos.z);
+
 		endPoint.y = yAxis;
 		Debug.Log(endPoint);
 	}

@@ -1,0 +1,3 @@
+Environment,WalkHere,CloseMenu
+Player,CloseMenu
+HidingSpot,WalkHere,Hide,CloseMenu

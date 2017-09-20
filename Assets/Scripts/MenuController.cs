@@ -55,7 +55,7 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    //dyanmically set which menu buttons are enabled based on the array passed in
+    //dynamically set which menu buttons are enabled based on the array passed in
     private void OpenMenu(string[] menuType)
     {
         foreach (string s in menuType)

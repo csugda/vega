@@ -16,9 +16,18 @@ public class MouseInput : MonoBehaviour {
 	public MouseEvent mouseButtonDown;// fires if the user pressed a mouse button this frame.
 	public MouseUpEvent mouseButtonUp;  // fires if the user released a mouse button this frame.
 
+	public MenuController menuController;
+
+	void Start () {
+		menuController = GetComponent<MenuController>();
+	}
+
 	void Update () {
 		for (int i = 0; i < 2; i++) {
-			if (Input.GetMouseButton(i)) {
+			// FIXME write a better solution to preventing moving when clicking on menu buttons.
+			if (i == 0 && menuController.menuOpen) continue;
+
+			if (Input.GetMouseButton(i) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && i == 0)) {
 				RaycastHit hit;
 				if (RaycastFromMouse(out hit)) {
 					if (Input.GetMouseButtonDown(i)) {
@@ -35,7 +44,16 @@ public class MouseInput : MonoBehaviour {
 
 	bool RaycastFromMouse (out RaycastHit rcHit) {
 		RaycastHit hit;
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+		Ray ray;
+		//for unity editor
+		#if UNITY_EDITOR
+		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		//for touch device
+		#elif (UNITY_ANDROID || UNITY_IPHONE || UNITY_WP8)
+		ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+		#endif
+
 		if (Physics.Raycast(ray, out hit, 100.0f)) {
 			rcHit = hit;
 			return true;

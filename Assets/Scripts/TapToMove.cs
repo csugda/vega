@@ -36,7 +36,7 @@ public class TapToMove : MonoBehaviour
         {
 			
             flag = false;
-            Debug.Log("I am here");
+           // Debug.Log("I am here");
         }
 
     }
@@ -62,7 +62,7 @@ public class TapToMove : MonoBehaviour
 		endPoint = new Vector3(pos.x, yAxis, pos.z);
 
 		endPoint.y = yAxis;
-		Debug.Log(endPoint);
+		
 	}
 
 	// Returns true if the vectors are approximately equal, false otherwise.

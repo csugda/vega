@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -332,7 +332,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &602161422
 GameObject:
@@ -376,9 +376,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 877630908}
-  - {fileID: 818122237}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &602161425
 MonoBehaviour:
@@ -629,6 +628,7 @@ GameObject:
   - component: {fileID: 818122235}
   - component: {fileID: 818122234}
   - component: {fileID: 818122233}
+  - component: {fileID: 818122238}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -703,9 +703,21 @@ Transform:
   m_LocalPosition: {x: -7.44, y: 9.47, z: -7.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 602161424}
+  m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 37.201, y: 45.000004, z: 0}
+--- !u!114 &818122238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 818122232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c822599e422ca724da1390743d8ab712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 877630907}
 --- !u!1 &835392538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,7 +1164,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1055426968
 MonoBehaviour:
@@ -1667,7 +1679,7 @@ Transform:
   - {fileID: 1536972995}
   - {fileID: 216005331}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1522803375
 GameObject:
@@ -1886,5 +1898,5 @@ Transform:
   m_Children:
   - {fileID: 1217932267}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

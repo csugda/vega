@@ -1,39 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// The Map class holds all static information about the map.
-/// This includes tile types, tile sets, height and width.
-/// NOTE: The Map should not be responsible for handling any non-static data!
-/// </summary>
-public class Map : MonoBehaviour
+namespace Assets.Scripts.Map
 {
-    public int Height;
-    public int Width;
-
-    private int[][] map;
-
-    public Map(int width, int height)
+    /// <summary>
+    /// The Map class holds all static information about the map.
+    /// This includes tile types, tile sets, height and width.
+    /// NOTE: The Map should not be responsible for handling any non-static data!
+    /// </summary>
+    public class Map : MonoBehaviour
     {
-        this.Width = width;
-        this.Height = height;
-    }
+        private TileType[][] map;
 
-	// Use this for initialization
-	void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-	}
+        public Map(int width, int height)
+        {
+        }
 
-    //The generator will be responsible for generating the map
-    public void Generate(MapGenerator mapGen)
-    {
-        mapGen.GenerateMap(this);
+        // Use this for initialization
+        void Start()
+        {
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+        }
+
+        /// <summary>
+        /// Generates this map randomly based on the set parameters and the given MapGenerator
+        /// </summary>
+        /// <param name="mapGen"></param>
+        public void Generate(MapGenerator mapGen)
+        {
+            mapGen.GenerateMap(this);
+        }
     }
 }
+

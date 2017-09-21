@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TapToMove : MonoBehaviour
 {
 	public GameObject menuGO;
+    NavMeshAgent agent;
 
     //flag to check if the user has tapped / clicked. 
     //Set to true on click. Reset to false on reaching destination
-    private bool flag = false;
+    //private bool flag = false; PROBABLY NOT NEEDED ANYMORE! (otherwise killz me by commentz)
     //destination point
     private Vector3 endPoint;
     //alter this to change the speed of the movement of player / gameobject
-    public float duration = 50.0f;
+    //public float duration = 50.0f; PROBABLY NOT NEEDED ANYMORE! (otherwise killz me by commentz)
     //vertical position of the gameobject
     private float yAxis;
 
@@ -20,25 +22,12 @@ public class TapToMove : MonoBehaviour
     {
         //save the y axis value of gameobject
         yAxis = gameObject.transform.position.y;
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //check if the flag for movement is true and the current gameobject position is not same as the clicked / tapped position
-        if (flag && !VectorApproximately(gameObject.transform.position, endPoint))
-        { //&& !(V3Equal(transform.position, endPoint))){
-          //move the gameobject to the desired position
-            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, endPoint, 1 / (duration * (Vector3.Distance(gameObject.transform.position, endPoint))));
-        }
-        //set the movement indicator flag to false if the endPoint and current gameobject position are equal
-        else if (flag && VectorApproximately(gameObject.transform.position, endPoint))
-        {
-			
-            flag = false;
-           // Debug.Log("I am here");
-        }
-
     }
 
 	public void OnMouseButtonDown(int button, Vector3 pos, Transform obj) {
@@ -56,19 +45,16 @@ public class TapToMove : MonoBehaviour
 	}
 	// Moves the object to pos
 	void MoveTo(Vector3 pos) {
-		//set a flag to indicate to move the gameobject
-		flag = true;
 		//save the click/tap position with object's original y axis value
 		endPoint = new Vector3(pos.x, yAxis, pos.z);
+        agent.SetDestination(endPoint);
+    }
 
-		endPoint.y = yAxis;
-		
-	}
-
-	// Returns true if the vectors are approximately equal, false otherwise.
-	bool VectorApproximately(Vector3 v1, Vector3 v2) {
-		return (Mathf.Approximately(v1.x, v2.x) && Mathf.Approximately(v1.x, v2.x) && Mathf.Approximately(v1.x, v2.x));
-	}
+    // Returns true if the vectors are approximately equal, false otherwise.
+    //bool VectorApproximately(Vector3 v1, Vector3 v2) { 
+    //PROBABLY NOT NEEDED ANYMORE! (otherwise killz me by commentz)
+    //	return (Mathf.Approximately(v1.x, v2.x) && Mathf.Approximately(v1.x, v2.x) && Mathf.Approximately(v1.x, v2.x));
+    //}
 }
 
 

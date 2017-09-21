@@ -9,10 +9,16 @@ using UnityEngine;
 /// </summary>
 public class Map : MonoBehaviour
 {
-    public int Height { get; set; }
-    public int Width { get; set; }
+    public int Height;
+    public int Width;
 
     private int[][] map;
+
+    public Map(int width, int height)
+    {
+        this.Width = width;
+        this.Height = height;
+    }
 
 	// Use this for initialization
 	void Start ()
@@ -28,6 +34,6 @@ public class Map : MonoBehaviour
     //The generator will be responsible for generating the map
     public void Generate(MapGenerator mapGen)
     {
-        //TODO: ADD GENERATION MECHANIC
+        mapGen.GenerateMap(this);
     }
 }

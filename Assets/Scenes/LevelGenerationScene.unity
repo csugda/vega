@@ -1627,16 +1627,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84a2485877c1b94b8c5abe98b2c8d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapGeneratorParameters:
-    Height: 0
-    Width: 0
-    Seed: 0
-    FloorTiles:
-    - {fileID: 1522803375}
-    WallTiles:
-    - {fileID: 1408809330252270, guid: ada8d09e1e72b3e4e87dddfa4d62c0f4, type: 2}
-    - {fileID: 1990967271700130, guid: 1694587323baa81409a33afef448a672, type: 2}
-    OuterWallTiles: []
 --- !u!114 &1419026627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1648,6 +1638,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3253221ea83290b418532364406f42cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MapGeneratorParameters:
+    Height: 0
+    Width: 0
+    Seed: 0
+    FloorTiles: []
+    WallTiles:
+    - {fileID: 1990967271700130, guid: 1694587323baa81409a33afef448a672, type: 2}
+    - {fileID: 1408809330252270, guid: ada8d09e1e72b3e4e87dddfa4d62c0f4, type: 2}
+    OuterWallTiles: []
 --- !u!1 &1522803375
 GameObject:
   m_ObjectHideFlags: 0

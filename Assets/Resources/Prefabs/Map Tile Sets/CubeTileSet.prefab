@@ -9,51 +9,51 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1755192875982864}
+  m_RootGameObject: {fileID: 1513578700321474}
   m_IsPrefabParent: 1
---- !u!1 &1755192875982864
+--- !u!1 &1513578700321474
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4557820092243314}
-  - component: {fileID: 114828146790895324}
+  - component: {fileID: 4867212350427768}
+  - component: {fileID: 114274448322039146}
   m_Layer: 0
-  m_Name: DualColorFloorMapTileSet
-  m_TagString: Environment
+  m_Name: CubeTileSet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4557820092243314
+--- !u!4 &4867212350427768
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1755192875982864}
+  m_GameObject: {fileID: 1513578700321474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.5534725, y: -15.871971, z: -0.5311222}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114828146790895324
+--- !u!114 &114274448322039146
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1755192875982864}
+  m_GameObject: {fileID: 1513578700321474}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7fbd9dc169092c4cba32855afa9ab99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   FloorTiles:
-  - {fileID: 1895549971278296, guid: 0752d0631ab295544969bd55339bad14, type: 2}
-  - {fileID: 1070717932339262, guid: d6ba466dd15bd8a4490c97d6818d3105, type: 2}
+  - {fileID: 1309245660380354, guid: b557d1bf8480a624d94386237164f9ce, type: 2}
+  - {fileID: 1444638691669468, guid: 6086e30859005514480b410165d2c0b3, type: 2}
+  - {fileID: 1727430472709454, guid: 0f46d6ac0c61f6a4fa5e3502cc1367c7, type: 2}
   InnerWallTiles: []
-  OuterWallTiles:
-  - {fileID: 1408809330252270, guid: ada8d09e1e72b3e4e87dddfa4d62c0f4, type: 2}
+  OuterWallTiles: []

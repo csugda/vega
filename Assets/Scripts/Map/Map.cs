@@ -10,30 +10,46 @@ namespace Assets.Scripts.Map
     {
         public TileType[,] TileTypeMap;
 
-        public Bounds TotalFloorBounds;
+        private Bounds TotalFloorBounds;
+
+        public bool GenerateMap;
+
+        public MapParameters MapParams;
 
         //The prefabs to choose from when creating the map
         public MapTileSet mapTileSet;
 
-        public int Width;
-        public int Height;
-
         private void Start()
         {
-            TileTypeMap = new TileType[Width, Height];
+            TileTypeMap = new TileType[MapParams.Width, MapParams.Height];
+            if(GenerateMap)
+            {
+                TileTypeMap = MapGenerator.GenerateMap(MapParams);
+            }
+            else
+            {
+                //DO OTHER THINGS
+            }
+            InstantiateMap();
+        }
+
+        public void NewMap()
+        {
+            TileTypeMap = MapGenerator.GenerateMap(MapParams);
+            foreach (Transform child in transform)
+                Destroy(child.gameObject);
+            InstantiateMap();
         }
 
         public void InstantiateMap()
         {
-            for (int row = 0; row < Height; ++row)
+            for (int row = 0; row < TileTypeMap.GetLength(0); ++row)
             {
-                for (int col = 0; col < Width; ++col)
+                for (int col = 0; col < TileTypeMap.GetLength(1); ++col)
                 {
-                    float xPos = row;
-                    float zPos = col;
-                    Vector3 pos = new Vector3(xPos, 0, zPos);
+                    Vector3 pos = new Vector3((float)row, 0, (float)col);
 
-                    var obj = mapTileSet.GetTileOfType(TileTypeMap[col, row]);
+                    var obj = mapTileSet.GetTileOfType(TileTypeMap[row, col]);
                     obj = Instantiate(obj, getScaledPositionVector(obj, pos), Quaternion.identity);
                     obj.transform.parent = transform;
                 }

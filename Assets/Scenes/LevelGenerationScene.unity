@@ -504,7 +504,6 @@ MonoBehaviour:
   MapParams:
     Height: 5
     Width: 3
-    Seed: 0
   mapTileSet: {fileID: 114418004004483464, guid: 1f69fdfbcdb3ce5469783f52f9f749bf,
     type: 2}
 --- !u!1 &614581227

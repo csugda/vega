@@ -14,7 +14,9 @@ namespace Assets.Scripts.Map
         /// <param name="map">Map to Generate</param>
         public static TileType[,] GenerateMap(MapParameters mapParams)
         {
-            TileType[,] TileTypeMap = new TileType[mapParams.Width, mapParams.Height];
+            TileType[,] TileTypeMap = new TileType[mapParams.Height, mapParams.Width];
+
+            Debug.Log(mapParams.Height + " " + mapParams.Width);
             PlaceFloor(TileTypeMap);
             //PlaceOuterWalls();
             //PlaceInnerWalls();  
@@ -28,7 +30,8 @@ namespace Assets.Scripts.Map
             {
                 for (int col = 0; col < map.GetLength(1); ++col)
                 {
-                    map[col,row] = TileType.Floor;
+
+                    map[row,col] = TileType.Floor;
                 }
             }
         }

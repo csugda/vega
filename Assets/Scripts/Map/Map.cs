@@ -41,7 +41,7 @@ namespace Assets.Scripts.Map
                 {
                     Vector3 pos = new Vector3((float)row, 0, (float)col);
 
-                    var obj = mapTileSet.GetTileOfType(TileTypeMap[col, row]);
+                    var obj = mapTileSet.GetTileOfType(TileTypeMap[row, col]);
                     obj = Instantiate(obj, getScaledPositionVector(obj, pos), Quaternion.identity);
                     obj.transform.parent = transform;
                 }

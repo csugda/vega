@@ -51,13 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7fbd9dc169092c4cba32855afa9ab99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentTransform: {fileID: 0}
   FloorTiles:
   - {fileID: 1895549971278296, guid: 0752d0631ab295544969bd55339bad14, type: 2}
   - {fileID: 1070717932339262, guid: d6ba466dd15bd8a4490c97d6818d3105, type: 2}
   - {fileID: 1774893862993260, guid: 8704c4eab70491b4ebd959545e5980cc, type: 2}
-  WallTiles:
-  - {fileID: 1408809330252270, guid: ada8d09e1e72b3e4e87dddfa4d62c0f4, type: 2}
-  - {fileID: 1990967271700130, guid: 1694587323baa81409a33afef448a672, type: 2}
+  InnerWallTiles: []
   OuterWallTiles:
-  - {fileID: 1408809330252270, guid: ada8d09e1e72b3e4e87dddfa4d62c0f4, type: 2}
+  - {fileID: 1724301703140194}

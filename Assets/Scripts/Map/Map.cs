@@ -18,8 +18,6 @@ namespace Assets.Scripts.Map
         public int Width;
         public int Height;
 
-        private UnityEditor.AI.NavMeshBuilder navBuilder;
-
         private void Start()
         {
             TileTypeMap = new TileType[Width, Height];

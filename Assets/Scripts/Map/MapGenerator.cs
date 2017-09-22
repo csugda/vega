@@ -7,7 +7,6 @@ namespace Assets.Scripts.Map
     /// </summary>
     public static class MapGenerator
     {
-       
         /// <summary>
         /// Generate a map randomly
         /// </summary>
@@ -15,12 +14,9 @@ namespace Assets.Scripts.Map
         public static TileType[,] GenerateMap(MapParameters mapParams)
         {
             TileType[,] TileTypeMap = new TileType[mapParams.Height, mapParams.Width];
-
-            Debug.Log(mapParams.Height + " " + mapParams.Width);
             PlaceFloor(TileTypeMap);
             //PlaceOuterWalls();
             //PlaceInnerWalls();  
-
             return TileTypeMap;
         }
 
@@ -30,7 +26,6 @@ namespace Assets.Scripts.Map
             {
                 for (int col = 0; col < map.GetLength(1); ++col)
                 {
-
                     map[row,col] = TileType.Floor;
                 }
             }

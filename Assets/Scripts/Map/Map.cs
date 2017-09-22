@@ -40,7 +40,9 @@ namespace Assets.Scripts.Map
                 Destroy(child.gameObject);
             InstantiateMap();
         }
-
+        /// <summary>
+        /// Instantiate map objects based on TileTypeMap.
+        /// </summary>
         public void InstantiateMap()
         {
             for (int row = 0; row < TileTypeMap.GetLength(0); ++row)

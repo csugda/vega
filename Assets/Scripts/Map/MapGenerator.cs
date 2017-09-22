@@ -1,57 +1,50 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Map
 {
     /// <summary>
     /// Generates a randomized map given certain construction parameters.
     /// </summary>
-    public class MapGenerator : MonoBehaviour
+    public static class MapGenerator
     {
-        public MapParameters MapGeneratorParameters;
-
-        private GameObject mapTileHolder;
-
-        private Map map;
-
-        private void Start()
-        {
-            map = GetComponent<Map>();
-
-            mapTileHolder = new GameObject("MapTileHolder");
-            GenerateMap(map, MapGeneratorParameters);
-        }
-
         /// <summary>
         /// Generate a map randomly
         /// </summary>
         /// <param name="map">Map to Generate</param>
-        // TODO: Add parameters for map generation such as map type, etc
-        public void GenerateMap(Map map, MapParameters mapParams = null)
+        public static TileType[,] GenerateMap(MapParameters mapParams)
         {
-            PlaceWalls();
-            //TODO: GENERATE THE MAP HERE
+            TileType[,] TileTypeMap = new TileType[mapParams.Height, mapParams.Width];
+            PlaceFloor(TileTypeMap);
+            //PlaceOuterWalls();
+            //PlaceInnerWalls();  
+            return TileTypeMap;
         }
 
-        private void PlaceFloor()
+        private static void PlaceFloor(TileType[,] map)
         {
-
-        }
-
-        private void PlaceWalls()
-        {
-
-            for(int i = 0; i < 4; ++i)
+            for (int row = 0; row < map.GetLength(0); ++row)
             {
-                GameObject newWall = MapGeneratorParameters.WallTiles[i % 2];
-                float xPos = i * newWall.transform.lossyScale.x;
-                float yPos = 1;
-                float zPos = i * newWall.transform.lossyScale.z;
-                Vector3 position = new Vector3(xPos,yPos,zPos);
-                newWall = Instantiate(newWall, position, Quaternion.identity) as GameObject;
-                newWall.transform.parent = mapTileHolder.transform;
+                for (int col = 0; col < map.GetLength(1); ++col)
+                {
+                    map[row,col] = TileType.Floor;
+                }
             }
+        }
+
+        private static void PlaceOuterWalls(TileType[,] map)
+        {
+            for (int row = 0; row < map.GetLength(0); ++row)
+            {
+                for (int col = 0; col < map.GetLength(1); ++col)
+                {
+                    //map[col, row] = TileType.Floor;
+                }
+            }
+        }
+
+        private static void PlaceInnerWalls(TileType[,] map)
+        {
+            //TODO: Write inner walls loops
         }
     }
 }

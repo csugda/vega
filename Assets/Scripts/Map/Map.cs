@@ -1,38 +1,67 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Map
 {
     /// <summary>
     /// The Map class holds all static information about the map.
-    /// This includes tile types, tile sets, height and width.
-    /// NOTE: The Map should not be responsible for handling any non-static data!
+    /// This includes height and width, tile type map, tile set(s)
     /// </summary>
     public class Map : MonoBehaviour
     {
-        private TileType[][] map;
+        public TileType[,] TileTypeMap;
 
-        public Map(int width, int height)
+        private Bounds TotalFloorBounds;
+
+        public bool GenerateMap;
+
+        public MapParameters MapParams;
+
+        //The prefabs to choose from when creating the map
+        public MapTileSet mapTileSet;
+
+        private void Start()
         {
+            TileTypeMap = new TileType[MapParams.Width, MapParams.Height];
+            if(GenerateMap)
+            {
+                TileTypeMap = MapGenerator.GenerateMap(MapParams);
+            }
+            else
+            {
+                //DO OTHER THINGS
+            }
+            InstantiateMap();
         }
 
-        // Use this for initialization
-        void Start()
+        public void NewMap()
         {
+            TileTypeMap = MapGenerator.GenerateMap(MapParams);
+            foreach (Transform child in transform)
+                Destroy(child.gameObject);
+            InstantiateMap();
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-        }
-
         /// <summary>
-        /// Generates this map randomly based on the set parameters and the given MapGenerator
+        /// Instantiate map objects based on TileTypeMap.
         /// </summary>
-        /// <param name="mapGen"></param>
-        public void Generate(MapGenerator mapGen)
+        public void InstantiateMap()
         {
-            mapGen.GenerateMap(this);
+            for (int row = 0; row < TileTypeMap.GetLength(0); ++row)
+            {
+                for (int col = 0; col < TileTypeMap.GetLength(1); ++col)
+                {
+                    Vector3 pos = new Vector3((float)row, 0, (float)col);
+
+                    var obj = mapTileSet.GetTileOfType(TileTypeMap[row, col]);
+                    obj = Instantiate(obj, getScaledPositionVector(obj, pos), Quaternion.identity);
+                    obj.transform.parent = transform;
+                }
+            }
+        }
+
+        private Vector3 getScaledPositionVector(GameObject obj, Vector3 pos)
+        {
+            var rend = obj.GetComponent<Renderer>();
+            return Vector3.Scale(rend.bounds.size, pos);
         }
     }
 }

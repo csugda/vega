@@ -5,62 +5,48 @@ namespace Assets.Scripts.Map
     /// <summary>
     /// Generates a randomized map given certain construction parameters.
     /// </summary>
-    public class MapGenerator : MonoBehaviour
+    public static class MapGenerator
     {
-        public Map map;
-        public MapParameters MapGeneratorParameters;
-        
-        private void Start()
-        {
-            GenerateMap(MapGeneratorParameters);
-            map.InstantiateMap();
-        }
-
-        private void OnEnable()
-        {
-            map.Width = MapGeneratorParameters.Width;
-            map.Height = MapGeneratorParameters.Height;
-        }
-
+       
         /// <summary>
         /// Generate a map randomly
         /// </summary>
         /// <param name="map">Map to Generate</param>
-        public void GenerateMap(MapParameters mapParams)
+        public static TileType[,] GenerateMap(MapParameters mapParams)
         {
-            PlaceFloor();
+            TileType[,] TileTypeMap = new TileType[mapParams.Width, mapParams.Height];
+            PlaceFloor(TileTypeMap);
             //PlaceOuterWalls();
-            //PlaceInnerWalls();    
+            //PlaceInnerWalls();  
+
+            return TileTypeMap;
         }
 
-        private void PlaceFloor()
+        private static void PlaceFloor(TileType[,] map)
         {
-            for (int row = 0; row < MapGeneratorParameters.Height; ++row)
+            for (int row = 0; row < map.GetLength(0); ++row)
             {
-                for (int col = 0; col < MapGeneratorParameters.Width; ++col)
+                for (int col = 0; col < map.GetLength(1); ++col)
                 {
-                    map.TileTypeMap[col,row] = TileType.Floor;
+                    map[col,row] = TileType.Floor;
                 }
             }
         }
 
-        private void PlaceOuterWalls()
+        private static void PlaceOuterWalls(TileType[,] map)
         {
-            for (int row = 0; row < MapGeneratorParameters.Height; ++row)
+            for (int row = 0; row < map.GetLength(0); ++row)
             {
-                for (int col = 0; col < MapGeneratorParameters.Width; ++col)
+                for (int col = 0; col < map.GetLength(1); ++col)
                 {
-                    if (row == 0 || row == MapGeneratorParameters.Height ||
-                        col == 0 || col == MapGeneratorParameters.Width)
-                    {
-                        map.TileTypeMap[col, row] = TileType.OuterWall;
-                    }
+                    //map[col, row] = TileType.Floor;
                 }
             }
         }
 
-        private void PlaceInnerWalls()
+        private static void PlaceInnerWalls(TileType[,] map)
         {
+            //TODO: Write inner walls loops
         }
     }
 }

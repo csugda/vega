@@ -2,6 +2,6 @@
 {
     public enum TileType
     {
-        Wall, Floor
+        Floor, OuterWall, InnerWall
     }
 }

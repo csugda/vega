@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Map
 {
@@ -9,49 +7,60 @@ namespace Assets.Scripts.Map
     /// </summary>
     public class MapGenerator : MonoBehaviour
     {
+        public Map map;
         public MapParameters MapGeneratorParameters;
-
-        private GameObject mapTileHolder;
-
-        private Map map;
-
+        
         private void Start()
         {
-            map = GetComponent<Map>();
+            GenerateMap(MapGeneratorParameters);
+            map.InstantiateMap();
+        }
 
-            mapTileHolder = new GameObject("MapTileHolder");
-            GenerateMap(map, MapGeneratorParameters);
+        private void OnEnable()
+        {
+            map.Width = MapGeneratorParameters.Width;
+            map.Height = MapGeneratorParameters.Height;
         }
 
         /// <summary>
         /// Generate a map randomly
         /// </summary>
         /// <param name="map">Map to Generate</param>
-        // TODO: Add parameters for map generation such as map type, etc
-        public void GenerateMap(Map map, MapParameters mapParams = null)
+        public void GenerateMap(MapParameters mapParams)
         {
-            PlaceWalls();
-            //TODO: GENERATE THE MAP HERE
+            PlaceFloor();
+            //PlaceOuterWalls();
+            //PlaceInnerWalls();    
         }
 
         private void PlaceFloor()
         {
-
+            for (int row = 0; row < MapGeneratorParameters.Height; ++row)
+            {
+                for (int col = 0; col < MapGeneratorParameters.Width; ++col)
+                {
+                    map.TileTypeMap[col,row] = TileType.Floor;
+                }
+            }
         }
 
-        private void PlaceWalls()
+        private void PlaceOuterWalls()
         {
-
-            for(int i = 0; i < 4; ++i)
+            for (int row = 0; row < MapGeneratorParameters.Height; ++row)
             {
-                GameObject newWall = MapGeneratorParameters.WallTiles[i % 2];
-                float xPos = i * newWall.transform.lossyScale.x;
-                float yPos = 1;
-                float zPos = i * newWall.transform.lossyScale.z;
-                Vector3 position = new Vector3(xPos,yPos,zPos);
-                newWall = Instantiate(newWall, position, Quaternion.identity) as GameObject;
-                newWall.transform.parent = mapTileHolder.transform;
+                for (int col = 0; col < MapGeneratorParameters.Width; ++col)
+                {
+                    if (row == 0 || row == MapGeneratorParameters.Height ||
+                        col == 0 || col == MapGeneratorParameters.Width)
+                    {
+                        map.TileTypeMap[col, row] = TileType.OuterWall;
+                    }
+                }
             }
+        }
+
+        private void PlaceInnerWalls()
+        {
         }
     }
 }

@@ -33,6 +33,14 @@ namespace Assets.Scripts.Map
             InstantiateMap();
         }
 
+        public void NewMap()
+        {
+            TileTypeMap = MapGenerator.GenerateMap(MapParams);
+            foreach (Transform child in transform)
+                Destroy(child.gameObject);
+            InstantiateMap();
+        }
+
         public void InstantiateMap()
         {
             for (int row = 0; row < TileTypeMap.GetLength(0); ++row)

@@ -33,7 +33,7 @@ namespace Assets.Scripts.Map
             {
                 TotalWeight += t.Weight;
             }
-            int rand = RandIndex(TotalWeight);
+            int rand = UnityEngine.Random.Range(0, TotalWeight);
             int w = 0;
             foreach (MapTile t in Tiles)
             {
@@ -46,9 +46,6 @@ namespace Assets.Scripts.Map
             return null;
         }
 
-        private int RandIndex(int max)
-        {
-            return UnityEngine.Random.Range(0, max);
-        }
+        
     }
 }

@@ -502,8 +502,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GenerateMap: 1
   MapParams:
-    Height: 5
-    Width: 3
+    Height: 56
+    Width: 66
   mapTileSet: {fileID: 114418004004483464, guid: 1f69fdfbcdb3ce5469783f52f9f749bf,
     type: 2}
 --- !u!1 &614581227
@@ -960,7 +960,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: MouseUpEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  menuController: {fileID: 0}
+  menuController: {fileID: 1055426968}
 --- !u!4 &1055426967
 Transform:
   m_ObjectHideFlags: 0
@@ -1198,7 +1198,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 613416669}
-        m_MethodName: NewMap
+        m_MethodName: RegenerateMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

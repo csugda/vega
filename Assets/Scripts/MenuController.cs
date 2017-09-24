@@ -116,7 +116,7 @@ public class MenuController : MonoBehaviour
         }
         catch (Exception e)
         {
-            Console.WriteLine("{0}\n", e.Message);
+            Debug.LogError(e.Message);
             return false;
         }
     }

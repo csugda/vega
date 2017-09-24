@@ -54,11 +54,13 @@ public class NavMeshSourceTag : MonoBehaviour
             var m = mf.sharedMesh;
             if (m == null) continue;
 
-            var s = new NavMeshBuildSource();
-            s.shape = NavMeshBuildSourceShape.Mesh;
-            s.sourceObject = m;
-            s.transform = mf.transform.localToWorldMatrix;
-            s.area = 0;
+            var s = new NavMeshBuildSource
+            {
+                shape = NavMeshBuildSourceShape.Mesh,
+                sourceObject = m,
+                transform = mf.transform.localToWorldMatrix,
+                area = 0
+            };
             sources.Add(s);
         }
 
@@ -67,12 +69,14 @@ public class NavMeshSourceTag : MonoBehaviour
             var t = m_Terrains[i];
             if (t == null) continue;
 
-            var s = new NavMeshBuildSource();
-            s.shape = NavMeshBuildSourceShape.Terrain;
-            s.sourceObject = t.terrainData;
-            // Terrain system only supports translation - so we pass translation only to back-end
-            s.transform = Matrix4x4.TRS(t.transform.position, Quaternion.identity, Vector3.one);
-            s.area = 0;
+            var s = new NavMeshBuildSource
+            {
+                shape = NavMeshBuildSourceShape.Terrain,
+                sourceObject = t.terrainData,
+                // Terrain system only supports translation - so we pass translation only to back-end
+                transform = Matrix4x4.TRS(t.transform.position, Quaternion.identity, Vector3.one),
+                area = 0
+            };
             sources.Add(s);
         }
     }

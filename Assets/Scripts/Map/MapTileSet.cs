@@ -6,28 +6,46 @@ namespace Assets.Scripts.Map
     [Serializable]
     public class MapTileSet : MonoBehaviour
     {
-        public GameObject[] FloorTiles;
-        public GameObject[] InnerWallTiles;
-        public GameObject[] OuterWallTiles;
+        public MapTile[] FloorTiles;
+        public MapTile[] InnerWallTiles;
+        public MapTile[] OuterWallTiles;
 
         public GameObject GetTileOfType(TileType type)
         {
             switch (type)
             {
                 case TileType.Floor:
-                    return FloorTiles[RandIndex(FloorTiles.Length)];
+                    return WeightedRandom(FloorTiles);
                 case TileType.InnerWall:
-                    return InnerWallTiles[RandIndex(InnerWallTiles.Length)];
+                    return WeightedRandom(InnerWallTiles);
                 case TileType.OuterWall:
-                    return OuterWallTiles[RandIndex(OuterWallTiles.Length)];
+                    return WeightedRandom(OuterWallTiles);
                 default:
                     Debug.LogError("Unable to find correct tile for type " + type.ToString());
                     return null;
             }
         }
-        private int RandIndex(int max)
+
+        private GameObject WeightedRandom(MapTile[] Tiles)
         {
-            return UnityEngine.Random.Range(0, max);
+            int TotalWeight = 0;
+            foreach (MapTile t in Tiles)
+            {
+                TotalWeight += t.Weight;
+            }
+            int rand = UnityEngine.Random.Range(0, TotalWeight);
+            int w = 0;
+            foreach (MapTile t in Tiles)
+            {
+                w += t.Weight;
+                if (w > rand)
+                    return t.Tile;
+            }
+            //if this happens something went wrong, let me know. -Miles
+            Debug.Log("MapTileSet.WeightedRandom failed to choose a tile, defaulting to null");
+            return null;
         }
+
+        
     }
 }

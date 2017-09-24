@@ -52,13 +52,13 @@ namespace Assets.Scripts.Map
                     Vector3 pos = new Vector3((float)row, 0, (float)col);
 
                     var obj = mapTileSet.GetTileOfType(TileTypeMap[row, col]);
-                    obj = Instantiate(obj, getScaledPositionVector(obj, pos), Quaternion.identity);
+                    obj = Instantiate(obj, GetScaledPositionVector(obj, pos), Quaternion.identity);
                     obj.transform.parent = transform;
                 }
             }
         }
 
-        private Vector3 getScaledPositionVector(GameObject obj, Vector3 pos)
+        private Vector3 GetScaledPositionVector(GameObject obj, Vector3 pos)
         {
             var rend = obj.GetComponent<Renderer>();
             return Vector3.Scale(rend.bounds.size, pos);

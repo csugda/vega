@@ -25,6 +25,7 @@ public class MenuController : MonoBehaviour
         LoadMenuOptions();
         menuCanvas = menuGO.transform.Find("MenuCanvas");
         CloseMenu();
+        
     }
 
     public void OpenMenuButtonPressed(int button, Vector3 pos, Transform target)
@@ -45,7 +46,7 @@ public class MenuController : MonoBehaviour
             string menuType = target.tag;
             if (menuOptions.ContainsKey(menuType))
             {
-                OpenMenu(menuOptions[menuType]);
+                OpenMenu(menuOptions[menuType], pos, target);
             }
             else
             {
@@ -56,7 +57,7 @@ public class MenuController : MonoBehaviour
     }
 
     //dynamically set which menu buttons are enabled based on the array passed in
-    private void OpenMenu(string[] menuType)
+    private void OpenMenu(string[] menuType, Vector3 pos, Transform target)
     {
         foreach (string s in menuType)
         {
@@ -68,7 +69,7 @@ public class MenuController : MonoBehaviour
             }
             else
             {
-                child.gameObject.SetActive(true);
+                child.gameObject.GetComponent<MenuButton>().Activate(pos, target);
             }
         }
     }

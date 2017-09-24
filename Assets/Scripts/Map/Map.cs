@@ -4,6 +4,7 @@ using System;
 
 namespace Assets.Scripts.Map
 {
+
     /// <summary>
     /// The Map class holds all static information about the map.
     /// This includes height and width, tile type map, tile set(s)
@@ -11,12 +12,10 @@ namespace Assets.Scripts.Map
     public class Map : MonoBehaviour
     {
         public TileType[,] TileTypeMap;
-
-        private Bounds TotalFloorBounds;
-
         public bool GenerateMap;
-
         public MapParameters MapParams;
+
+        public event EventHandler<MapEventArgs> OnInstantiationDone;
 
         //The prefabs to choose from when creating the map
         public MapTileSet mapTileSet;
@@ -51,16 +50,14 @@ namespace Assets.Scripts.Map
         /// </summary>
         public void InstantiateEntireMap()
         {
-            Action instantiate = InstantiateTile;
-
             foreach (TileType type in Enum.GetValues(typeof(TileType)))
             {
-                DoActionForAllTilesOfType(instantiate, type);
+                DoActionForAllTilesOfType(InstantiateTile, type);
+                RaiseOnInstantiationDone(type);
             }
         }
 
-        public delegate void Action(TileType tile, Vector3 pos);
-        public void DoActionForAllTilesOfType(Action action, TileType type)
+        public void DoActionForAllTilesOfType(Action<TileType, Vector3> action, TileType type)
         {
             var typeQuery =
                 from x in Enumerable.Range(0, MapParams.Height)
@@ -77,15 +74,29 @@ namespace Assets.Scripts.Map
 
         private void InstantiateTile(TileType tile, Vector3 pos)
         {
+            // TODO: Add switch for different object placements such as walls... etc
             var obj = mapTileSet.GetTileOfType(TileTypeMap[(int)pos.x, (int)pos.z]);
             obj = Instantiate(obj, GetScaledPositionVector(obj, pos), Quaternion.identity);
             obj.transform.parent = transform;
         }
 
+        private void RaiseOnInstantiationDone(TileType type)
+        {
+            var handler = OnInstantiationDone;
+            if (handler == null) return;
+
+            handler(this, new MapEventArgs(type));
+        }
+
         private Vector3 GetScaledPositionVector(GameObject obj, Vector3 pos)
         {
-            var rend = obj.GetComponent<Renderer>();
-            return Vector3.Scale(rend.bounds.size, pos);
+            Bounds bounds = new Bounds();
+
+            foreach(var rend in obj.GetComponents<Renderer>())
+            {
+                bounds.Encapsulate(rend.bounds);
+            }
+            return Vector3.Scale(bounds.size, pos);
         }
 
         public void OnDestroy()

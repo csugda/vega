@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Environment
   - HidingSpot
+  - Pick Up
   layers:
   - Default
   - TransparentFX

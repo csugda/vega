@@ -49,7 +49,13 @@ public class TapToMove : MonoBehaviour
 		endPoint = new Vector3(pos.x, yAxis, pos.z);
         agent.SetDestination(endPoint);
     }
-
+    void OnTriggerEnter(Collider other) // triggers on contact with a collider
+    {
+        if (other.gameObject.CompareTag("Pick Up")) // compares the tag of an object
+        {
+            other.gameObject.SetActive(false); // sets gameobject to inactive
+        }
+    }
     // Returns true if the vectors are approximately equal, false otherwise.
     //bool VectorApproximately(Vector3 v1, Vector3 v2) { 
     //PROBABLY NOT NEEDED ANYMORE! (otherwise killz me by commentz)

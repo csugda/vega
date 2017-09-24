@@ -55,11 +55,11 @@ MonoBehaviour:
   - Tile: {fileID: 1295731842436164, guid: 1db98182e66a5cd4892039aafb11151a, type: 2}
     Weight: 1
   - Tile: {fileID: 1053447570351486, guid: 57e444fb2d495a64e9243b1e68183c71, type: 2}
-    Weight: 1
+    Weight: 2
   - Tile: {fileID: 1807791367870676, guid: 03d5d67354de312459cc0e76ecf17c68, type: 2}
-    Weight: 1
+    Weight: 5
   - Tile: {fileID: 1345094684108990, guid: bf1afab001888ad49b0b227036172a81, type: 2}
-    Weight: 1
+    Weight: 10
   InnerWallTiles: []
   OuterWallTiles:
   - Tile: {fileID: 0}

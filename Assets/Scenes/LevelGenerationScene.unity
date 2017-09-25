@@ -534,7 +534,7 @@ MonoBehaviour:
     Height: 10
     Width: 10
     GenerateRandomMap: 0
-    Seed: 0
+    Seed: 237666424
     MapSectors: 0
     MinimumRoomSize: {x: 0, y: 0, z: 0}
 --- !u!1 &614581227

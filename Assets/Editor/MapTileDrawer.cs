@@ -20,11 +20,15 @@ public class IngredientDrawer : PropertyDrawer
         var tileRect = new Rect(position.x+15, position.y, 185, position.height);
         var weightRect = new Rect(position.x + 205, position.y, 60, position.height);
         var typeRect = new Rect(position.x + 270, position.y, 80, position.height);
+        var RotateRect = new Rect(position.x + 355, position.y, 40, position.height);
+
 
         // Draw fields - pass GUIContent.none to each so they are drawn without labels
         EditorGUI.PropertyField(tileRect, property.FindPropertyRelative("Tile"), GUIContent.none);
         EditorGUI.PropertyField(weightRect, property.FindPropertyRelative("Weight"), GUIContent.none);
         EditorGUI.PropertyField(typeRect, property.FindPropertyRelative("Type"), GUIContent.none);
+        EditorGUI.PropertyField(RotateRect, property.FindPropertyRelative("Rotate"), GUIContent.none);
+
 
         // Set indent back to what it was
         EditorGUI.indentLevel = indent;

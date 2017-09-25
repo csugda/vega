@@ -23,8 +23,17 @@ namespace Assets.Scripts.Map
         public TileType[,] GetGeneratedMap()
         {
             GeneratorMap = new TileType[MapParams.Height, MapParams.Width];
-
             return GeneratorMap;
+        }
+
+        private void CreateMapSectors()
+        {
+
+
+            for(int sectorID = 0; sectorID < MapParams.MapSectors; ++sectorID)
+            {
+
+            }
         }
 
         private void PlaceTiles(Func<TileType[,]> func)

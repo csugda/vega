@@ -36,15 +36,31 @@ public class TapToMove : MonoBehaviour
 			MoveTo(pos);
 		}
 	}
-	public void MoveToMenuGO() {
-		MoveTo(menuGO.transform.position);
-	}
+	
 	// Moves the object to pos
 	void MoveTo(Vector3 pos) {
 		//save the click/tap position with object's original y axis value
 		endPoint = new Vector3(pos.x, yAxis, pos.z);
         agent.SetDestination(endPoint);
     }
+<<<<<<< HEAD
+=======
+
+    //move to the object clicked on. 
+    public void Move(Vector3 pos, Transform target)
+    {
+        //save the click/tap position with object's original y axis value
+        endPoint = new Vector3(pos.x, yAxis, pos.z);
+        agent.SetDestination(endPoint);
+
+    }
+
+    // Returns true if the vectors are approximately equal, false otherwise.
+    //bool VectorApproximately(Vector3 v1, Vector3 v2) { 
+    //PROBABLY NOT NEEDED ANYMORE! (otherwise killz me by commentz)
+    //	return (Mathf.Approximately(v1.x, v2.x) && Mathf.Approximately(v1.x, v2.x) && Mathf.Approximately(v1.x, v2.x));
+    //}
+>>>>>>> 2805a894546a9cf3b0b88412ab3df44d16f1a3d7
 }
 
 

@@ -111,7 +111,7 @@ namespace Assets.Scripts.Map
             {
                 bounds.Encapsulate(rend.bounds);
             }
-            return Vector3.Scale(bounds.size, pos);
+            return Vector3.Scale(new Vector3(10,0,10), pos);
         }
 
         public void OnDestroy()

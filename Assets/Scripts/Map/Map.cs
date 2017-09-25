@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Linq;
 using System;
+using Assets.Scripts.Map.Map_Tiles;
 
 namespace Assets.Scripts.Map
 {
@@ -15,7 +16,8 @@ namespace Assets.Scripts.Map
         public bool GenerateMap;
         public MapParameters MapParams;
 
-        public event EventHandler<MapEventArgs> OnInstantiationDone;
+        public event EventHandler<MapEventArgs> InstantiationHandler;
+        public event EventHandler MapHandler;
 
         //The prefabs to choose from when creating the map
         public MapTileSet mapTileSet;
@@ -47,16 +49,23 @@ namespace Assets.Scripts.Map
         }
         /// <summary>
         /// Instantiate the entire map using every type in the TileType enum
+        /// Raises OnInstantiationDone event
         /// </summary>
         public void InstantiateEntireMap()
         {
             foreach (TileType type in Enum.GetValues(typeof(TileType)))
             {
                 DoActionForAllTilesOfType(InstantiateTile, type);
-                RaiseOnInstantiationDone(type);
+                OnInstantiationDone(type);
             }
         }
 
+        /// <summary>
+        /// For all tiles of a given type in the map, do the passed action.
+        /// Raises the OnMapActionComplete event.
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="type"></param>
         public void DoActionForAllTilesOfType(Action<TileType, Vector3> action, TileType type)
         {
             var typeQuery =
@@ -70,29 +79,35 @@ namespace Assets.Scripts.Map
                 var actOnTile = TileTypeMap[tile.X, tile.Z];
                 action(actOnTile, new Vector3(tile.X, 0, tile.Z));
             }
+            OnMapActionComplete();
         }
 
         private void InstantiateTile(TileType tile, Vector3 pos)
         {
-            // TODO: Add switch for different object placements such as walls... etc
-            var obj = mapTileSet.GetTileOfType(TileTypeMap[(int)pos.x, (int)pos.z]);
-            obj = Instantiate(obj, GetScaledPositionVector(obj, pos), Quaternion.identity);
-            obj.transform.parent = transform;
+            var obj = mapTileSet.GetTileOfType(tile);
+            obj.InstantiateTile(GetScaledPositionVector(obj.Tile,pos), transform);
         }
 
-        private void RaiseOnInstantiationDone(TileType type)
+        private void OnInstantiationDone(TileType type)
         {
-            var handler = OnInstantiationDone;
+            var handler = InstantiationHandler;
             if (handler == null) return;
 
             handler(this, new MapEventArgs(type));
         }
 
+        private void OnMapActionComplete()
+        {
+            var handler = MapHandler;
+            if (handler == null) return;
+
+            handler(this, new EventArgs());
+        }
+
         private Vector3 GetScaledPositionVector(GameObject obj, Vector3 pos)
         {
             Bounds bounds = new Bounds();
-
-            foreach(var rend in obj.GetComponents<Renderer>())
+            foreach(var rend in obj.GetComponentsInChildren<Renderer>())
             {
                 bounds.Encapsulate(rend.bounds);
             }

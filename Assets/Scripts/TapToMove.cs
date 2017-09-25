@@ -8,13 +8,9 @@ public class TapToMove : MonoBehaviour
 	public GameObject menuGO;
     NavMeshAgent agent;
 
-    //flag to check if the user has tapped / clicked. 
-    //Set to true on click. Reset to false on reaching destination
-    //private bool flag = false; PROBABLY NOT NEEDED ANYMORE! (otherwise killz me by commentz)
     //destination point
     private Vector3 endPoint;
     //alter this to change the speed of the movement of player / gameobject
-    //public float duration = 50.0f; PROBABLY NOT NEEDED ANYMORE! (otherwise killz me by commentz)
     //vertical position of the gameobject
     private float yAxis;
 
@@ -49,12 +45,6 @@ public class TapToMove : MonoBehaviour
 		endPoint = new Vector3(pos.x, yAxis, pos.z);
         agent.SetDestination(endPoint);
     }
-
-    // Returns true if the vectors are approximately equal, false otherwise.
-    //bool VectorApproximately(Vector3 v1, Vector3 v2) { 
-    //PROBABLY NOT NEEDED ANYMORE! (otherwise killz me by commentz)
-    //	return (Mathf.Approximately(v1.x, v2.x) && Mathf.Approximately(v1.x, v2.x) && Mathf.Approximately(v1.x, v2.x));
-    //}
 }
 
 

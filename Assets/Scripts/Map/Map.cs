@@ -95,7 +95,7 @@ namespace Assets.Scripts.Map.Map_Tiles
         {
             var sectorID = SectorMap[(int)pos.x, (int)pos.z];
             var obj = SectorTileSets[sectorID].GetTileOfType(tile);
-            obj.InstantiateTile(GetScaledPositionVector(obj.Tile,pos), transform);
+            obj.InstantiateTile(GetScaledPositionVector(obj.Tile,pos), transform, MapParams.Seed);
         }
 
         private void OnInstantiationDone(TileType type)

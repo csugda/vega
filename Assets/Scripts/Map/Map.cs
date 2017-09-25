@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Linq;
 using System;
-using Assets.Scripts.Map.Map_Tiles;
 
-namespace Assets.Scripts.Map
+namespace Assets.Scripts.Map.Map_Tiles
 {
 
     /// <summary>

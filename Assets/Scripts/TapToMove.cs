@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class TapToMove : MonoBehaviour
@@ -21,11 +19,6 @@ public class TapToMove : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
 	public void OnMouseButtonDown(int button, Vector3 pos, Transform obj) {
 		if (button == 0) {
 			MoveTo(pos);
@@ -43,8 +36,6 @@ public class TapToMove : MonoBehaviour
 		endPoint = new Vector3(pos.x, yAxis, pos.z);
         agent.SetDestination(endPoint);
     }
-<<<<<<< HEAD
-=======
 
     //move to the object clicked on. 
     public void Move(Vector3 pos, Transform target)
@@ -52,15 +43,5 @@ public class TapToMove : MonoBehaviour
         //save the click/tap position with object's original y axis value
         endPoint = new Vector3(pos.x, yAxis, pos.z);
         agent.SetDestination(endPoint);
-
     }
-
-    // Returns true if the vectors are approximately equal, false otherwise.
-    //bool VectorApproximately(Vector3 v1, Vector3 v2) { 
-    //PROBABLY NOT NEEDED ANYMORE! (otherwise killz me by commentz)
-    //	return (Mathf.Approximately(v1.x, v2.x) && Mathf.Approximately(v1.x, v2.x) && Mathf.Approximately(v1.x, v2.x));
-    //}
->>>>>>> 2805a894546a9cf3b0b88412ab3df44d16f1a3d7
 }
-
-

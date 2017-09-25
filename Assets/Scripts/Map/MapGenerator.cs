@@ -23,6 +23,7 @@ namespace Assets.Scripts.Map
         public TileType[,] GetGeneratedMap()
         {
             GeneratorMap = new TileType[MapParams.Height, MapParams.Width];
+
             return GeneratorMap;
         }
 
@@ -36,11 +37,6 @@ namespace Assets.Scripts.Map
                 }
             }
         }     
-
-        private void PlaceInnerWalls(TileType[,] map)
-        {
-            //TODO: Write inner walls loops
-        }
     }
 }
 

@@ -9,9 +9,9 @@ namespace Assets.Scripts.Map.Map_Tiles
             Type = TileType.Border;
         }
 
-        public override void InstantiateTile(Vector3 position, Transform parentTransform)
+        public override void InstantiateTile(Vector3 position, Transform parentTransform, long seed)
         {
-            base.InstantiateTile(position, parentTransform);
+            base.InstantiateTile(position, parentTransform, seed);
         }
     }
 }

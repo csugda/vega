@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4608276634553944}
-  - component: {fileID: 114911413959462890}
+  - component: {fileID: 114820027257206806}
   m_Layer: 0
-  m_Name: StanderedMapPieces
+  m_Name: StandardMapPieces
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114911413959462890
+--- !u!114 &114820027257206806
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,17 +48,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1210301631290800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7fbd9dc169092c4cba32855afa9ab99, type: 3}
+  m_Script: {fileID: 11500000, guid: 36c1c1d6df055204aa3b35b252fab0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FloorTiles:
+  MapTiles:
   - Tile: {fileID: 1131153663558228, guid: 14f406cf5e14c094a94e06434f4809c6, type: 2}
     Weight: 5
+    Type: 0
   - Tile: {fileID: 1806574400538310, guid: 1e4b138f4877892488ec5ea76e8308af, type: 2}
     Weight: 10
+    Type: 0
   - Tile: {fileID: 1791913187961656, guid: 79764ab145fe10849b2e3b4773980e35, type: 2}
     Weight: 5
+    Type: 0
   - Tile: {fileID: 1590064245861662, guid: ff28a858400cbb6449554401a0a191d2, type: 2}
     Weight: 1
-  InnerWallTiles: []
-  OuterWallTiles: []
+    Type: 0

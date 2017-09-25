@@ -10,7 +10,7 @@ namespace Assets.Scripts.Map
         public int Width;
 
         public bool GenerateRandomMap;
-        public Int64 Seed;
+        public int Seed;
         
         public int MapSectors;
         public Vector3 MinimumRoomSize;

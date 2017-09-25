@@ -6,7 +6,7 @@ namespace Assets.Scripts.Map
     /// <summary>
     /// Generates a randomized map given certain construction parameters.
     /// </summary>
-    public class MapGenerator
+    public class MapGenerator : ISharedSeed
     {
         protected TileType[,] GeneratorMap;
         protected MapParameters MapParams;
@@ -14,6 +14,7 @@ namespace Assets.Scripts.Map
         public MapGenerator(MapParameters mapParams)
         {
             MapParams = mapParams;
+            SetSharedSeed(MapParams.GenerateRandomMap);
         }
 
         /// <summary>
@@ -26,10 +27,13 @@ namespace Assets.Scripts.Map
             return GeneratorMap;
         }
 
+        /// <summary>
+        /// Split the map into MapParams.MapSectors sub-sectors.
+        /// Will only split if all new sub-sectors would remain 
+        /// at least a size of MapParams.MinimumRoomSize 
+        /// </summary>
         private void CreateMapSectors()
         {
-
-
             for(int sectorID = 0; sectorID < MapParams.MapSectors; ++sectorID)
             {
 
@@ -45,7 +49,21 @@ namespace Assets.Scripts.Map
                     GeneratorMap[row, col] = TileType.Floor;
                 }
             }
-        }     
+        }
+
+        public void SetSharedSeed(bool willGenerateSeed)
+        {
+            UnityEngine.Debug.Log("Seed is: " + MapParams.Seed);
+            if (willGenerateSeed && !MapRandom.SeedIsGenerated)
+            {
+                MapParams.Seed = MapRandom.GenerateAndGetNewSeed();
+            }
+            else
+            {
+                
+                MapRandom.SetManualSeed(MapParams.Seed);
+            }
+        }
     }
 }
 

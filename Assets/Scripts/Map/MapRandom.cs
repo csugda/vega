@@ -1,57 +1,148 @@
-﻿using System;
+﻿// ----------------------------------------------------------------------------
+// The MIT License
+// LeopotamGroupLibrary https://github.com/Leopotam/LeopotamGroupLibraryUnity
+// Copyright (c) 2012-2017 Leopotam <leopotam@gmail.com>
+// ----------------------------------------------------------------------------
 
-namespace Assets.Scripts.Map
-{
+
     /// <summary>
-    /// Specific Random class to be used with a shared seed. (ISharedSeed interface)
-    /// This is usually only used in conjunction with map generation.
-    /// ||Note: DO NOT USE if you care about getting random values!||
-    ///       It relies on a backing seed that is set and shared at runtime
-    ///       between map objects!
+    /// Rng generator, XorShift based.
     /// </summary>
-    public static class MapRandom
+    public sealed class MapRandom
     {
-        //TODO: USE LIBRARY FROM LEOPOTAM (Because he is awesome!)
-        //https://github.com/Leopotam/LeopotamGroupLibraryUnity/blob/develop/Math/RngFast.cs
-        //https://github.com/Leopotam/LeopotamGroupLibraryUnity/blob/develop/Math/RngFast.cs
-        //https://github.com/Leopotam/LeopotamGroupLibraryUnity/blob/develop/Math/RngFast.cs
-        private static Random rand;
-        private static int randSeed = -1;
-        public static bool SeedIsGenerated { get; private set; }
+        const double InvMaxIntExOne = 1.0 / (int.MaxValue + 1.0);
 
-        public static int GenerateAndGetNewSeed()
+        const double InvIntMax = 1.0 / int.MaxValue;
+
+        uint _x;
+
+        uint _y;
+
+        uint _z;
+
+        uint _w;
+
+        /// <summary>
+        /// Default initialization.
+        /// </summary>
+        public MapRandom() : this(System.Environment.TickCount) { }
+
+        /// <summary>
+        /// Initialization with custom seed.
+        /// </summary>
+        /// <param name="seed">Seed.</param>
+        public MapRandom(int seed)
         {
-            randSeed = Math.Abs((int)DateTime.Now.Ticks);
-            SeedIsGenerated = true;
-            InstantiateRand();
-            return randSeed;
+            SetSeed(seed);
         }
 
-        public static void SetManualSeed(int seed)
+        /// <summary>
+        /// Set new seed.
+        /// </summary>
+        /// <param name="seed">Seed.</param>
+        public void SetSeed(int seed)
         {
-            SeedIsGenerated = false;
-            randSeed = seed;
-            InstantiateRand();
+            _x = (uint)(seed * 1431655781 + seed * 1183186591 + seed * 622729787 + seed * 338294347);
+            _y = 842502087;
+            _z = 3579807591;
+            _w = 273326509;
         }
 
-        public static int GetCurrentSeed()
+        /// <summary>
+        /// Get current internal state. Use on your risk!
+        /// </summary>
+        /// <param name="x">Data vector 1.</param>
+        /// <param name="y">Data vector 2.</param>
+        /// <param name="z">Data vector 3.</param>
+        /// <param name="w">Data vector 4.</param>
+        public void GetInternalState(out int x, out int y, out int z, out int w)
         {
-            return randSeed;
+            x = (int)_x;
+            y = (int)_y;
+            z = (int)_z;
+            w = (int)_w;
         }
 
-        private static void InstantiateRand()
+        /// <summary>
+        /// Set current internal state. Use on your risk!
+        /// </summary>
+        /// <param name="x">Data vector 1.</param>
+        /// <param name="y">Data vector 2.</param>
+        /// <param name="z">Data vector 3.</param>
+        /// <param name="w">Data vector 4.</param>
+        public void SetInternalState(int x, int y, int z, int w)
         {
-            rand = new Random(randSeed);
+            _x = (uint)x;
+            _y = (uint)y;
+            _z = (uint)z;
+            _w = (uint)w;
         }
 
-        public static int NextInt(int minValue = Int32.MinValue, int maxValue = Int32.MaxValue)
+        /// <summary>
+        /// /// Get int32 random number from range [0, max).
+        /// </summary>
+        /// <returns>Random int32 value.</returns>
+        public int GetInt(int max)
         {
-            rand = new Random(randSeed);
-            if (!SeedIsGenerated && randSeed < 0)
+            var t = _x ^ (_x << 11);
+            _x = _y;
+            _y = _z;
+            _z = _w;
+            return (int)((InvMaxIntExOne * (int)(0x7fffffff & (_w = (_w ^ (_w >> 19)) ^ (t ^ (t >> 8))))) * max);
+        }
+
+        /// <summary>
+        /// Get int32 random number from range [min, max).
+        /// </summary>
+        /// <returns>Random int32 value.</returns>
+        /// <param name="min">Min value.</param>
+        /// <param name="max">Max value (excluded).</param>
+        public int GetInt(int min, int max)
+        {
+            if (min >= max)
             {
-                throw new SharedSeedNotSetException();
+                return min;
             }
-            else return rand.Next(minValue, maxValue);
+            var t = _x ^ (_x << 11);
+            _x = _y;
+            _y = _z;
+            _z = _w;
+            return min + (int)((InvMaxIntExOne *
+                                 (int)(0x7fffffff & (_w = (_w ^ (_w >> 19)) ^ (t ^ (t >> 8))))) * (max - min));
+        }
+
+        /// <summary>
+        /// Get float random number from range [0, 1) or [0, 1] for includeOne=true.
+        /// </summary>
+        /// <param name="includeOne">Include 1 value for searching.</param>
+        public float GetFloat(bool includeOne = true)
+        {
+            var t = _x ^ (_x << 11);
+            _x = _y;
+            _y = _z;
+            _z = _w;
+            return (float)((includeOne ? InvIntMax : InvMaxIntExOne) *
+                            (int)(0x7fffffff & (_w = (_w ^ (_w >> 19)) ^ (t ^ (t >> 8)))));
+        }
+
+        /// <summary>
+        /// Get float random number from range [min, max) or [min, max] for includeMax=true.
+        /// </summary>
+        /// <returns>The float.</returns>
+        /// <param name="min">Min value.</param>
+        /// <param name="max">Max value.</param>
+        /// <param name="includeMax">Include max value for searching.</param>
+        public float GetFloat(float min, float max, bool includeMax = true)
+        {
+            if (min >= max)
+            {
+                return min;
+            }
+            var t = _x ^ (_x << 11);
+            _x = _y;
+            _y = _z;
+            _z = _w;
+            return min + (float)((includeMax ? InvIntMax : InvMaxIntExOne) *
+                                  (int)(0x7fffffff & (_w = (_w ^ (_w >> 19)) ^ (t ^ (t >> 8)))) * (max - min));
         }
     }
-}

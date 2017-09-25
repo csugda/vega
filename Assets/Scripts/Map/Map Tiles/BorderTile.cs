@@ -2,11 +2,11 @@
 
 namespace Assets.Scripts.Map.Map_Tiles
 {
-    class OuterWallTile : MapTile
+    class BorderTile : MapTile
     {
-        public OuterWallTile()
+        public BorderTile()
         {
-            Type = TileType.OuterWall;
+            Type = TileType.Border;
         }
 
         public override void InstantiateTile(Vector3 position, Transform parentTransform)

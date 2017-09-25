@@ -27,6 +27,7 @@ namespace Assets.Scripts.Map.Map_Tiles
                 TotalWeight += tile.Weight;
             }
 
+            UnityEngine.Random meow = new UnityEngine.Random();
             int rand = UnityEngine.Random.Range(0, TotalWeight);
             int w = 0;
             foreach (MapTile t in typeQuery)

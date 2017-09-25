@@ -4,7 +4,6 @@ using System;
 
 namespace Assets.Scripts.Map.Map_Tiles
 {
-
     /// <summary>
     /// The Map class holds all static information about the map.
     /// This includes height and width, tile type map, tile set(s)
@@ -12,45 +11,56 @@ namespace Assets.Scripts.Map.Map_Tiles
     public class Map : MonoBehaviour
     {
         public TileType[,] TileTypeMap;
-        public bool GenerateMap;
+        public int[,] SectorMap;
+        public MapTileSet[] SectorTileSets;
+
         public MapParameters MapParams;
+
+        public MapGenerator MapGen;
 
         public event EventHandler<MapEventArgs> InstantiationHandler;
         public event EventHandler MapHandler;
 
-        //The prefabs to choose from when creating the map
-        public MapTileSet mapTileSet;
+        private System.Random rand = new System.Random();
 
         private void Start()
         {
-            TileTypeMap = new TileType[MapParams.Width, MapParams.Height];
-            if(GenerateMap)
+            SectorMap = new int[MapParams.Width, MapParams.Height];
+            for(int i = 0; i < MapParams.Width; ++i)
             {
-                TileTypeMap = MapGenerator.GenerateMap(MapParams);
+                for(int j = 0; j < MapParams.Height; ++j)
+                {
+                    SectorMap[i, j] = 0;
+                }
             }
-            else
-            {
-                TileTypeMap = null;
-            }
-            InstantiateEntireMap();
+            GenerateMap();
         }
 
         /// <summary>
         /// Regenerate a new map and destroy the current children of this map
         /// Generally called at runtime using the menu context button
         /// </summary>
-        public void RegenerateMap()
+        public void GenerateMap()
         {
-            TileTypeMap = MapGenerator.GenerateMap(MapParams);
-            foreach (Transform child in transform)
+            TileTypeMap = new TileType[MapParams.Width, MapParams.Height];
+            if (MapParams.GenerateRandomMap)
+            {
+                MapParams.Seed = new System.Random().Next(Int32.MaxValue);
+            }
+
+            MapGen = new MapGenerator(MapParams);
+            TileTypeMap = MapGen.GetGeneratedMap();
+
+            foreach(Transform child in transform)
                 Destroy(child.gameObject);
-            InstantiateEntireMap();
+            InstantiateMap();
         }
+
         /// <summary>
         /// Instantiate the entire map using every type in the TileType enum
         /// Raises OnInstantiationDone event
         /// </summary>
-        public void InstantiateEntireMap()
+        public void InstantiateMap()
         {
             foreach (TileType type in Enum.GetValues(typeof(TileType)))
             {
@@ -83,7 +93,8 @@ namespace Assets.Scripts.Map.Map_Tiles
 
         private void InstantiateTile(TileType tile, Vector3 pos)
         {
-            var obj = mapTileSet.GetTileOfType(tile);
+            var sectorID = SectorMap[(int)pos.x, (int)pos.z];
+            var obj = SectorTileSets[sectorID].GetTileOfType(tile);
             obj.InstantiateTile(GetScaledPositionVector(obj.Tile,pos), transform);
         }
 

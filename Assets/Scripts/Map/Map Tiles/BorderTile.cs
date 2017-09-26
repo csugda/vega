@@ -2,11 +2,11 @@
 
 //namespace Assets.Scripts.Map.Map_Tiles
 //{
-//    public class FloorTile : MapTile
+//    class BorderTile : MapTile
 //    {
-//        public FloorTile()
+//        public BorderTile()
 //        {
-//            Type = TileType.Floor;
+//            Type = TileType.Border;
 //        }
 
 //        public override void InstantiateTile(Vector3 position, Transform parentTransform)

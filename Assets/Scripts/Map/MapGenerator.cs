@@ -1,51 +1,56 @@
 ﻿using System;
-using UnityEngine;
 
 namespace Assets.Scripts.Map
 {
+    
     /// <summary>
     /// Generates a randomized map given certain construction parameters.
     /// </summary>
-    public static class MapGenerator
+    public class MapGenerator
     {
+        protected TileType[,] GeneratorMap;
+        protected MapParameters MapParams;
+
+        MapRandom rand;
+
+        public MapGenerator(MapParameters mapParams, Int32 seed)
+        {
+            rand = new MapRandom(seed);
+            MapParams = mapParams;
+        }
+
         /// <summary>
         /// Generate a map randomly
         /// </summary>
         /// <param name="map">Map to Generate</param>
-        public static TileType[,] GenerateMap(MapParameters mapParams)
+        public TileType[,] GetGeneratedMap()
         {
-            TileType[,] TileTypeMap = new TileType[mapParams.Height, mapParams.Width];
-            PlaceFloor(TileTypeMap);
-            //PlaceOuterWalls();
-            //PlaceInnerWalls();  
-            return TileTypeMap;
+            GeneratorMap = new TileType[MapParams.Height, MapParams.Width];
+            return GeneratorMap;
         }
 
-        private static void PlaceFloor(TileType[,] map)
+        /// <summary>
+        /// Split the map into MapParams.MapSectors sub-sectors.
+        /// Will only split if all new sub-sectors would remain 
+        /// at least a size of MapParams.MinimumRoomSize 
+        /// </summary>
+        private void CreateMapSectors()//TODO
         {
-            for (int row = 0; row < map.GetLength(0); ++row)
+            for(int sectorID = 0; sectorID < MapParams.MapSectors; ++sectorID)
             {
-                for (int col = 0; col < map.GetLength(1); ++col)
-                {
-                    map[row,col] = TileType.Floor;
-                }
+
             }
         }
 
-        private static void PlaceOuterWalls(TileType[,] map)
+        private void PlaceTiles(Func<TileType[,]> func)
         {
-            for (int row = 0; row < map.GetLength(0); ++row)
+            for (int row = 0; row < GeneratorMap.GetLength(0); ++row)
             {
-                for (int col = 0; col < map.GetLength(1); ++col)
+                for (int col = 0; col < GeneratorMap.GetLength(1); ++col)
                 {
-                    //map[col, row] = TileType.Floor;
+                    GeneratorMap[row, col] = TileType.Floor;
                 }
             }
-        }
-
-        private static void PlaceInnerWalls(TileType[,] map)
-        {
-            //TODO: Write inner walls loops
         }
     }
 }

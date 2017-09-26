@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class TapToMove : MonoBehaviour
 {
-	public GameObject menuGO;
+    // declare variables for use in counting collectibles
+    public Text scrapText;
+    private int scrapAmount;
+
+    public GameObject menuGO;
     NavMeshAgent agent;
 
     //flag to check if the user has tapped / clicked. 
@@ -18,8 +23,13 @@ public class TapToMove : MonoBehaviour
     //vertical position of the gameobject
     private float yAxis;
 
+
     void Start()
     {
+        // define variables for counting collectibles
+        scrapAmount = 0;
+        SetScrapText();
+
         //save the y axis value of gameobject
         yAxis = gameObject.transform.position.y;
         agent = GetComponent<NavMeshAgent>();
@@ -54,7 +64,14 @@ public class TapToMove : MonoBehaviour
         if (other.gameObject.CompareTag("Pick Up")) // compares the tag of an object
         {
             other.gameObject.SetActive(false); // sets gameobject to inactive
+            scrapAmount++; // increments the scrap count
+            SetScrapText(); // calls method for setting the amount of scrap collected
         }
+    }
+    // method for setting the amount of scrap collected
+    void SetScrapText()
+    {
+       scrapText.text = "Piles of Scrap: " + scrapAmount.ToString();
     }
     // Returns true if the vectors are approximately equal, false otherwise.
     //bool VectorApproximately(Vector3 v1, Vector3 v2) { 

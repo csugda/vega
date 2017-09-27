@@ -6,9 +6,7 @@ using UnityEngine.UI;
 
 public class TapToMove : MonoBehaviour
 {
-    // declare variables for use in counting collectibles
-    public Text scrapText;
-    private int scrapAmount;
+    
 
     public GameObject menuGO;
     NavMeshAgent agent;
@@ -26,9 +24,7 @@ public class TapToMove : MonoBehaviour
 
     void Start()
     {
-        // define variables for counting collectibles
-        scrapAmount = 0;
-        SetScrapText();
+       
 
         //save the y axis value of gameobject
         yAxis = gameObject.transform.position.y;
@@ -59,20 +55,7 @@ public class TapToMove : MonoBehaviour
 		endPoint = new Vector3(pos.x, yAxis, pos.z);
         agent.SetDestination(endPoint);
     }
-    void OnTriggerEnter(Collider other) // triggers on contact with a collider
-    {
-        if (other.gameObject.CompareTag("Pick Up")) // compares the tag of an object
-        {
-            other.gameObject.SetActive(false); // sets gameobject to inactive
-            scrapAmount++; // increments the scrap count
-            SetScrapText(); // calls method for setting the amount of scrap collected
-        }
-    }
-    // method for setting the amount of scrap collected
-    void SetScrapText()
-    {
-       scrapText.text = "Piles of Scrap: " + scrapAmount.ToString();
-    }
+   
     // Returns true if the vectors are approximately equal, false otherwise.
     //bool VectorApproximately(Vector3 v1, Vector3 v2) { 
     //PROBABLY NOT NEEDED ANYMORE! (otherwise killz me by commentz)

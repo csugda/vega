@@ -1,7 +1,9 @@
-﻿namespace Assets.Scripts.Map
+﻿using UnityEngine;
+
+namespace Assets.Scripts.Map
 {
     public enum TileType
     {
-        Floor, OuterWall, InnerWall
+        Floor, Border, InnerWall
     }
 }

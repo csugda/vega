@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33710542384037634}
   - component: {fileID: 136938444743288084}
   - component: {fileID: 23385343881637382}
-  - component: {fileID: 54875685306548550}
   - component: {fileID: 114646553947375436}
   m_Layer: 0
   m_Name: Coin
@@ -83,21 +82,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1839776097803160}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54875685306548550
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1839776097803160}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &114646553947375436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,7 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16f2f2493a9b034aae23b0e497ca764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrapText: {fileID: 0}
 --- !u!136 &136938444743288084
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -117,7 +100,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1839776097803160}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2

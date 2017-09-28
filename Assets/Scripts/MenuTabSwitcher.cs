@@ -11,9 +11,12 @@ public class MenuTabSwitcher : MonoBehaviour
     public void OpenInventoryCalled()
     {
         if (state == 1)
+        {
             CloseMenus();
+        }
         else
         {
+
             menu.SetActive(true);
             inventoryTab.SetActive(true);
             mapTab.SetActive(false);

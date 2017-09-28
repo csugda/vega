@@ -747,8 +747,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OpenInventory
+      - m_Target: {fileID: 1055426970}
+        m_MethodName: OpenInventoryCalled
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1554,8 +1554,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OpenMenu
+      - m_Target: {fileID: 1055426970}
+        m_MethodName: OpenMenuCalled
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1742,7 +1742,6 @@ GameObject:
   - component: {fileID: 1055426967}
   - component: {fileID: 1055426966}
   - component: {fileID: 1055426968}
-  - component: {fileID: 1055426969}
   - component: {fileID: 1055426970}
   m_Layer: 0
   m_Name: Input
@@ -1850,35 +1849,6 @@ MonoBehaviour:
   inventoryButton: e
   mapButton: m
   menuButton: z
---- !u!114 &1055426969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1055426965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc0cbf98ba36a342bd58acc7d63294f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryOpenKey: e
-  Menu: {fileID: 165610995}
-  invKeyEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OpenInventory
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: InventoryKeyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!114 &1055426970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2474,8 +2444,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OpenMap
+      - m_Target: {fileID: 1055426970}
+        m_MethodName: OpenMapCalled
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2545,7 +2515,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1463194823}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -55, y: 15, z: -35}
+  m_LocalPosition: {x: -92, y: 15, z: -35}
   m_LocalScale: {x: 124.15184, y: 289.68756, z: 124.15184}
   m_Children: []
   m_Father: {fileID: 538310305}

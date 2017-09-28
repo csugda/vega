@@ -6,10 +6,19 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
+    //variables for popup menu
+    public GameObject popupMenuGO;
+    private Transform popupMenuCanvas;
+    public int popupMenuButton; //which mouse button will activate the menu
+    public bool popupMenuOpen;
+
+
+    //variables for main menu
     public GameObject menuGO;
-    private Transform menuCanvas;
-    public int menuButton; //which mouse button will activate the menu
-    public bool menuOpen;
+    public string inventoryButton, mapButton, menuButton;
+
+   
+
 
 
 
@@ -23,45 +32,61 @@ public class MenuController : MonoBehaviour
     {
         menuOptions = new Dictionary<string, string[]>();
         LoadMenuOptions();
-        menuCanvas = menuGO.transform.Find("MenuCanvas");
-        CloseMenu();
-        
+        popupMenuCanvas = popupMenuGO.transform.Find("MenuCanvas");
+        ClosePopupMenu();
+        this.gameObject.GetComponent<MenuTabSwitcher>().CloseMenus();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(inventoryButton))
+        {
+            this.gameObject.GetComponent<MenuTabSwitcher>().OpenInventoryCalled();
+        }
+        if (Input.GetKeyDown(mapButton))
+        {
+            this.gameObject.GetComponent<MenuTabSwitcher>().OpenMapCalled();
+        }
+        if (Input.GetKeyDown(menuButton))
+        {
+            this.gameObject.GetComponent<MenuTabSwitcher>().OpenMenuCalled();
+        }
     }
 
     public void OpenMenuButtonPressed(int button, Vector3 pos, Transform target)
     {
 
-        if (button != menuButton)
+        if (button != popupMenuButton)
             return;
-        if (menuOpen)
-            CloseMenu();
+        if (popupMenuOpen)
+            ClosePopupMenu();
         else
         {
-            menuGO.SetActive(true);
+            popupMenuGO.SetActive(true);
 
             //set menu position 
-            menuGO.transform.position = pos;
+            popupMenuGO.transform.position = pos;
 
             //set menu buttons based on tag of clicked object
             string menuType = target.tag;
             if (menuOptions.ContainsKey(menuType))
             {
-                OpenMenu(menuOptions[menuType], pos, target);
+                OpenPopupMenu(menuOptions[menuType], pos, target);
             }
             else
             {
                 Debug.LogError("MenuController line 52: " + menuType + " is not a valid menu option. make sure that the tag is added to the text doccument");
             }
-            menuOpen = true;
+            popupMenuOpen = true;
         }
     }
 
     //dynamically set which menu buttons are enabled based on the array passed in
-    private void OpenMenu(string[] menuType, Vector3 pos, Transform target)
+    private void OpenPopupMenu(string[] menuType, Vector3 pos, Transform target)
     {
         foreach (string s in menuType)
         {
-            Transform child = menuCanvas.Find(s);
+            Transform child = popupMenuCanvas.Find(s);
             if (child == null)
             {
                 Debug.LogError("MenuController line 66: " + s + " is not a valid menu button. Did you create it in the scene?");
@@ -76,15 +101,15 @@ public class MenuController : MonoBehaviour
 
 
     //close menu, setting all buttons to inactive.
-    public void CloseMenu()
+    public void ClosePopupMenu()
     {
 
-        foreach (Transform child in menuCanvas)
+        foreach (Transform child in popupMenuCanvas)
         {
             child.gameObject.SetActive(false);
         }
-        menuGO.SetActive(false);
-        menuOpen = false;
+        popupMenuGO.SetActive(false);
+        popupMenuOpen = false;
     }
 
 

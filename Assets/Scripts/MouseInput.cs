@@ -25,7 +25,7 @@ public class MouseInput : MonoBehaviour {
 	void Update () {
 		for (int i = 0; i < 2; i++) {
 			// FIXME write a better solution to preventing moving when clicking on menu buttons.
-			if (i == 0 && menuController.menuOpen) continue;
+			if (i == 0 && menuController.popupMenuOpen) continue;
 
 			if (Input.GetMouseButton(i) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && i == 0)) {
 				RaycastHit hit;

@@ -16,7 +16,7 @@ public class MenuController : MonoBehaviour
     //variables for main menu
     public GameObject menuGO;
     public string inventoryButton, mapButton, menuButton;
-
+    public bool menuOpen;
    
 
 
@@ -41,15 +41,15 @@ public class MenuController : MonoBehaviour
     {
         if (Input.GetKeyDown(inventoryButton))
         {
-            this.gameObject.GetComponent<MenuTabSwitcher>().OpenInventoryCalled();
+            menuOpen = this.gameObject.GetComponent<MenuTabSwitcher>().OpenInventoryCalled();
         }
         if (Input.GetKeyDown(mapButton))
         {
-            this.gameObject.GetComponent<MenuTabSwitcher>().OpenMapCalled();
+            menuOpen = this.gameObject.GetComponent<MenuTabSwitcher>().OpenMapCalled();
         }
         if (Input.GetKeyDown(menuButton))
         {
-            this.gameObject.GetComponent<MenuTabSwitcher>().OpenMenuCalled();
+            menuOpen = this.gameObject.GetComponent<MenuTabSwitcher>().OpenMenuCalled();
         }
     }
 

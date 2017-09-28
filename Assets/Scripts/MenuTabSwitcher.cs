@@ -8,11 +8,12 @@ public class MenuTabSwitcher : MonoBehaviour
     public int state = 0; //0=closed; 1=inventory; 2=map; 3=menu
 
 
-    public void OpenInventoryCalled()
+    public bool OpenInventoryCalled()
     {
         if (state == 1)
         {
             CloseMenus();
+            return false;
         }
         else
         {
@@ -22,13 +23,17 @@ public class MenuTabSwitcher : MonoBehaviour
             mapTab.SetActive(false);
             menuTab.SetActive(false);
             state = 1;
+            return true;
         }
     }
 
-    public void OpenMapCalled()
+    public bool OpenMapCalled()
     {
         if (state == 2)
+        {
             CloseMenus();
+            return false;
+        }
         else
         {
             menu.SetActive(true);
@@ -36,13 +41,17 @@ public class MenuTabSwitcher : MonoBehaviour
             mapTab.SetActive(true);
             menuTab.SetActive(false);
             state = 2;
+            return true;
         }
     }
 
-    public void OpenMenuCalled()
+    public bool OpenMenuCalled()
     {
         if (state == 3)
+        {
             CloseMenus();
+            return false;
+        }
         else
         {
             menu.SetActive(true);
@@ -50,6 +59,7 @@ public class MenuTabSwitcher : MonoBehaviour
             mapTab.SetActive(false);
             menuTab.SetActive(true);
             state = 3;
+            return true;
         }
     }
 

@@ -5,14 +5,13 @@ using UnityEngine;
 
 namespace Assets.Scripts.InventoryScripts
 {
-    [Serializable]
-    public class Item : IEquatable<Item>
+    public abstract class Item : IEquatable<Item>
     {
         public string name;
         public int stacksize;
         public Sprite image;
 
-        public virtual void OnItemUsed() { }
+        public abstract void OnItemUsed();
 
         public int CompareTo(object obj)
         {

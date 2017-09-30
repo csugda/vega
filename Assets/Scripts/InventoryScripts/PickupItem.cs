@@ -7,15 +7,27 @@ namespace Assets.Scripts.InventoryScripts
 {
     public class PickupItem : MonoBehaviour
     {
+        public enum ItemType { HealItem , Weapon };
+        public ItemType itemTypeChoice;
         public GameObject inventoryGO;
-        public Item item;
+        public HealItem healItem;
+        public WeaponItem weaponItem;
 
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.tag == "Player")
             {
-                inventoryGO.GetComponent<Inventory>().AddItem(item);
+                switch (itemTypeChoice)
+                {
+                    case ItemType.HealItem:
+                        inventoryGO.GetComponent<Inventory>().AddItem(healItem);
+                        break;
+                    case ItemType.Weapon:
+                        inventoryGO.GetComponent<Inventory>().AddItem(weaponItem);
+                        break;
+                }
                 Destroy(this.gameObject);
+
             }
         }
     }

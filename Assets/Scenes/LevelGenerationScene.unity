@@ -748,7 +748,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1055426970}
-        m_MethodName: OpenInventoryCalled
+        m_MethodName: OpenInventory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1234,8 +1234,8 @@ MonoBehaviour:
   SectorTileSets:
   - {fileID: 114820027257206806, guid: e7df7c7b13bf81d41a7fbaa2fe5d6935, type: 2}
   MapParams:
-    Height: 10
-    Width: 10
+    Height: 2
+    Width: 2
     GenerateRandomMap: 0
     Seed: 237666424
     MapSectors: 0
@@ -1555,7 +1555,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1055426970}
-        m_MethodName: OpenMenuCalled
+        m_MethodName: OpenMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2487,7 +2487,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1055426970}
-        m_MethodName: OpenMapCalled
+        m_MethodName: OpenMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -25,7 +25,8 @@ namespace Assets.Scripts.InventoryScripts
             {
                 inventory[i] = new InventorySlot(new EmptySlot(), 1);
             }
-            this.AddItem(new HealItem("welder", 1, null, 20));
+            this.AddItem(new HealItem("welder", 2, null, 20));
+            this.AddItem(new HealItem("welder", 2, null, 20));
         }
 
         public int invSize;
@@ -38,6 +39,13 @@ namespace Assets.Scripts.InventoryScripts
             else
                 return inventory[i].item;
         }
+        public int GetItemCount(int i)
+        {
+            if (i < 0 || i >= inventory.Length)
+                throw new System.Exception("Index " + i + " out of range. 0 <= i < " + inventory.Length);
+            else
+                return inventory[i].count;
+        }
 
         public void UseItem(int v)
         {
@@ -49,26 +57,33 @@ namespace Assets.Scripts.InventoryScripts
        
         public bool AddItem(Item item)
         {
+            Debug.Log("add " + item.name + " to inventory");
             for (int i = 0; i < invSize; ++i)
             {
                 if (inventory[i].item.Equals(item))
                 {
+                    Debug.Log("found a match");
                     if (inventory[i].count >= inventory[i].item.stacksize)
+                    {
+                        Debug.Log("stack size limit met");
                         return false;
+                    }
                     else
-                    { 
+                    {
+                        Debug.Log("increase stack to " + (inventory[i].count + 1));
                         inventory[i].count += 1;
                         return true;
                     }
                 }
                 if (inventory[i].item is EmptySlot)
                 {
+                    Debug.Log("no match, filling new slot");
                     inventory[i] = new InventorySlot(item, 1);
                     return true;
                 }
             }
+            Debug.Log("inventory full");
             return false;
         }
-
     }
 }

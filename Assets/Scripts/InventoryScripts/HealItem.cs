@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.InventoryScripts
 {
+    [System.Serializable]
     public class HealItem : Item
     {
         public int healAmmount;

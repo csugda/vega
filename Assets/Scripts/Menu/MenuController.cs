@@ -55,7 +55,7 @@ public class MenuController : MonoBehaviour
 
     public void OpenMenuButtonPressed(int button, Vector3 pos, Transform target)
     {
-
+        Debug.Log(target.name);
         if (button != popupMenuButton)
             return;
         if (popupMenuOpen)

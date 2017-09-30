@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Assets.Scripts.InventoryScripts
 {
-    public abstract class Item : IEquatable<Item>
+    [Serializable]
+    public class Item : IEquatable<Item>
     {
         public string name;
         public int stacksize;
         public Sprite image;
 
-        public abstract void OnItemUsed();
+        public virtual void OnItemUsed() { }
 
         public int CompareTo(object obj)
         {

@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: 3ee7a344398f9c44f95b89f89fae3a22
+timeCreated: 1506472934
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Body
+    100004: Bone
+    100006: Bone.001
+    100008: Bone.001_end
+    100010: Bone.002
+    100012: Cylinder.003
+    100014: Eye
+    100016: //RootNode
+    100018: TurretL
+    100020: TurretR
+    100022: WheelL
+    100024: WheelR
+    400000: Armature
+    400002: Body
+    400004: Bone
+    400006: Bone.001
+    400008: Bone.001_end
+    400010: Bone.002
+    400012: Cylinder.003
+    400014: Eye
+    400016: //RootNode
+    400018: TurretL
+    400020: TurretR
+    400022: WheelL
+    400024: WheelR
+    2300000: Body
+    2300002: Eye
+    2300004: TurretL
+    2300006: TurretR
+    2300008: WheelL
+    2300010: WheelR
+    3300000: Body
+    3300002: Eye
+    3300004: TurretL
+    3300006: TurretR
+    3300008: WheelL
+    3300010: WheelR
+    4300000: Body
+    4300002: Eye
+    4300004: TurretL
+    4300006: TurretR
+    4300008: WheelR
+    4300010: WheelL
+    4300012: Cylinder.003
+    7400000: Body|BodyAction
+    7400002: Body|Cylinder.003Action
+    7400004: Body|EyeAction
+    7400006: Body|TurretLAction
+    7400008: Body|TurretRAction
+    7400010: Body|WheelLAction
+    7400012: Body|WheelRAction
+    7400014: TurretL|BodyAction
+    7400016: TurretL|Cylinder.003Action
+    7400018: TurretL|EyeAction
+    7400020: TurretL|TurretLAction
+    7400022: TurretL|TurretRAction
+    7400024: TurretL|WheelLAction
+    7400026: TurretL|WheelRAction
+    7400028: TurretR|BodyAction
+    7400030: TurretR|Cylinder.003Action
+    7400032: TurretR|EyeAction
+    7400034: TurretR|TurretLAction
+    7400036: TurretR|TurretRAction
+    7400038: TurretR|WheelLAction
+    7400040: TurretR|WheelRAction
+    7400042: WheelR|BodyAction
+    7400044: WheelR|Cylinder.003Action
+    7400046: WheelR|EyeAction
+    7400048: WheelR|TurretLAction
+    7400050: WheelR|TurretRAction
+    7400052: WheelR|WheelLAction
+    7400054: WheelR|WheelRAction
+    7400056: WheelL|BodyAction
+    7400058: WheelL|Cylinder.003Action
+    7400060: WheelL|EyeAction
+    7400062: WheelL|TurretLAction
+    7400064: WheelL|TurretRAction
+    7400066: WheelL|WheelLAction
+    7400068: WheelL|WheelRAction
+    7400070: Armature|ArmatureAction
+    7400072: Armature|BodyAction
+    7400074: Armature|Cylinder.003Action
+    7400076: Armature|EyeAction
+    7400078: Armature|TurretLAction
+    7400080: Armature|TurretRAction
+    7400082: Armature|WheelLAction
+    7400084: Armature|WheelRAction
+    7400086: Eye|BodyAction
+    7400088: Eye|Cylinder.003Action
+    7400090: Eye|EyeAction
+    7400092: Eye|TurretLAction
+    7400094: Eye|TurretRAction
+    7400096: Eye|WheelLAction
+    7400098: Eye|WheelRAction
+    9500000: //RootNode
+    13700000: Cylinder.003
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

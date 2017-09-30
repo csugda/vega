@@ -11,18 +11,23 @@ public class EquipmentGridFill : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         inventory = inventoryGO.GetComponent<Inventory>();
-		for (int i = 0; i < inventory.invSize; ++i)
+        RedrawGrid();
+	}
+	
+	void RedrawGrid()
+    {
+        foreach (Transform ch in this.transform)
+            Destroy(ch.gameObject);
+        for (int i = 0; i < inventory.invSize; ++i)
         {
             GameObject button = Instantiate(buttonPrefab, this.transform);
             if (inventory.GetItem(i).image != null)
             { button.GetComponent<SpriteRenderer>().sprite = inventory.GetItem(i).image; }
             button.GetComponentInChildren<Text>().text = inventory.GetItem(i).name;
+            button.transform.name = "" + i;
+            button.GetComponent<Button>().onClick.AddListener(() => inventory.UseItem(int.Parse(button.transform.name)));
+            button.GetComponent<Button>().onClick.AddListener(() => RedrawGrid());
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 }
 

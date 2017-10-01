@@ -2,7 +2,7 @@
 using System.Linq;
 using System;
 
-namespace Assets.Scripts.Map.Map_Tiles
+namespace Assets.Scripts.Map
 {
     /// <summary>
     /// The Map class holds all static information about the map.
@@ -12,7 +12,7 @@ namespace Assets.Scripts.Map.Map_Tiles
     {
         public TileType[,] TileTypeMap;
         public int[,] SectorMap;
-        public MapTileSet[] SectorTileSets;
+        public Map_Tiles.MapTileSet[] SectorTileSets;
 
         public MapParameters MapParams;
 
@@ -25,15 +25,6 @@ namespace Assets.Scripts.Map.Map_Tiles
 
         private void Start()
         {
-            
-            SectorMap = new int[MapParams.Width, MapParams.Height];
-            for(int i = 0; i < MapParams.Width; ++i)
-            {
-                for(int j = 0; j < MapParams.Height; ++j)
-                {
-                    SectorMap[i, j] = 0;
-                }
-            }
             GenerateMap();
         }
 
@@ -48,13 +39,12 @@ namespace Assets.Scripts.Map.Map_Tiles
                 MapParams.Seed = UnityEngine.Random.Range(0, Int32.MaxValue);
             }
             rand = new MapRandom(MapParams.Seed);
-            TileTypeMap = new TileType[MapParams.Width, MapParams.Height];
-
-            //SetSharedSeed(MapParams.GenerateRandomMap);
 
             MapGen = new MapGenerator(MapParams, rand.GetInt(Int32.MaxValue));
-            TileTypeMap = MapGen.GetGeneratedMap();
 
+            SectorMap = MapGen.GetSectorMap();            
+            TileTypeMap = MapGen.GetGeneratedMap();
+            
             foreach(Transform child in transform)
                 Destroy(child.gameObject);
             InstantiateMap();
@@ -68,12 +58,13 @@ namespace Assets.Scripts.Map.Map_Tiles
         {
             MapRandom TileRotationRand = new MapRandom(rand.GetInt(Int32.MaxValue));
             MapRandom TileTypeRand = new MapRandom(rand.GetInt(Int32.MaxValue));
-            for (int x = 0; x < MapParams.Width; ++x)
-                for (int y = 0; y < MapParams.Height; ++y)
+            for (int x = 0; x < MapParams.MapBounds.x; ++x)
+                for (int z = 0; z < MapParams.MapBounds.z; ++z)
                 {
-                    SectorTileSets[SectorMap[x, y]].
-                        GetTileOfType(TileTypeMap[x, y], TileTypeRand).
-                        InstantiateTile(new Vector3(10 * x, 0, 10 * y), this.transform, TileRotationRand);
+                    if (SectorMap[x, z] == 0) continue;
+                    SectorTileSets[SectorMap[x, z]-1].
+                        GetTileOfType(TileTypeMap[x, z], TileTypeRand).
+                        InstantiateTile(new Vector3(10 * x, 0, 10 * z), this.transform, TileRotationRand);
                 }
         }
 
@@ -86,8 +77,8 @@ namespace Assets.Scripts.Map.Map_Tiles
         public void DoActionForAllTilesOfType(Action<TileType, Vector3> action, TileType type)
         {
             var typeQuery =
-                from x in Enumerable.Range(0, MapParams.Height)
-                from z in Enumerable.Range(0, MapParams.Width)
+                from x in Enumerable.Range(0, (int)MapParams.MapBounds.x)
+                from z in Enumerable.Range(0, (int)MapParams.MapBounds.z)
                 where TileTypeMap[x, z] == type
                 select new { X = x, Z = z };
 
@@ -131,20 +122,7 @@ namespace Assets.Scripts.Map.Map_Tiles
             }
             return Vector3.Scale(new Vector3(10,0,10), pos);
         }
-        /*
-        public void SetSharedSeed(bool willGenerateSeed)
-        {
-            if (willGenerateSeed && !MapRandom.SeedIsGenerated)
-            {
-                MapParams.Seed = MapRandom.GenerateAndGetNewSeed();
-            }
-            else
-            {
-                UnityEngine.Debug.Log("Setting seed to: " + MapParams.Seed);
-                MapRandom.SetManualSeed(MapParams.Seed);
-            }
-        }
-        */
+
         public void OnDestroy()
         {
             foreach (Transform child in transform)

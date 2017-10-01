@@ -1234,12 +1234,12 @@ MonoBehaviour:
   SectorTileSets:
   - {fileID: 114820027257206806, guid: e7df7c7b13bf81d41a7fbaa2fe5d6935, type: 2}
   MapParams:
-    Height: 10
-    Width: 10
+    Height: 20
+    Width: 20
     GenerateRandomMap: 0
     Seed: 237666424
     MapSectors: 0
-    MinimumRoomSize: {x: 0, y: 0, z: 0}
+    MinimumRoomSize: {x: 4, y: 0, z: 4}
 --- !u!1 &614581227
 GameObject:
   m_ObjectHideFlags: 0

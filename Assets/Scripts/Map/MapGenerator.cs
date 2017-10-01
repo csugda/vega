@@ -107,6 +107,16 @@ namespace Assets.Scripts.Map
                 roomBounds.z = boundsAvailable.z;
             }
 
+            if(roomBounds.x > MapParams.MaximumRoomSize.x)
+            {
+                roomBounds.x = MapParams.MaximumRoomSize.x;
+            }
+
+            if (roomBounds.z > MapParams.MaximumRoomSize.z)
+            {
+                roomBounds.z = MapParams.MaximumRoomSize.z;
+            }
+
             return roomBounds;
         }
 

@@ -1245,7 +1245,8 @@ MonoBehaviour:
     GenerateRandomMap: 1
     Seed: 237666424
     MapSectors: 8
-    MinimumRoomSize: {x: 9, y: 0, z: 9}
+    MinimumRoomSize: {x: 8, y: 0, z: 8}
+    MaximumRoomSize: {x: 15, y: 0, z: 15}
 --- !u!1 &614581227
 GameObject:
   m_ObjectHideFlags: 0

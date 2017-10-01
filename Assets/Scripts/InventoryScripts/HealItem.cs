@@ -1,27 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 
 namespace Assets.Scripts.InventoryScripts
 {
-    [System.Serializable]
-    public class HealItem : Item
+    [Serializable]
+    public class HealItem : PickupItem
     {
-        public int healAmmount;
-        
-
-        public HealItem(string _name, int _stackSize, Sprite _image, int _healAmmount)
-        {
-            this.name = _name;
-            this.stacksize = _stackSize;
-            this.image = _image;
-            this.healAmmount = _healAmmount;
-        }
+        public int HealAmount;
 
         public override void OnItemUsed()
         {
-            Debug.Log("healPlayer " + healAmmount + "!");
+            Debug.Log("healPlayer " + HealAmount + "!");
         }
     }
 }

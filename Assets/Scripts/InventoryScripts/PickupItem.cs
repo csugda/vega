@@ -1,34 +1,73 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-
 
 namespace Assets.Scripts.InventoryScripts
 {
-    public class PickupItem : MonoBehaviour
+    [Serializable]
+    public class PickupItem : MonoBehaviour, InventoryItem
     {
-        public enum ItemType { HealItem , Weapon };
-        public ItemType itemTypeChoice;
-        public GameObject inventoryGO;
-        public HealItem healItem;
-        public WeaponItem weaponItem;
+        public GameObject InventoryGO;
 
-        private void OnCollisionEnter(Collision collision)
+        [SerializeField]
+        private string _Name;
+        public string Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                _Name = value;
+            }
+        }
+
+        [SerializeField]
+        private int _StackSize;
+        public int StackSize
+        {
+            get
+            {
+                return _StackSize;
+            }
+            set
+            {
+                _StackSize = value;
+            }
+        }
+
+        [SerializeField]
+        private Sprite _Image;
+        public Sprite Image
+        {
+            get
+            {
+                return _Image;
+            }
+            set
+            {
+                _Image = value;
+            }
+        }
+        
+
+        public void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.tag == "Player")
             {
-                switch (itemTypeChoice)
-                {
-                    case ItemType.HealItem:
-                        inventoryGO.GetComponent<Inventory>().AddItem(healItem);
-                        break;
-                    case ItemType.Weapon:
-                        inventoryGO.GetComponent<Inventory>().AddItem(weaponItem);
-                        break;
-                }
+                InventoryGO.GetComponent<Inventory>().AddItem(this);
                 Destroy(this.gameObject);
-
             }
+        }
+
+        public virtual void OnItemUsed()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual bool Equals(InventoryItem other)
+        {
+            return this.Name == other.Name;
         }
     }
 }

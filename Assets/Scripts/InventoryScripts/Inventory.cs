@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.InventoryScripts
 {
@@ -9,14 +6,13 @@ namespace Assets.Scripts.InventoryScripts
     {
         private class InventorySlot
         {
-            public Item item;
+            public InventoryItem item;
             public int count;
-            public InventorySlot (Item i, int c)
+            public InventorySlot (InventoryItem i, int c)
             {
                 item = i; count = c;
             }
         }
-
 
         private void Start()
         {
@@ -25,14 +21,12 @@ namespace Assets.Scripts.InventoryScripts
             {
                 inventory[i] = new InventorySlot(new EmptySlot(), 1);
             }
-            this.AddItem(new HealItem("welder", 2, null, 20));
-            this.AddItem(new HealItem("welder", 2, null, 20));
         }
 
         public int invSize;
         private InventorySlot[] inventory;
 
-        public Item GetItem(int i)
+        public InventoryItem GetItem(int i)
         {
             if (i < 0 || i >= inventory.Length)
                throw new System.Exception("Index " + i + " out of range. 0 <= i < " + inventory.Length);
@@ -55,15 +49,15 @@ namespace Assets.Scripts.InventoryScripts
                 inventory[v] = new InventorySlot(new EmptySlot(), 1);
         }
        
-        public bool AddItem(Item item)
+        public bool AddItem(InventoryItem item)
         {
-            Debug.Log("add " + item.name + " to inventory");
+            Debug.Log("add " + item.Name + " to inventory");
             for (int i = 0; i < invSize; ++i)
             {
                 if (inventory[i].item.Equals(item))
                 {
                     Debug.Log("found a match");
-                    if (inventory[i].count >= inventory[i].item.stacksize)
+                    if (inventory[i].count >= inventory[i].item.StackSize)
                     {
                         Debug.Log("stack size limit met");
                         return false;

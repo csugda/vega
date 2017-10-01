@@ -22,13 +22,13 @@ public class EquipmentGridFill : MonoBehaviour {
         {
             GameObject button = Instantiate(buttonPrefab, this.transform);
 
-            if (inventory.GetItem(i).image != null)
+            if (inventory.GetItem(i).Image != null)
             {
-                button.GetComponent<SpriteRenderer>().sprite = inventory.GetItem(i).image;
+                //button.GetComponent<SpriteRenderer>().sprite = inventory.GetItem(i).Image;
             }
 
             button.transform.Find("NameText").gameObject.GetComponent<Text>().text = 
-                inventory.GetItem(i).name;
+                inventory.GetItem(i).Name;
 
             button.transform.Find("CountText").gameObject.GetComponent<Text>().text = 
                 inventory.GetItemCount(i) == 1 ? "" : "x" + inventory.GetItemCount(i);

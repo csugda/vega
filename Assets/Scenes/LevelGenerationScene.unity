@@ -1236,12 +1236,16 @@ MonoBehaviour:
   - {fileID: 114422141613868162, guid: abc3eb185807bae4ca64249fcb152fce, type: 2}
   - {fileID: 114277841472780366, guid: c7b7c340941a81b42812d4db7e3a1001, type: 2}
   - {fileID: 114843083021905618, guid: c271dc3f7bea61c4396d9e474ae4bd0e, type: 2}
+  - {fileID: 114773185820597020, guid: 8959afe2503d37b4c82485d189839714, type: 2}
+  - {fileID: 114843083021905618, guid: c271dc3f7bea61c4396d9e474ae4bd0e, type: 2}
+  - {fileID: 114277841472780366, guid: c7b7c340941a81b42812d4db7e3a1001, type: 2}
+  - {fileID: 114422141613868162, guid: abc3eb185807bae4ca64249fcb152fce, type: 2}
   MapParams:
-    MapBounds: {x: 20, y: 0, z: 20}
+    MapBounds: {x: 50, y: 0, z: 50}
     GenerateRandomMap: 1
     Seed: 237666424
-    MapSectors: 4
-    MinimumRoomSize: {x: 4, y: 0, z: 4}
+    MapSectors: 8
+    MinimumRoomSize: {x: 9, y: 0, z: 9}
 --- !u!1 &614581227
 GameObject:
   m_ObjectHideFlags: 0

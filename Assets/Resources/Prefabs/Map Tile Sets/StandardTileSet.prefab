@@ -68,3 +68,7 @@ MonoBehaviour:
     Weight: 2
     Type: 0
     Rotate: 1
+  - Tile: {fileID: 1990967271700130, guid: 1694587323baa81409a33afef448a672, type: 2}
+    Weight: 1
+    Type: 1
+    Rotate: 1

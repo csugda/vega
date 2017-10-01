@@ -41,6 +41,7 @@ namespace Assets.Scripts.Map
             rand = new MapRandom(MapParams.Seed);
 
             MapGen = new MapGenerator(MapParams, rand.GetInt(Int32.MaxValue));
+            MapGen.GenerateMap();
 
             SectorMap = MapGen.GetSectorMap();            
             TileTypeMap = MapGen.GetGeneratedMap();

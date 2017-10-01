@@ -24,6 +24,7 @@ namespace Assets.Scripts.InventoryScripts
             }
 
             gridGen = EquipmentGrid.GetComponent<EquipmentGridFill>();
+            gridGen.RedrawGrid();
         }
 
         public int invSize;

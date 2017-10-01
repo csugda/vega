@@ -4,7 +4,7 @@ using UnityEngine;
 
 // IngredientDrawer
 [CustomPropertyDrawer(typeof(MapTile))]
-public class IngredientDrawer : PropertyDrawer
+public class MapTileDrawer : PropertyDrawer
 {
     // Draw the property inside the given rect
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)

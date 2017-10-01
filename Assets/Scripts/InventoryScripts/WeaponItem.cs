@@ -1,17 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-
 namespace Assets.Scripts.InventoryScripts
 {
     [Serializable]
-    public class HealItem : PickupItem
+    public class WeaponItem : PickupItem
     {
-        public int HealAmount;
+        public int Damage;
 
         public override void OnItemUsed()
         {
-            Debug.Log("healPlayer " + HealAmount + "!");
+            base.OnItemUsed();
         }
     }
 }

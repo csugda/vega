@@ -1,23 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine.UI;
+﻿
+using System;
+using UnityEngine;
 
 namespace Assets.Scripts.InventoryScripts
 {
-    class EmptySlot : Item
+    class EmptySlot : InventoryItem
     {
+        public int StackSize { get; set; }
+        public Sprite Image { get; set; }
+        public string Name { get; set; }
+
         public EmptySlot()
         {
-            this.name = "Empty";
-            this.stacksize = 1;
-            this.image = null;
+            this.Name = "Empty";
+            this.StackSize = 1;
+            this.Image = null;
         }
 
-        public override void OnItemUsed()
+        public void OnItemUsed()
+        { }
+
+        public bool Equals(InventoryItem other)
         {
-            
+            return this.Name == other.Name;
         }
     }
 }

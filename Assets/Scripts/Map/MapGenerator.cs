@@ -115,7 +115,6 @@ namespace Assets.Scripts.Map
                 for(int j = (int)startTile.z; j < endTile.z; ++j)
                 {
                     if (j >= MapParams.MapBounds.z) break;
-                    Debug.Log("i " + i + "j " + j);
                     SectorMap[i, j] = sectorID;
                 }
             }

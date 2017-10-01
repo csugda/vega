@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1210301631290800}
+  m_RootGameObject: {fileID: 1623125324389792}
   m_IsPrefabParent: 1
---- !u!1 &1210301631290800
+--- !u!1 &1623125324389792
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4608276634553944}
-  - component: {fileID: 114820027257206806}
+  - component: {fileID: 4245927130918940}
+  - component: {fileID: 114843083021905618}
   m_Layer: 0
-  m_Name: StandardMapPieces
+  m_Name: PurpleTileSet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4608276634553944
+--- !u!4 &4245927130918940
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1210301631290800}
+  m_GameObject: {fileID: 1623125324389792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.24901691, y: -2.5987911, z: -0.48011327}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,31 +40,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114820027257206806
+--- !u!114 &114843083021905618
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1210301631290800}
+  m_GameObject: {fileID: 1623125324389792}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36c1c1d6df055204aa3b35b252fab0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MapTiles:
-  - Tile: {fileID: 1131153663558228, guid: 14f406cf5e14c094a94e06434f4809c6, type: 2}
+  - Tile: {fileID: 1388842684547514, guid: 67743d17985c5024b8fbf7baaf15b233, type: 2}
     Weight: 3
     Type: 0
     Rotate: 0
-  - Tile: {fileID: 1806574400538310, guid: 1e4b138f4877892488ec5ea76e8308af, type: 2}
+  - Tile: {fileID: 1817643886198294, guid: 0a287ccdaee0bad4a85869d8adffcb55, type: 2}
     Weight: 10
     Type: 0
     Rotate: 1
-  - Tile: {fileID: 1791913187961656, guid: 79764ab145fe10849b2e3b4773980e35, type: 2}
-    Weight: 5
+  - Tile: {fileID: 1931204686706736, guid: 117af4fa24c1b5043a743d1da6fb4982, type: 2}
+    Weight: 1
     Type: 0
     Rotate: 1
-  - Tile: {fileID: 1590064245861662, guid: ff28a858400cbb6449554401a0a191d2, type: 2}
-    Weight: 2
+  - Tile: {fileID: 1341397704756280, guid: 84521c03426994745aad3b27f6975dd0, type: 2}
+    Weight: 1
     Type: 0
     Rotate: 1

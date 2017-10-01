@@ -53,14 +53,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MapTiles:
   - Tile: {fileID: 1220990984210704, guid: 484f665429c0559469234f1f3cc55d9b, type: 2}
-    Weight: 0
+    Weight: 7
     Type: 0
     Rotate: 0
   - Tile: {fileID: 1570664805238886, guid: bc92c27da17835842a126bbc790ed707, type: 2}
-    Weight: 0
+    Weight: 3
     Type: 0
     Rotate: 0
   - Tile: {fileID: 1649139324805904, guid: 42ea79a428088814a829af0ec3bf4984, type: 2}
-    Weight: 0
+    Weight: 6
     Type: 0
     Rotate: 0

@@ -6,8 +6,7 @@ namespace Assets.Scripts.Map
     [Serializable]
     public class MapParameters
     {
-        public int Height;
-        public int Width;
+        public Vector3 MapBounds;
 
         public bool GenerateRandomMap;
         public int Seed;

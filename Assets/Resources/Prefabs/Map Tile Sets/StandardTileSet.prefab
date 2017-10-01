@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1057281249083342}
+  m_IsPrefabParent: 1
+--- !u!1 &1057281249083342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4684305380442050}
+  - component: {fileID: 114773185820597020}
+  m_Layer: 0
+  m_Name: StandardTileSet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4684305380442050
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057281249083342}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.24901691, y: -2.5987911, z: -0.48011327}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114773185820597020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057281249083342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c1c1d6df055204aa3b35b252fab0fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MapTiles:
+  - Tile: {fileID: 1131153663558228, guid: 14f406cf5e14c094a94e06434f4809c6, type: 2}
+    Weight: 3
+    Type: 0
+    Rotate: 0
+  - Tile: {fileID: 1806574400538310, guid: 1e4b138f4877892488ec5ea76e8308af, type: 2}
+    Weight: 10
+    Type: 0
+    Rotate: 1
+  - Tile: {fileID: 1791913187961656, guid: 79764ab145fe10849b2e3b4773980e35, type: 2}
+    Weight: 5
+    Type: 0
+    Rotate: 1
+  - Tile: {fileID: 1590064245861662, guid: ff28a858400cbb6449554401a0a191d2, type: 2}
+    Weight: 2
+    Type: 0
+    Rotate: 1

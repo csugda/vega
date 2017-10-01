@@ -9,12 +9,12 @@ public class EquipmentGridFill : MonoBehaviour {
     public GameObject inventoryGO;
     private Inventory inventory;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         inventory = inventoryGO.GetComponent<Inventory>();
-        RedrawGrid();
+        
 	}
 	
-	void RedrawGrid()
+	public void RedrawGrid()
     {
         foreach (Transform ch in this.transform)
             Destroy(ch.gameObject);

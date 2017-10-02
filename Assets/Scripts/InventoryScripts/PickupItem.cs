@@ -6,8 +6,11 @@ namespace Assets.Scripts.InventoryScripts
     [Serializable]
     public class PickupItem : MonoBehaviour, InventoryItem
     {
-        public GameObject InventoryGO;
-
+        GameObject InventoryGO;
+        void Start()
+        {
+            InventoryGO = GameObject.Find("InventoryGO");
+        }
         [SerializeField]
         private string _Name;
         public string Name

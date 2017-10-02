@@ -1,3 +1,4 @@
 Environment,WalkHere,CloseMenu,RegenMap
 Player,CloseMenu
 HidingSpot,WalkHere,Hide,CloseMenu
+Pickup,WalkHere,Pickup,CloseMenu

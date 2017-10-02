@@ -21,12 +21,25 @@ public class EquipmentGridFill : MonoBehaviour {
         for (int i = 0; i < inventory.invSize; ++i)
         {
             GameObject button = Instantiate(buttonPrefab, this.transform);
-            if (inventory.GetItem(i).image != null)
-            { button.GetComponent<SpriteRenderer>().sprite = inventory.GetItem(i).image; }
-            button.GetComponentInChildren<Text>().text = inventory.GetItem(i).name;
+
+            if (inventory.GetItem(i).Image != null)
+            {
+                //button.GetComponent<SpriteRenderer>().sprite = inventory.GetItem(i).Image;
+            }
+
+            button.transform.Find("NameText").gameObject.GetComponent<Text>().text = 
+                inventory.GetItem(i).Name;
+
+            button.transform.Find("CountText").gameObject.GetComponent<Text>().text = 
+                inventory.GetItemCount(i) == 1 ? "" : "x" + inventory.GetItemCount(i);
+
             button.transform.name = "" + i;
-            button.GetComponent<Button>().onClick.AddListener(() => inventory.UseItem(int.Parse(button.transform.name)));
-            button.GetComponent<Button>().onClick.AddListener(() => RedrawGrid());
+
+            button.GetComponent<Button>().onClick.AddListener
+                (() => inventory.UseItem(int.Parse(button.transform.name)));
+
+            button.GetComponent<Button>().onClick.AddListener
+                (() => RedrawGrid());
         }
     }
 }

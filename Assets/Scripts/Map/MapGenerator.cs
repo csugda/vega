@@ -21,20 +21,25 @@ namespace Assets.Scripts.Map
             MapParams = mapParams;
         }
 
+        public void GenerateMap()
+        {
+            GeneratorMap = new TileType[(int)MapParams.MapBounds.x, (int)MapParams.MapBounds.z];
+            SectorMap = new int[(int)MapParams.MapBounds.x, (int)MapParams.MapBounds.z];
+
+            CreateMapSectors();
+            PlaceBorderTiles();
+        }
+
         /// <summary>
         /// Generate a map randomly
         /// </summary>
         public TileType[,] GetGeneratedMap()
         {
-            GeneratorMap = new TileType[(int)MapParams.MapBounds.x, (int)MapParams.MapBounds.z];
-            //TODO: WALL THINGIES
             return GeneratorMap;
         }
 
         public int[,] GetSectorMap()
         {
-            SectorMap = new int[(int)MapParams.MapBounds.x, (int)MapParams.MapBounds.z];
-            CreateMapSectors();
             return SectorMap;
         }
 
@@ -55,7 +60,7 @@ namespace Assets.Scripts.Map
 
                 int row = 0;
                 int col = 0;
-                if(mapPlaceStart.x >= mapSize.x)
+                if (mapPlaceStart.x + MapParams.MinimumRoomSize.x > mapSize.x)
                 {
                     mapPlaceStart.x = 0;
                     for(row = 0; row < mapSize.z; ++row)
@@ -68,7 +73,7 @@ namespace Assets.Scripts.Map
                     }
                 }
 
-                if (mapPlaceStart.z >= mapSize.z)
+                if (mapPlaceStart.z + MapParams.MinimumRoomSize.z > mapSize.z)
                 {
                     mapPlaceStart.z = 0;
                     for (col = 0; col < mapSize.x; ++col)
@@ -80,7 +85,6 @@ namespace Assets.Scripts.Map
                         }
                     }
                 }
-
                 mapBoundsUsed = CreateSector(mapSize - mapBoundsUsed);
                 PlaceSector(mapPlaceStart,mapBoundsUsed,sectorID);
             }
@@ -103,6 +107,16 @@ namespace Assets.Scripts.Map
                 roomBounds.z = boundsAvailable.z;
             }
 
+            if(roomBounds.x > MapParams.MaximumRoomSize.x)
+            {
+                roomBounds.x = MapParams.MaximumRoomSize.x;
+            }
+
+            if (roomBounds.z > MapParams.MaximumRoomSize.z)
+            {
+                roomBounds.z = MapParams.MaximumRoomSize.z;
+            }
+
             return roomBounds;
         }
 
@@ -120,13 +134,33 @@ namespace Assets.Scripts.Map
             }
         }
 
-        private void PlaceTiles(Func<TileType[,]> func)
+        private void PlaceBorderTiles()
         {
-            for (int row = 0; row < GeneratorMap.GetLength(0); ++row)
+            for (int i = 0; i < MapParams.MapBounds.x; ++i)
             {
-                for (int col = 0; col < GeneratorMap.GetLength(1); ++col)
+                for (int j = 0; j < MapParams.MapBounds.z; ++j)
                 {
-                    GeneratorMap[row, col] = TileType.Floor;
+                    int up = i - 1;
+                    int down = i + 1;
+                    int left = j - 1;
+                    int right = j + 1;
+
+                    if (up < 0 || down > MapParams.MapBounds.x-1 ||
+                       left < 0 || right > MapParams.MapBounds.z-1)
+                    {
+                        GeneratorMap[i, j] = TileType.Border;
+                        continue;
+                    }
+
+                    int currentSect = SectorMap[i, j];
+
+                    if (currentSect != SectorMap[up,j]       ||
+                        currentSect != SectorMap[i, left]    ||
+                        currentSect != SectorMap[i, right]   ||
+                        currentSect != SectorMap[down, j])
+                    {
+                        GeneratorMap[i, j] = TileType.Border;
+                    }
                 }
             }
         }

@@ -25,6 +25,7 @@ namespace Assets.Scripts.Map
 
         private void Start()
         {
+
             GenerateMap();
         }
 
@@ -34,6 +35,14 @@ namespace Assets.Scripts.Map
         /// </summary>
         public void GenerateMap()
         {
+            if (MapParams.MaximumRoomSize.x < MapParams.MinimumRoomSize.x)
+            {
+                MapParams.MaximumRoomSize.x = MapParams.MinimumRoomSize.x;
+            }
+            if (MapParams.MaximumRoomSize.z < MapParams.MinimumRoomSize.z)
+            {
+                MapParams.MaximumRoomSize.z = MapParams.MinimumRoomSize.z;
+            }
             if (MapParams.GenerateRandomMap)
             {
                 MapParams.Seed = UnityEngine.Random.Range(0, Int32.MaxValue);
@@ -41,6 +50,7 @@ namespace Assets.Scripts.Map
             rand = new MapRandom(MapParams.Seed);
 
             MapGen = new MapGenerator(MapParams, rand.GetInt(Int32.MaxValue));
+            MapGen.GenerateMap();
 
             SectorMap = MapGen.GetSectorMap();            
             TileTypeMap = MapGen.GetGeneratedMap();

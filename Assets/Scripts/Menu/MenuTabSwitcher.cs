@@ -7,7 +7,14 @@ public class MenuTabSwitcher : MonoBehaviour
     public GameObject inventoryTab, mapTab, menuTab, menu;
     public int state = 0; //0=closed; 1=inventory; 2=map; 3=menu
 
-
+    public void OpenInventory()
+    {
+        menu.SetActive(true);
+        inventoryTab.SetActive(true);
+        mapTab.SetActive(false);
+        menuTab.SetActive(false);
+        state = 1;
+    }
     public bool OpenInventoryCalled()
     {
         if (state == 1)
@@ -26,7 +33,14 @@ public class MenuTabSwitcher : MonoBehaviour
             return true;
         }
     }
-
+    public void OpenMap()
+    {
+        menu.SetActive(true);
+        inventoryTab.SetActive(false);
+        mapTab.SetActive(true);
+        menuTab.SetActive(false);
+        state = 2;
+    }
     public bool OpenMapCalled()
     {
         if (state == 2)
@@ -44,7 +58,14 @@ public class MenuTabSwitcher : MonoBehaviour
             return true;
         }
     }
-
+    public void OpenMenu()
+    {
+        menu.SetActive(true);
+        inventoryTab.SetActive(false);
+        mapTab.SetActive(false);
+        menuTab.SetActive(true);
+        state = 3;
+    }
     public bool OpenMenuCalled()
     {
         if (state == 3)

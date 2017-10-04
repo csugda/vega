@@ -13,6 +13,7 @@ namespace Assets.Scripts.Map
         
         public int MapSectors;
         public Vector3 MinimumRoomSize;
+        public Vector3 MaximumRoomSize;
     }
 }
 

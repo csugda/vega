@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Environment
+  - Pickup
   - HidingSpot
-  - CollectibleManager
   layers:
   - Default
   - TransparentFX

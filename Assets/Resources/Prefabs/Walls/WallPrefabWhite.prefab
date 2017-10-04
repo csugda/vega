@@ -21,11 +21,10 @@ GameObject:
   - component: {fileID: 4304808604969120}
   - component: {fileID: 33986505534981282}
   - component: {fileID: 65630787275637484}
-  - component: {fileID: 114118920569086632}
   - component: {fileID: 23738351986908064}
   m_Layer: 0
   m_Name: WallPrefabWhite
-  m_TagString: HidingSpot
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -38,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1990967271700130}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -8.92, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 3}
+  m_LocalScale: {x: 10, y: 4, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -94,14 +93,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114118920569086632
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1990967271700130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e038bf700cfa444fb16c6ef963be9f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

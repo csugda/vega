@@ -55,7 +55,6 @@ public class MenuController : MonoBehaviour
 
     public void OpenMenuButtonPressed(int button, Vector3 pos, Transform target)
     {
-
         if (button != popupMenuButton)
             return;
         if (popupMenuOpen)

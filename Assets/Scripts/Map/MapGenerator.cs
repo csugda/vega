@@ -27,7 +27,6 @@ namespace Assets.Scripts.Map
             SectorMap = new int[(int)MapParams.MapBounds.x, (int)MapParams.MapBounds.z];
 
             CreateMapSectors();
-            PlaceBorderTiles();
         }
 
         /// <summary>
@@ -87,6 +86,7 @@ namespace Assets.Scripts.Map
                 }
                 mapBoundsUsed = CreateSector(mapSize - mapBoundsUsed);
                 PlaceSector(mapPlaceStart,mapBoundsUsed,sectorID);
+                PlaceSectorBordersAndDoorways(mapPlaceStart, mapBoundsUsed);
             }
         }
 
@@ -120,13 +120,21 @@ namespace Assets.Scripts.Map
             return roomBounds;
         }
 
+        /// <summary>
+        /// Place the actual sector that was randomly bounded previously.
+        /// </summary>
+        /// <param name="startTile"></param>
+        /// <param name="roomSize"></param>
+        /// <param name="sectorID"></param>
+        /// <returns></returns>
         private void PlaceSector(Vector3 startTile, Vector3 roomSize, int sectorID)
         {
             Vector3 endTile = startTile + roomSize;
+
             for (int i = (int)startTile.x; i < endTile.x; ++i)
             {
                 if (i >= MapParams.MapBounds.x) break;
-                for(int j = (int)startTile.z; j < endTile.z; ++j)
+                for (int j = (int)startTile.z; j < endTile.z; ++j)
                 {
                     if (j >= MapParams.MapBounds.z) break;
                     SectorMap[i, j] = sectorID;
@@ -134,35 +142,57 @@ namespace Assets.Scripts.Map
             }
         }
 
-        private void PlaceBorderTiles()
+        private void PlaceSectorBordersAndDoorways(Vector3 startTile, Vector3 sectorBounds)
         {
-            for (int i = 0; i < MapParams.MapBounds.x; ++i)
+            Vector3 endTile = startTile + sectorBounds;
+
+            var TopBotStep = Vector3.right;
+            var LeftRightStep = Vector3.forward;
+            var TopBotEnd = new Vector3(endTile.x, 0, startTile.z);
+            var LeftRightEnd = new Vector3(startTile.x, 0, endTile.z);
+
+            ConnectPrevDoorwaysAndPlaceBorders(startTile, TopBotEnd, TopBotStep);
+            ConnectPrevDoorwaysAndPlaceBorders(startTile, LeftRightEnd, LeftRightStep);
+        }
+
+        private void ConnectPrevDoorwaysAndPlaceBorders(Vector3 lowBound, Vector3 highBound, Vector3 step)
+        {
+            while (lowBound.magnitude < highBound.magnitude)
             {
-                for (int j = 0; j < MapParams.MapBounds.z; ++j)
+                var currLowTile = new Vector3(lowBound.x, 0, lowBound.z);
+                var currHighTile = new Vector3(highBound.x, 0, highBound.z);
+
+                lowBound += step;
+
+                var prevLowTile = currLowTile +   (step.x == 0 ? Vector3.left : Vector3.back);
+                var prevHighTile = currHighTile + (step.x == 0 ? Vector3.right : Vector3.forward);
+
+                if (prevLowTile.x < 0 || prevLowTile.z < 0) continue;
+                if (prevHighTile.x > MapParams.MapBounds.x || prevHighTile.z > MapParams.MapBounds.z) continue;
+                //left or up
+                if (GetMapTileType(prevLowTile) == TileType.Doorway)
                 {
-                    int up = i - 1;
-                    int down = i + 1;
-                    int left = j - 1;
-                    int right = j + 1;
-
-                    if (up < 0 || down > MapParams.MapBounds.x-1 ||
-                       left < 0 || right > MapParams.MapBounds.z-1)
-                    {
-                        GeneratorMap[i, j] = TileType.Border;
-                        continue;
-                    }
-
-                    int currentSect = SectorMap[i, j];
-
-                    if (currentSect != SectorMap[up,j]       ||
-                        currentSect != SectorMap[i, left]    ||
-                        currentSect != SectorMap[i, right]   ||
-                        currentSect != SectorMap[down, j])
-                    {
-                        GeneratorMap[i, j] = TileType.Border;
-                    }
+                    SetMapTileToType(currLowTile, TileType.Doorway);
                 }
+                else SetMapTileToType(currLowTile, TileType.Border);
+
+                //down or right
+                if (GetMapTileType(prevHighTile) == TileType.Doorway)
+                {
+                    SetMapTileToType(currHighTile, TileType.Doorway);
+                }
+                else SetMapTileToType(currHighTile, TileType.Border);
             }
+        }
+
+        private void SetMapTileToType(Vector3 tile, TileType type)
+        {
+            GeneratorMap[(int)tile.x, (int)tile.z] = type;
+        }
+
+        private TileType GetMapTileType(Vector3 tile)
+        {
+            return GeneratorMap[(int)tile.x, (int)tile.z];
         }
     }
 }

@@ -4,6 +4,6 @@ namespace Assets.Scripts.Map
 {
     public enum TileType
     {
-        Floor, Border, InnerWall
+        Floor, Border, Doorway
     }
 }

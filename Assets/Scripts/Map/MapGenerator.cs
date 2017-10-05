@@ -167,8 +167,16 @@ namespace Assets.Scripts.Map
                 var prevLowTile = currLowTile +   (step.x == 0 ? Vector3.left : Vector3.back);
                 var prevHighTile = currHighTile + (step.x == 0 ? Vector3.right : Vector3.forward);
 
-                if (prevLowTile.x < 0 || prevLowTile.z < 0) continue;
-                if (prevHighTile.x > MapParams.MapBounds.x || prevHighTile.z > MapParams.MapBounds.z) continue;
+                if (prevLowTile.x < 0 || prevLowTile.z < 0)
+                {
+                    SetMapTileToType(currLowTile, TileType.Border);
+                    continue;
+                }
+                if (prevHighTile.x > MapParams.MapBounds.x || prevHighTile.z > MapParams.MapBounds.z)
+                {
+                    SetMapTileToType(currHighTile, TileType.Border);
+                    continue;
+                }
                 //left or up
                 if (GetMapTileType(prevLowTile) == TileType.Doorway)
                 {

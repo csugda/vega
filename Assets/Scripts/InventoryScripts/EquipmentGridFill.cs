@@ -35,6 +35,9 @@ public class EquipmentGridFill : MonoBehaviour {
 
             button.transform.name = "" + i;
 
+            button.transform.Find("InfoPanel").GetComponentInChildren<Text>().text =
+                inventory.GetItem(i).ItemInfo;
+
             button.GetComponent<Button>().onClick.AddListener
                 (() => inventory.UseItem(int.Parse(button.transform.name)));
 

@@ -52,7 +52,22 @@ namespace Assets.Scripts.InventoryScripts
                 _Image = value;
             }
         }
-        
+
+        [SerializeField]
+        [TextArea(3, 10)]
+        private String _ItemInfo;
+        public String ItemInfo
+        {
+            get
+            {
+                return _ItemInfo;
+            }
+            set
+            {
+                _ItemInfo = value;
+            }
+        }
+
 
         public void OnCollisionEnter(Collision collision)
         {

@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1821064240490352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalPosition: {x: 10, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,4 +108,6 @@ MonoBehaviour:
   _Name: Duct Tape
   _StackSize: 10
   _Image: {fileID: 0}
+  _ItemInfo: "Duct Tape\nA roll of duct tape. It fixes everything, including robots
+    who went and got chunks torn out of them. \n\nEffect: \n+5 Health"
   HealAmount: 5

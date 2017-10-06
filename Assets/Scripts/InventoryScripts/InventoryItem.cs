@@ -8,6 +8,7 @@ namespace Assets.Scripts.InventoryScripts
         string Name { get; set; }
         int StackSize { get; set; }
         Sprite Image { get; set; }
+        String ItemInfo { get; set; }
 
         void OnItemUsed();
     }

@@ -72,12 +72,10 @@ namespace Assets.Scripts.InventoryScripts
 
         public bool AddItem(InventoryItem item)
         {
-            Debug.Log("add " + item.Name + " to inventory");
             for (int i = 0; i < invSize; ++i)
             {
                 if (inventory[i].item.Equals(item))
                 {
-                    Debug.Log("found a match");
                     if (inventory[i].count >= inventory[i].item.StackSize)
                     {
                         Debug.Log("stack size limit met");
@@ -85,7 +83,6 @@ namespace Assets.Scripts.InventoryScripts
                     }
                     else
                     {
-                        Debug.Log("increase stack to " + (inventory[i].count + 1));
                         inventory[i].count += 1;
                         gridGen.RedrawGrid();
                         return true;
@@ -93,7 +90,6 @@ namespace Assets.Scripts.InventoryScripts
                 }
                 if (inventory[i].item is EmptySlot)
                 {
-                    Debug.Log("no match, filling new slot");
                     inventory[i] = new InventorySlot(item, 1);
                     gridGen.RedrawGrid();
                     return true;

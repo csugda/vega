@@ -9,6 +9,7 @@ namespace Assets.Scripts.InventoryScripts
         public int StackSize { get; set; }
         public Sprite Image { get; set; }
         public string Name { get; set; }
+        public String ItemInfo { get; set; }
 
         public EmptySlot()
         {

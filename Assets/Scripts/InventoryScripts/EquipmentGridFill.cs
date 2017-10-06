@@ -18,6 +18,8 @@ public class EquipmentGridFill : MonoBehaviour {
     {
         foreach (Transform ch in this.transform)
             Destroy(ch.gameObject);
+        if (inventory == null)
+            this.Awake();
         for (int i = 0; i < inventory.invSize; ++i)
         {
             GameObject button = Instantiate(buttonPrefab, this.transform);

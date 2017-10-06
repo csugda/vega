@@ -34,7 +34,7 @@ public class MenuTabSwitcher : MonoBehaviour
                 menu.SetActive(false);
                 return true;
             case ("1"):
-                if (state == 1)
+                if (state == 1 && closeOnRepeat)
                 {
                     state = 0;
                     menu.SetActive(false);
@@ -47,7 +47,7 @@ public class MenuTabSwitcher : MonoBehaviour
                     return true;
                 }
             case ("2"):
-                if (state == 2)
+                if (state == 2 && closeOnRepeat)
                 {
                     state = 0;
                     menu.SetActive(false);
@@ -60,7 +60,7 @@ public class MenuTabSwitcher : MonoBehaviour
                     return true;
                 }
             case ("3"):
-                if (state == 3)
+                if (state == 3 && closeOnRepeat)
                 {
                     state = 0;
                     menu.SetActive(false);
@@ -73,7 +73,7 @@ public class MenuTabSwitcher : MonoBehaviour
                     return true;
                 }
             case ("4"):
-                if (state == 4)
+                if (state == 4 && closeOnRepeat)
                 {
                     state = 0;
                     menu.SetActive(false);
@@ -86,7 +86,7 @@ public class MenuTabSwitcher : MonoBehaviour
                     return true;
                 }
             case ("5"):
-                if (state == 5)
+                if (state == 5 && closeOnRepeat)
                 {
                     state = 0;
                     menu.SetActive(false);

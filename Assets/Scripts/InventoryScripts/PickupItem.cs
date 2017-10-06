@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Assets.Scripts.InventoryScripts
 {
     [Serializable]
-    public class PickupItem : MonoBehaviour, InventoryItem
+    public class PickupItem : MonoBehaviour, IInventoryItem
     {
         GameObject InventoryGO;
         void Start()
@@ -83,7 +83,7 @@ namespace Assets.Scripts.InventoryScripts
             throw new NotImplementedException();
         }
 
-        public virtual bool Equals(InventoryItem other)
+        public virtual bool Equals(IInventoryItem other)
         {
             return this.Name == other.Name;
         }

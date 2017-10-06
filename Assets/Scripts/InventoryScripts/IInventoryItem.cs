@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.InventoryScripts
 {
-    public interface InventoryItem : IEquatable<InventoryItem>
+    public interface IInventoryItem : IEquatable<IInventoryItem>
     {
         string Name { get; set; }
         int StackSize { get; set; }

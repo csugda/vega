@@ -28,4 +28,9 @@ public class ShowItemInfo : MonoBehaviour {
         infoBox.SetParent(this.gameObject.transform);
     }
 
+    public void OnDestroy()
+    {
+        if (infoBox != null && infoBox.gameObject != null)
+        Destroy(infoBox.gameObject);
+    }
 }

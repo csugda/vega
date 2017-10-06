@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.InventoryScripts
 {
-    class EmptySlot : InventoryItem
+    class EmptySlot : IInventoryItem
     {
         public int StackSize { get; set; }
         public Sprite Image { get; set; }
@@ -21,7 +21,7 @@ namespace Assets.Scripts.InventoryScripts
         public void OnItemUsed()
         { }
 
-        public bool Equals(InventoryItem other)
+        public bool Equals(IInventoryItem other)
         {
             return this.Name == other.Name;
         }

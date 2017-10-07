@@ -339,11 +339,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4249398976373070, guid: e57615df8bcd18647a59574b8584459a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4249398976373070, guid: e57615df8bcd18647a59574b8584459a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4249398976373070, guid: e57615df8bcd18647a59574b8584459a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -366,8 +366,8 @@ Prefab:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1637221844234178, guid: e57615df8bcd18647a59574b8584459a, type: 2}
-      propertyPath: m_TagString
-      value: Pickup
+      propertyPath: m_Name
+      value: JournalUnlock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e57615df8bcd18647a59574b8584459a, type: 2}
@@ -757,7 +757,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4371213233632180, guid: e81e0a7aa996d7e4596cfdb2175544c1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4371213233632180, guid: e81e0a7aa996d7e4596cfdb2175544c1, type: 2}
       propertyPath: m_LocalRotation.x

@@ -9,7 +9,9 @@ public class MenuTabSwitcher : MonoBehaviour
 
     public bool ToggleTab(string tab)
     {
-        return OpenTab(tab, true);
+        bool closed = OpenTab(tab, true);
+        Time.timeScale = closed ? 0 : 1;
+        return closed;
     }
     public void OpenTab(string tab)
     {
@@ -19,6 +21,7 @@ public class MenuTabSwitcher : MonoBehaviour
     {
         if (state != 0)
             OpenTab(state.ToString(), true);
+        Time.timeScale = 1;
     }
     private bool OpenTab(string tab, bool closeOnRepeat)
     {

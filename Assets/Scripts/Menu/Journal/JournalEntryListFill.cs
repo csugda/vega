@@ -14,9 +14,10 @@ namespace Assets.Scripts.Menu.Journal
         void Start()
         {
             manager = journalManager.GetComponent<JournalManager>();
-            Debug.Log("journelEntryListFill start called");
+            manager.onEntryUnlocked.AddListener(() => RedrawList());
+            RedrawList();
         }
-        void Awake()
+        private void RedrawList()
         {
             foreach (Transform ch in this.transform)
                 Destroy(ch.gameObject);
@@ -30,6 +31,8 @@ namespace Assets.Scripts.Menu.Journal
             }
             ShowEntry(0);
         }
+
+        
 
         private void AddButton(string buttonName, string screenText, int buttonGOName)
         {

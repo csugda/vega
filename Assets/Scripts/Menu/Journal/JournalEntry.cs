@@ -8,6 +8,5 @@ namespace Assets.Scripts.Menu.Journal
     public struct JournalEntry
     {
         public string title, text;
-        public bool unlocked;
     }
 }

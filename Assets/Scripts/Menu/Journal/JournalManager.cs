@@ -2,16 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.Menu.Journal
 {
+    [System.Serializable]
+    public class JournalEntryUnlockedEvent : UnityEvent
+    {
+    }
     public class JournalManager : MonoBehaviour
     {
+        const int EntriesPerArea = 8;
+        const int AREAS = 6;
+
+
+        public JournalEntryUnlockedEvent onEntryUnlocked;
         private JournalEntry[] entries;
+        public bool[] unlocked;
         // Use this for initialization
         void Start()
         {
             entries = ReadJournalEntries();
+            unlocked = new bool[entries.Length];
+            /*TEMP*/ unlocked[0] = true;
             Debug.Log(entries == null ? "entries is null" : "entries is not null");
         }
 
@@ -22,25 +35,34 @@ namespace Assets.Scripts.Menu.Journal
 
         private JournalEntry[] ReadJournalEntries()
         {
-            JournalEntry[] temp = new JournalEntry[2];
-            temp[0] = new JournalEntry { title = "one", text = "Hey, this actully worked!", unlocked = true };
-            temp[1] = new JournalEntry { title = "two", text = "if you see this something is wrong", unlocked = false };
+            JournalEntry[] temp = new JournalEntry[EntriesPerArea * AREAS];
+            temp[0] = new JournalEntry { title = "one", text = "Hey, this actully worked!"};
+            temp[1] = new JournalEntry { title = "two", text = "Entry Two Unlocked!\nCongrats, it worked."};
+            for (int i = 2; i < EntriesPerArea * AREAS; ++i)
+            {
+                temp[i] = new JournalEntry { title = i.ToString(), text = "You Dont see anything :)" };
+            }
             return temp;
 
         }
 
-        
-
-        // Update is called once per frame
-        void Update()
+        public void UnlockNextJournalEntry (int area)
         {
-
+            for (int i = area * EntriesPerArea; i < (area * EntriesPerArea) + EntriesPerArea; ++i)
+            {
+                if (unlocked[i] == false)
+                {
+                    unlocked[i] = true;
+                    onEntryUnlocked.Invoke();
+                    return;
+                }
+            }
         }
 
         private String ScrambledEntry(int len)
         {
             string res = "";
-            for (int i = 0; i < len; ++i)
+            for (int i = 1; i <= len; ++i)
             {
                 char c = ' ';
                 switch (UnityEngine.Random.Range(0, 3))
@@ -66,7 +88,7 @@ namespace Assets.Scripts.Menu.Journal
 
         public JournalEntry GetEntry(int i)
         {
-            if (entries[i].unlocked)
+            if (unlocked[i])
                 return entries[i];
             else
             {

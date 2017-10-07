@@ -71,6 +71,8 @@ namespace Assets.Scripts.InventoryScripts
 
         public void OnCollisionEnter(Collision collision)
         {
+            if (InventoryGO == null)
+                InventoryGO = GameObject.Find("InventoryGO");
             if (collision.gameObject.tag == "Player")
             {
                 InventoryGO.GetComponent<Inventory>().AddItem(this);

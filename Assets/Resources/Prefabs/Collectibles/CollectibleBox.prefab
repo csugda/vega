@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33206334905376502}
   - component: {fileID: 65547527735385072}
   - component: {fileID: 23516671153445936}
-  - component: {fileID: 114907600961772770}
+  - component: {fileID: 114992355206681280}
   m_Layer: 0
   m_Name: CollectibleBox
   m_TagString: Untagged
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114907600961772770
+--- !u!114 &114992355206681280
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1317188292818788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88ca5b754c3ccad4d8a49f533d6d22fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d164a394b2172c4eb76311eb9bc4a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui: {fileID: 0}
+  scrapValue: 5

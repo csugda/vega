@@ -110,4 +110,4 @@ MonoBehaviour:
   _Image: {fileID: 0}
   _ItemInfo: "Duct Tape\nA roll of duct tape. It fixes everything, including robots
     who went and got chunks torn out of them. \n\nEffect: \n+5 Health"
-  HealAmount: 5
+  healAmount: 5

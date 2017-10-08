@@ -1,17 +1,21 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace Assets.Scripts
 {
+    [System.Serializable]
+    public class HealthEvent : UnityEvent<int> { }
     class HealthManager : MonoBehaviour
     {
         public int currentHealth, maxHealth;
         public GameObject healthUI;
-
+        public static HealthEvent onHealthChanged = new HealthEvent();
 
         public void Start()
         {
+            onHealthChanged.AddListener(ChangeHealth);
             UpdateHelthDisplay();
         }
         public void ChangeHealth(int ammount)
@@ -23,8 +27,9 @@ namespace Assets.Scripts
             else if (ammount < 0 && currentHealth + ammount <= 0)
             {
                 //DEATH
-                Debug.LogError("Player Died");
                 currentHealth = 0;
+                UpdateHelthDisplay();
+                Debug.LogError("Player Died");
                 return;
             }
             currentHealth += ammount;

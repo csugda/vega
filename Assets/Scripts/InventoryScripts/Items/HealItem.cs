@@ -8,14 +8,10 @@ namespace Assets.Scripts.InventoryScripts
     public class HealItem : PickupItem
     {
         public int healAmount;
-        private HealthManager manager;
-        public void Start()
-        {
-            manager = GameObject.Find("ManagerGO").GetComponent<HealthManager>();
-        }
+        
         public override void OnItemUsed()
         {
-            manager.ChangeHealth(healAmount);
+            HealthManager.onHealthChanged.Invoke(healAmount);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Assets.Scripts.InventoryScripts.Items
         public void Start()
         {
             //I dont think that this makes a difference as OnItemUsed only gets called once, but it is the way to do things.
-            manager = GameObject.Find("InventoryGO").transform.Find("JournalManager").GetComponent<JournalManager>();
+            manager = GameObject.Find("ManagerGO").GetComponent<JournalManager>();
         }
         
         

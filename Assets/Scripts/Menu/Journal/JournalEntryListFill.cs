@@ -7,13 +7,12 @@ namespace Assets.Scripts.Menu.Journal
     public class JournalEntryListFill : MonoBehaviour
     {
         public GameObject buttonPrefab;
-        public GameObject journalManager;
         public GameObject entryPanel;
         private JournalManager manager;
 
         void Start()
         {
-            manager = journalManager.GetComponent<JournalManager>();
+            manager = GameObject.Find("ManagerGO").GetComponent<JournalManager>();
             manager.onEntryUnlocked.AddListener(() => RedrawList());
             RedrawList();
         }
@@ -23,7 +22,7 @@ namespace Assets.Scripts.Menu.Journal
                 Destroy(ch.gameObject);
 
             if (manager == null)
-                manager = journalManager.GetComponent<JournalManager>();
+                manager = GameObject.Find("ManagerGO").GetComponent<JournalManager>();
 
             for (int i = 0; i < manager.GetEntriesCount(); ++i )
             {

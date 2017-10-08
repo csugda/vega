@@ -23,7 +23,7 @@ public class BoxScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player")) // compares the tag of an object
         {
-            ui.incrementScrapBox(); // access method from CollectibleManager script
+            //ui.IncrementScrapBox(); // access method from CollectibleManager script
             this.gameObject.SetActive(false); // sets gameobject to inactive
         }
 

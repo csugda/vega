@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1490470618032320}
+  m_RootGameObject: {fileID: 1382126872118412}
   m_IsPrefabParent: 1
---- !u!1 &1490470618032320
+--- !u!1 &1382126872118412
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4508954117213836}
-  - component: {fileID: 33211877277836462}
-  - component: {fileID: 65391777962069312}
-  - component: {fileID: 23245652345193628}
-  - component: {fileID: 114925873409267562}
+  - component: {fileID: 4153508760527330}
+  - component: {fileID: 33308875336875928}
+  - component: {fileID: 65439655623468442}
+  - component: {fileID: 23633904511360868}
+  - component: {fileID: 114627568446841906}
   m_Layer: 0
-  m_Name: Welder
+  m_Name: DamageItem
   m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4508954117213836
+--- !u!4 &4153508760527330
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1490470618032320}
+  m_GameObject: {fileID: 1382126872118412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: 0, z: 20}
+  m_LocalPosition: {x: 20.19, y: 0, z: 26.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23245652345193628
+--- !u!23 &23633904511360868
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1490470618032320}
+  m_GameObject: {fileID: 1382126872118412}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -56,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4c26f2a7e0a86e9418b6d1139ce627e2, type: 2}
+  - {fileID: 2100000, guid: cc2b920d741187f448c72fb49dcab5c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,40 +75,34 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33211877277836462
+--- !u!33 &33308875336875928
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1490470618032320}
+  m_GameObject: {fileID: 1382126872118412}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65391777962069312
+--- !u!65 &65439655623468442
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1490470618032320}
+  m_GameObject: {fileID: 1382126872118412}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114925873409267562
+--- !u!114 &114627568446841906
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1490470618032320}
+  m_GameObject: {fileID: 1382126872118412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e80d619fa1dd7f34d9aa94dedf883ae4, type: 3}
+  m_Script: {fileID: 11500000, guid: a70cea94cf8c3a44fbe130cd40dde0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Name: Welder
-  _StackSize: 5
-  _Image: {fileID: 0}
-  _ItemInfo: "Welder\nThis piece of hardware is designed to use heat to melt two pieces
-    of metal together. looking directly at the business end can cause harm to optical
-    sensors. \n\nEffect:\n+20 Health"
-  healAmount: 20
+  damageAmmount: 10

@@ -9,7 +9,7 @@ namespace Assets.Scripts.InventoryScripts
         GameObject InventoryGO;
         void Start()
         {
-            InventoryGO = GameObject.Find("InventoryGO");
+            InventoryGO = GameObject.Find("MangerGO");
         }
         [SerializeField]
         private string _Name;
@@ -72,7 +72,7 @@ namespace Assets.Scripts.InventoryScripts
         public void OnCollisionEnter(Collision collision)
         {
             if (InventoryGO == null)
-                InventoryGO = GameObject.Find("InventoryGO");
+                InventoryGO = GameObject.Find("ManagerGO");
             if (collision.gameObject.tag == "Player")
             {
                 InventoryGO.GetComponent<Inventory>().AddItem(this);

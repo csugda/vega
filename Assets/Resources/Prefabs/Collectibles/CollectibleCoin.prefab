@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33352641452511664}
   - component: {fileID: 136999176088190076}
   - component: {fileID: 23242683507441184}
-  - component: {fileID: 114461791287881042}
+  - component: {fileID: 114634254303762766}
   m_Layer: 0
   m_Name: CollectibleCoin
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1721192468267578}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114461791287881042
+--- !u!114 &114634254303762766
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d164a394b2172c4eb76311eb9bc4a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui: {fileID: 0}
+  scrapValue: 1
 --- !u!136 &136999176088190076
 CapsuleCollider:
   m_ObjectHideFlags: 1

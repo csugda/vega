@@ -18,6 +18,8 @@ public class EquipmentGridFill : MonoBehaviour {
     {
         foreach (Transform ch in this.transform)
             Destroy(ch.gameObject);
+        if (inventory == null)
+            this.Awake();
         for (int i = 0; i < inventory.invSize; ++i)
         {
             GameObject button = Instantiate(buttonPrefab, this.transform);
@@ -34,6 +36,9 @@ public class EquipmentGridFill : MonoBehaviour {
                 inventory.GetItemCount(i) == 1 ? "" : "x" + inventory.GetItemCount(i);
 
             button.transform.name = "" + i;
+
+            button.transform.Find("InfoPanel").GetComponentInChildren<Text>().text =
+                inventory.GetItem(i).ItemInfo;
 
             button.GetComponent<Button>().onClick.AddListener
                 (() => inventory.UseItem(int.Parse(button.transform.name)));

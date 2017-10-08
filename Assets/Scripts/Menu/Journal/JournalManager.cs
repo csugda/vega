@@ -25,7 +25,6 @@ namespace Assets.Scripts.Menu.Journal
             entries = ReadJournalEntries();
             unlocked = new bool[entries.Length];
             /*TEMP*/ unlocked[0] = true;
-            Debug.Log(entries == null ? "entries is null" : "entries is not null");
         }
 
         public int GetEntriesCount()

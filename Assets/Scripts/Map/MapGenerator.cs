@@ -49,66 +49,77 @@ namespace Assets.Scripts.Map
         /// </summary>
         private void CreateMapSectors()
         {
-            Vector3 roomSize = Vector3.zero;
-            Vector3 mapPlaceStart = Vector3.zero;
+            Vector3 prevRoomStart = Vector3.zero;
+            Vector3 prevRoomSize = Vector3.zero;
+            Vector3 currRoomStart = Vector3.zero;
             var mapSize = MapParams.MapBounds;
             int sectorID = 1;
             for(sectorID = 1; sectorID <= MapParams.MapSectors; ++sectorID)
             {
-                bool xPlaced = false;
-                bool zPlaced = false;
+                Vector3 currRoomSize = Vector3.zero;
 
-                roomSize = CreateSector();
+                var randZ = Math.Max(0, prevRoomStart.z + (1-rand.GetInt(4)));
 
-                int row = 0;
-                int col = 0;
-                if (mapPlaceStart.x + roomSize.x >= mapSize.x)
+                currRoomStart = new Vector3(prevRoomStart.x + prevRoomSize.x, 0, randZ);
+                Vector3 currBoundsLeft = mapSize - currRoomStart;
+
+                if(!MinimumSectorCanFit(currBoundsLeft))
                 {
-                    mapPlaceStart.x = 0;
-                    for (row = 0; row < mapSize.z; ++row)
+                    int z = (int)MapParams.MinimumRoomSize.z;
+                    var startX = rand.GetInt((int)MapParams.MinimumRoomSize.x);
+                    int x = startX;
+                    bool placed = false;
+                    while(placed == false)
                     {
-                        if (SectorMap[0, row] == 0 && (row + roomSize.z) < mapSize.z)
+                        while (SectorMap[x, z] != 0)
                         {
-                            xPlaced = true;
-                            mapPlaceStart.z = row;
-                            break;
+                            ++z;
+                            if (z >= mapSize.z) return;
+                        }
+
+                        x = startX;
+                        while (x <= MapParams.MinimumRoomSize.x)
+                        {
+                            ++x;
+                            if (SectorMap[x, z] != 0) break;
+                        }
+
+                        if (SectorMap[x, z] == 0)
+                        {
+                            currRoomStart = new Vector3(startX, 0, z);
+                            placed = true;
                         }
                     }
+                    currBoundsLeft = mapSize - currRoomStart;
                 }
-                else xPlaced = true;
+                if (!MinimumSectorCanFit(currBoundsLeft)) break;
 
-                if (mapPlaceStart.z + roomSize.z >= mapSize.z)
-                {
-                    mapPlaceStart.z = 0;
-                    for (col = 0; col < mapSize.x; ++col)
-                    {
-                        if (SectorMap[col, 0] == 0 && (col + roomSize.x) < mapSize.x)
-                        {
-                            zPlaced = true;
-                            mapPlaceStart.x = col;
-                            break;
-                        }
-                    }
-                }
-                else zPlaced = true;
+                currRoomSize = CreateSector(currBoundsLeft);
 
-                if (xPlaced == false || zPlaced == false) continue;
-
-                PlaceSector(mapPlaceStart,roomSize,sectorID);
-
-                PlaceSectorBordersAndDoorways(mapPlaceStart, roomSize);
-                mapPlaceStart.x += roomSize.x;
+                PlaceSector(currRoomStart, currRoomSize, sectorID);
+                //PlaceSectorBordersAndDoorways(currRoomStart, prevRoomSize);
+                prevRoomStart = currRoomStart;
+                prevRoomSize = currRoomSize;
             }
         }
 
-        private Vector3 CreateSector()
+        private bool MinimumSectorCanFit(Vector3 boundsLeft)
+        {
+            return (boundsLeft.x >= MapParams.MinimumRoomSize.x &&
+                    boundsLeft.z >= MapParams.MinimumRoomSize.z);
+        }
+
+        private Vector3 CreateSector(Vector3 boundsLeft)
         {
             Vector3 roomBounds = Vector3.zero;
             Vector3 minSize = MapParams.MinimumRoomSize;
             Vector3 maxSize = MapParams.MaximumRoomSize;
 
-            roomBounds.x = minSize.x + rand.GetInt((int)(maxSize.x - minSize.x));
-            roomBounds.z = minSize.z + rand.GetInt((int)(maxSize.z - minSize.z));
+            var randX = Math.Min(rand.GetInt((int)(maxSize.x - minSize.x)), boundsLeft.x - minSize.x);
+            var randZ = Math.Min(rand.GetInt((int)(maxSize.z - minSize.z)), boundsLeft.z - minSize.z);
+
+            roomBounds.x = minSize.x + randX;
+            roomBounds.z = minSize.z + randZ;
 
             return roomBounds;
         }
@@ -134,36 +145,6 @@ namespace Assets.Scripts.Map
                     }
                     SectorMap[i, j] = sectorID;
                 }
-            }
-        }
-
-        private void PlaceSectorBordersAndDoorways(Vector3 startTile, Vector3 sectorBounds)
-        {
-            Vector3 endTile = startTile + sectorBounds;
-            var TopBotStep = Vector3.right;
-            var LeftRightStep = Vector3.forward;
-
-            PlaceAllBorders(startTile, endTile, TopBotStep);
-            //PlaceAllBorders(startTile, endTile, LeftRightStep);
-        }
-
-        private void PlaceAllBorders(Vector3 lowBound, Vector3 highBound, Vector3 step)
-        {
-            Vector3 totalStep = Vector3.zero;
-            while (lowBound.x + totalStep.x <= highBound.x || lowBound.z + totalStep.z <= highBound.z)
-            {
-                var lowStep = lowBound + totalStep;
-                if (lowStep.x < 0 || lowStep.z < 0 || lowStep.x >= MapParams.MapBounds.x || lowStep.z >= MapParams.MapBounds.z)
-                {
-                    break;
-                }
-                var currLowTile = new Vector3(lowStep.x, 0, lowBound.z);
-                var currHighTile = new Vector3(lowStep.x, 0, highBound.z);
-
-                totalStep += step;
-
-                SetMapTileToType(currLowTile, TileType.Border);
-                SetMapTileToType(currHighTile, TileType.Border);
             }
         }
 

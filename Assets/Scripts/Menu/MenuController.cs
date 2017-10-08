@@ -34,22 +34,22 @@ public class MenuController : MonoBehaviour
         LoadMenuOptions();
         popupMenuCanvas = popupMenuGO.transform.Find("MenuCanvas");
         ClosePopupMenu();
-        this.gameObject.GetComponent<MenuTabSwitcher>().CloseMenus();
+        this.gameObject.GetComponent<MenuTabSwitcher>().OpenTab("0");
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(inventoryButton))
         {
-            menuOpen = this.gameObject.GetComponent<MenuTabSwitcher>().OpenInventoryCalled();
+            menuOpen = this.gameObject.GetComponent<MenuTabSwitcher>().ToggleTab("1");
         }
         if (Input.GetKeyDown(mapButton))
         {
-            menuOpen = this.gameObject.GetComponent<MenuTabSwitcher>().OpenMapCalled();
+            menuOpen = this.gameObject.GetComponent<MenuTabSwitcher>().ToggleTab("2");
         }
         if (Input.GetKeyDown(menuButton))
         {
-            menuOpen = this.gameObject.GetComponent<MenuTabSwitcher>().OpenMenuCalled();
+            menuOpen = this.gameObject.GetComponent<MenuTabSwitcher>().ToggleTab("3");
         }
     }
 

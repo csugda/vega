@@ -2,16 +2,16 @@
 using UnityEngine;
 
 
-namespace Assets.Scripts.InventoryScripts
+namespace Assets.Scripts.InventoryScripts.Items
 {
     [Serializable]
     public class HealItem : PickupItem
     {
-        public int HealAmount;
-
+        public int healAmount;
+        
         public override void OnItemUsed()
         {
-            Debug.Log("healPlayer " + HealAmount + "!");
+            HealthManager.onHealthChanged.Invoke(healAmount);
         }
     }
 }

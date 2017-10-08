@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1721192468267578}
+  m_RootGameObject: {fileID: 1637221844234178}
   m_IsPrefabParent: 1
---- !u!1 &1721192468267578
+--- !u!1 &1637221844234178
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4468741090089894}
-  - component: {fileID: 33352641452511664}
-  - component: {fileID: 136999176088190076}
-  - component: {fileID: 23242683507441184}
-  - component: {fileID: 114634254303762766}
+  - component: {fileID: 4249398976373070}
+  - component: {fileID: 33918480509953090}
+  - component: {fileID: 135018830379338006}
+  - component: {fileID: 23263143164956060}
+  - component: {fileID: 114653724004000440}
   m_Layer: 0
-  m_Name: CollectibleCoin
-  m_TagString: Untagged
+  m_Name: JournelUnlock
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4468741090089894
+--- !u!4 &4249398976373070
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1721192468267578}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3, y: 1, z: 3}
-  m_LocalScale: {x: 0.9, y: 0.1, z: 0.9}
+  m_GameObject: {fileID: 1637221844234178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!23 &23242683507441184
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23263143164956060
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1721192468267578}
+  m_GameObject: {fileID: 1637221844234178}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -75,35 +75,39 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33352641452511664
+--- !u!33 &33918480509953090
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1721192468267578}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114634254303762766
+  m_GameObject: {fileID: 1637221844234178}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114653724004000440
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1721192468267578}
+  m_GameObject: {fileID: 1637221844234178}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d164a394b2172c4eb76311eb9bc4a57, type: 3}
+  m_Script: {fileID: 11500000, guid: 61f4f7ce6254ea6489568b4a9e3116c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrapValue: 1
---- !u!136 &136999176088190076
-CapsuleCollider:
+  _Name: Factory Flash Drive
+  _StackSize: 1
+  _Image: {fileID: 0}
+  _ItemInfo: This Flash Drive holds the decryption for a journel entry from the Factory
+    area.
+  area: 0
+--- !u!135 &135018830379338006
+SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1721192468267578}
+  m_GameObject: {fileID: 1637221844234178}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

@@ -4,12 +4,12 @@ using UnityEngine;
 namespace Assets.Scripts.InventoryScripts
 {
     [Serializable]
-    public class PickupItem : MonoBehaviour, InventoryItem
+    public class PickupItem : MonoBehaviour, IInventoryItem
     {
         GameObject InventoryGO;
         void Start()
         {
-            InventoryGO = GameObject.Find("InventoryGO");
+            InventoryGO = GameObject.Find("MangerGO");
         }
         [SerializeField]
         private string _Name;
@@ -52,10 +52,27 @@ namespace Assets.Scripts.InventoryScripts
                 _Image = value;
             }
         }
-        
+
+        [SerializeField]
+        [TextArea(3, 10)]
+        private String _ItemInfo;
+        public String ItemInfo
+        {
+            get
+            {
+                return _ItemInfo;
+            }
+            set
+            {
+                _ItemInfo = value;
+            }
+        }
+
 
         public void OnCollisionEnter(Collision collision)
         {
+            if (InventoryGO == null)
+                InventoryGO = GameObject.Find("ManagerGO");
             if (collision.gameObject.tag == "Player")
             {
                 InventoryGO.GetComponent<Inventory>().AddItem(this);
@@ -68,7 +85,7 @@ namespace Assets.Scripts.InventoryScripts
             throw new NotImplementedException();
         }
 
-        public virtual bool Equals(InventoryItem other)
+        public virtual bool Equals(IInventoryItem other)
         {
             return this.Name == other.Name;
         }

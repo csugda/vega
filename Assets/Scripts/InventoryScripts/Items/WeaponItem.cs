@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.InventoryScripts
+namespace Assets.Scripts.InventoryScripts.Items
 {
     [Serializable]
     public class WeaponItem : PickupItem

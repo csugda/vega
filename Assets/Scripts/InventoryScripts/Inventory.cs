@@ -7,9 +7,9 @@ namespace Assets.Scripts.InventoryScripts
     {
         private class InventorySlot
         {
-            public InventoryItem item;
+            public IInventoryItem item;
             public int count;
-            public InventorySlot (InventoryItem i, int c)
+            public InventorySlot (IInventoryItem i, int c)
             {
                 item = i; count = c;
             }
@@ -32,7 +32,7 @@ namespace Assets.Scripts.InventoryScripts
         public GameObject EquipmentGrid;
         private EquipmentGridFill gridGen;
 
-        public InventoryItem GetItem(int i)
+        public IInventoryItem GetItem(int i)
         {
             if (i < 0 || i >= inventory.Length)
                throw new System.Exception("Index " + i + " out of range. 0 <= i < " + inventory.Length);
@@ -70,14 +70,12 @@ namespace Assets.Scripts.InventoryScripts
             }
         }
 
-        public bool AddItem(InventoryItem item)
+        public bool AddItem(IInventoryItem item)
         {
-            Debug.Log("add " + item.Name + " to inventory");
             for (int i = 0; i < invSize; ++i)
             {
                 if (inventory[i].item.Equals(item))
                 {
-                    Debug.Log("found a match");
                     if (inventory[i].count >= inventory[i].item.StackSize)
                     {
                         Debug.Log("stack size limit met");
@@ -85,7 +83,6 @@ namespace Assets.Scripts.InventoryScripts
                     }
                     else
                     {
-                        Debug.Log("increase stack to " + (inventory[i].count + 1));
                         inventory[i].count += 1;
                         gridGen.RedrawGrid();
                         return true;
@@ -93,7 +90,6 @@ namespace Assets.Scripts.InventoryScripts
                 }
                 if (inventory[i].item is EmptySlot)
                 {
-                    Debug.Log("no match, filling new slot");
                     inventory[i] = new InventorySlot(item, 1);
                     gridGen.RedrawGrid();
                     return true;

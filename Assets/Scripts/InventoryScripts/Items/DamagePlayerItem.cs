@@ -1,19 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.InventoryScripts.Items
 {
-    class DamagePlayer : MonoBehaviour
+    class DamagePlayerItem : MonoBehaviour
     {
         public int damageAmmount;
-        
-        public void OnCollisionEnter(Collision collision)
+
+        public void OnCollisionEnter(Collision c)
         {
-            if (collision.gameObject.tag == "Player")
+            if (c.gameObject.tag == "Player")
                 HealthManager.onHealthChanged.Invoke(-damageAmmount);
             Destroy(this.gameObject);
         }
-        
     }
 }
 

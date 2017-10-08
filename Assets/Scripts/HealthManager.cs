@@ -12,10 +12,12 @@ namespace Assets.Scripts
         public int currentHealth, maxHealth;
         public GameObject healthUI;
         public static HealthEvent onHealthChanged = new HealthEvent();
+        public static HealthEvent onMaxHealthChanged = new HealthEvent();
 
         public void Start()
         {
             onHealthChanged.AddListener(ChangeHealth);
+            onMaxHealthChanged.AddListener(ChangeMaxHealth);
             UpdateHelthDisplay();
         }
         public void ChangeHealth(int ammount)

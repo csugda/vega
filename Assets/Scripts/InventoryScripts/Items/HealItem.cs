@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-namespace Assets.Scripts.InventoryScripts
+namespace Assets.Scripts.InventoryScripts.Items
 {
     [Serializable]
     public class HealItem : PickupItem

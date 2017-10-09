@@ -3,14 +3,14 @@ using System;
 namespace Assets.Scripts.InventoryScripts
 {
     [Serializable]
-    class EquipableItem : PickupItem
+    public class EquipableItem : PickupItem
     {
         public GameObject EquipmentPrefab;
         public EquipmentSlots location;
         public override void OnItemUsed()
         {
-            InventoryGO.GetComponent<Inventory>().AddItem(
-                InventoryGO.GetComponent<EquippedGearManager>().Equip(this, location));
+            ManagerGO.GetComponent<Inventory>().AddItem(
+                ManagerGO.GetComponent<EquippedGearManager>().Equip(this, location));
         }
         public virtual void OnEquipped()
         {
@@ -19,6 +19,16 @@ namespace Assets.Scripts.InventoryScripts
         public virtual void OnUnequipped()
         {
             throw new NotImplementedException();
+        }
+        public override void OnCollisionEnter(Collision collision)
+        {
+            if (ManagerGO == null)
+                ManagerGO = GameObject.Find("ManagerGO");
+            if (collision.gameObject.tag == "Player")
+            {
+                if (ManagerGO.GetComponent<Inventory>().AddItem(this))
+                    this.gameObject.SetActive(false);
+            }
         }
     }
 }

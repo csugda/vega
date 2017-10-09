@@ -1,10 +1,12 @@
 ﻿using System;
 using UnityEngine;
-
+using UnityEngine.Events;
 namespace Assets.Scripts.InventoryScripts
 {
+    public class InventoryChangeEvent : UnityEvent { }
     public class Inventory : MonoBehaviour
     {
+        public static InventoryChangeEvent onInventoryChanged = new InventoryChangeEvent();
         private class InventorySlot
         {
             public IInventoryItem item;
@@ -22,15 +24,11 @@ namespace Assets.Scripts.InventoryScripts
             {
                 inventory[i] = new InventorySlot(new EmptySlot(), 1);
             }
-
-            gridGen = EquipmentGrid.GetComponent<EquipmentGridFill>();
-            gridGen.RedrawGrid();
+            Inventory.onInventoryChanged.Invoke();
         }
 
         public int invSize;
         private InventorySlot[] inventory;
-        public GameObject EquipmentGrid;
-        private EquipmentGridFill gridGen;
 
         public IInventoryItem GetItem(int i)
         {
@@ -55,7 +53,7 @@ namespace Assets.Scripts.InventoryScripts
             {
                 inventory[v] = new InventorySlot(new EmptySlot(), 1);
                 ShuffleInventory(v);
-                gridGen.RedrawGrid();
+                Inventory.onInventoryChanged.Invoke();
             }
             item.OnItemUsed(); //at the end so that if using an item would add an item it wont overfill the inventory
         }
@@ -83,14 +81,14 @@ namespace Assets.Scripts.InventoryScripts
                     else
                     {
                         inventory[i].count += 1;
-                        gridGen.RedrawGrid();
+                        Inventory.onInventoryChanged.Invoke();
                         return true;
                     }
                 }
                 if (inventory[i].item is EmptySlot)
                 {
                     inventory[i] = new InventorySlot(item, 1);
-                    gridGen.RedrawGrid();
+                    Inventory.onInventoryChanged.Invoke();
                     return true;
                 }
             }

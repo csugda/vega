@@ -9,33 +9,33 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1145573512129124}
+  m_RootGameObject: {fileID: 1991429278099368}
   m_IsPrefabParent: 1
---- !u!1 &1145573512129124
+--- !u!1 &1991429278099368
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4930283533142994}
-  - component: {fileID: 33660876444091430}
-  - component: {fileID: 65779113894329610}
-  - component: {fileID: 23566578351220144}
-  - component: {fileID: 114938553170837014}
+  - component: {fileID: 4738692696850484}
+  - component: {fileID: 33098120927481204}
+  - component: {fileID: 65217251568199468}
+  - component: {fileID: 23827553521710254}
+  - component: {fileID: 114615300645337750}
   m_Layer: 0
-  m_Name: Helmet
+  m_Name: CardbordBox
   m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4930283533142994
+--- !u!4 &4738692696850484
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1145573512129124}
+  m_GameObject: {fileID: 1991429278099368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.04, y: 0, z: 15.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -43,12 +43,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23566578351220144
+--- !u!23 &23827553521710254
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1145573512129124}
+  m_GameObject: {fileID: 1991429278099368}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -75,41 +75,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33660876444091430
+--- !u!33 &33098120927481204
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1145573512129124}
+  m_GameObject: {fileID: 1991429278099368}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65779113894329610
+--- !u!65 &65217251568199468
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1145573512129124}
+  m_GameObject: {fileID: 1991429278099368}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114938553170837014
+--- !u!114 &114615300645337750
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1145573512129124}
+  m_GameObject: {fileID: 1991429278099368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d2a87c4def7864faed19a6ab38bcff, type: 3}
+  m_Script: {fileID: 11500000, guid: fde84727fad577242a1a3ce8751b22b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Name: Helmet
+  _Name: Cardboard Box
   _StackSize: 1
   _Image: {fileID: 0}
-  _ItemInfo: 'A simple helmet to protect your all importent head.
-
-    Effect when equipped: None, thats not implemented yet!'
-  EquipmentPrefab: {fileID: 1145573512129124}
+  _ItemInfo: "Its a box. it fits on your head. it may help. may not.\nEffect when
+    equipped: \n+5 health"
+  EquipmentPrefab: {fileID: 0}
   location: 2
+  armorValue: 5

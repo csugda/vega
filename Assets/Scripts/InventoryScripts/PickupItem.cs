@@ -6,10 +6,10 @@ namespace Assets.Scripts.InventoryScripts
     [Serializable]
     public class PickupItem : MonoBehaviour, IInventoryItem
     {
-        protected GameObject InventoryGO;
-        void Start()
+        protected GameObject ManagerGO;
+        public void Start()
         {
-            InventoryGO = GameObject.Find("MangerGO");
+            ManagerGO = GameObject.Find("MangerGO");
         }
         [SerializeField]
         private string _Name;
@@ -69,13 +69,13 @@ namespace Assets.Scripts.InventoryScripts
         }
 
 
-        public void OnCollisionEnter(Collision collision)
+        public virtual void OnCollisionEnter(Collision collision)
         {
-            if (InventoryGO == null)
-                InventoryGO = GameObject.Find("ManagerGO");
+            if (ManagerGO == null)
+                ManagerGO = GameObject.Find("ManagerGO");
             if (collision.gameObject.tag == "Player")
             {
-                if (InventoryGO.GetComponent<Inventory>().AddItem(this))
+                if (ManagerGO.GetComponent<Inventory>().AddItem(this))
                     Destroy(this.gameObject);
             }
         }

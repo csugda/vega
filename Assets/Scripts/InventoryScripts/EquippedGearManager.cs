@@ -9,7 +9,10 @@ namespace Assets.Scripts.InventoryScripts
         public GameObject equipmentUI;
 
         public EquipableItem lArm, rArm, head, torso, legs;
-
+        private void Start()
+        {
+            head.OnEquipped();
+        }
         public EquipableItem Equip(EquipableItem item, EquipmentSlots location)
         {
             EquipableItem oldItem = null;
@@ -38,7 +41,7 @@ namespace Assets.Scripts.InventoryScripts
             }
             oldItem.OnUnequipped();
             item.OnEquipped();
-            equipmentUI.GetComponent<EquipmentDisplay>().Redraw();
+            Inventory.onInventoryChanged.Invoke();
             return oldItem;
         }
     }

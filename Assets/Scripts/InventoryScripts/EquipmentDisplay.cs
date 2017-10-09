@@ -18,12 +18,12 @@ namespace Assets.Scripts.InventoryScripts
             T = this.transform.Find("Torso").gameObject;
             L = this.transform.Find("Legs").gameObject;
             this.Redraw();
+            Inventory.onInventoryChanged.AddListener(Redraw);
         }
 
 
         public void Redraw()
         {
-            Debug.Log(manager.head);
 
            // La.GetComponent<Text>().text = manager.lArm.name;
            // Ra.GetComponent<Text>().text = manager.rArm.name;

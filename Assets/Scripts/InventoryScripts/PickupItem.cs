@@ -6,7 +6,7 @@ namespace Assets.Scripts.InventoryScripts
     [Serializable]
     public class PickupItem : MonoBehaviour, IInventoryItem
     {
-        GameObject InventoryGO;
+        protected GameObject InventoryGO;
         void Start()
         {
             InventoryGO = GameObject.Find("MangerGO");
@@ -75,8 +75,8 @@ namespace Assets.Scripts.InventoryScripts
                 InventoryGO = GameObject.Find("ManagerGO");
             if (collision.gameObject.tag == "Player")
             {
-                InventoryGO.GetComponent<Inventory>().AddItem(this);
-                Destroy(this.gameObject);
+                if (InventoryGO.GetComponent<Inventory>().AddItem(this))
+                    Destroy(this.gameObject);
             }
         }
 

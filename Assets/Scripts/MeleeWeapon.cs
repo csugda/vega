@@ -9,7 +9,7 @@ namespace Assets.Scripts
         {
             if (collision.gameObject.tag.Equals("Enemy"))
             {
-                collision.gameObject.GetComponent<EnemyHealth>().onDammaged.Invoke(damage, this.transform);
+                collision.gameObject.GetComponent<EnemyHealth>().onDammaged.Invoke(damage, this.transform); 
             }
         }
     }

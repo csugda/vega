@@ -49,7 +49,7 @@ namespace Assets.Scripts.InventoryScripts
 
         public void UseItem(int v)
         {
-            inventory[v].item.OnItemUsed();
+            IInventoryItem item = inventory[v].item;
             inventory[v].count = (inventory[v].item is EmptySlot) ? inventory[v].count : inventory[v].count - 1;
             if (inventory[v].count == 0)
             {
@@ -57,7 +57,7 @@ namespace Assets.Scripts.InventoryScripts
                 ShuffleInventory(v);
                 gridGen.RedrawGrid();
             }
-
+            item.OnItemUsed(); //at the end so that if using an item would add an item it wont overfill the inventory
         }
 
         private void ShuffleInventory(int p)
@@ -78,8 +78,7 @@ namespace Assets.Scripts.InventoryScripts
                 {
                     if (inventory[i].count >= inventory[i].item.StackSize)
                     {
-                        Debug.Log("stack size limit met");
-                        return false;
+                        continue;
                     }
                     else
                     {

@@ -12,7 +12,10 @@ public class ShowItemInfo : MonoBehaviour {
         //parent.parent because the first parent has a gridLayoutGroup that throws everything off when you give it a new child
         infoBox.gameObject.SetActive(false);
     }
-
+    public void OnDisable()
+    {
+        infoBox.gameObject.SetActive(false);
+    }
     public void ShowInfoPannel()
     {
         if (infoBox.GetComponentInChildren<Text>().text != "") //dont show text if there is no text
@@ -33,4 +36,6 @@ public class ShowItemInfo : MonoBehaviour {
         if (infoBox != null && infoBox.gameObject != null)
         Destroy(infoBox.gameObject);
     }
+
+    
 }

@@ -13,7 +13,7 @@ public class ScrapObjectScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player")) // compares the tag of an object
         {
             CollectibleManager.onScrapChanged.Invoke(scrapValue); // access method from CollectibleManager script
-            Destroy(this.gameObject); // sets gameobject to inactive
+            Destroy(this.gameObject); 
         }
 
     }

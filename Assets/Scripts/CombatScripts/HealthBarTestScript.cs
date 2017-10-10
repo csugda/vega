@@ -20,11 +20,12 @@ public class HealthBarTestScript : MonoBehaviour {
 		
 	}
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        float damagePerHit = 25f;
+        
         if (other.gameObject.CompareTag("Player"))
         {
+            float damagePerHit = 25f;
             decreaseHealth(damagePerHit);
         }
         // can add else statements for different tags corresponding to different weapons.

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -97,10 +98,14 @@ namespace Assets.Scripts.Map
                 currRoomSize = CreateSector(currBoundsLeft);
 
                 PlaceSector(currRoomStart, currRoomSize, sectorID);
-                //PlaceSectorBordersAndDoorways(currRoomStart, prevRoomSize);
+                PlaceSectorBordersAndDoorways(currRoomStart, prevRoomSize);
                 prevRoomStart = currRoomStart;
                 prevRoomSize = currRoomSize;
             }
+        }
+
+        private void PlaceSectorBordersAndDoorways(Vector3 currRoomStart, Vector3 prevRoomSize)
+        {
         }
 
         private bool MinimumSectorCanFit(Vector3 boundsLeft)
@@ -134,28 +139,78 @@ namespace Assets.Scripts.Map
         private void PlaceSector(Vector3 startTile, Vector3 roomSize, int sectorID)
         {
             Vector3 endTile = startTile + roomSize;
-             
+            Vector3 mapSize = MapParams.MapBounds;
+            Dictionary<int, List<Vector3>> wallDoorwayDict = new Dictionary<int, List<Vector3>>();
+
             for (int i = (int)startTile.x; i < endTile.x; ++i)
             {
                 for (int j = (int)startTile.z; j < endTile.z; ++j)
                 {
-                    if(i >= MapParams.MapBounds.x || j >= MapParams.MapBounds.z)
-                    {
-                        Debug.LogError(startTile + " end: " + endTile);
-                    }
                     SectorMap[i, j] = sectorID;
+                    var tile = new Vector3(i, 0, j);
+                    if (i == startTile.x || i == endTile.x || j == startTile.z || j == endTile.z)
+                    {
+                        SetMapTileToType(tile, TileType.Border);
+                        if (!((i == startTile.x || i == endTile.x) && (j == startTile.z || j == endTile.z)))
+                        {
+                            int otherID = 0;
+                            int leftID= (i == 0 ? 0 : SectorMap[i - 1, j] == sectorID ? 0 : SectorMap[i - 1, j]);
+                            int topID = (j == 0 ? 0 : SectorMap[i, j - 1] == sectorID ? 0 : SectorMap[i, j - 1]);
+                            int rightID = (i == mapSize.x ? 0 : SectorMap[i + 1, j] == sectorID ? 0 : SectorMap[i + 1, j]);
+                            int botID = (j == mapSize.z ? 0 : SectorMap[i, j + 1] == sectorID ? 0 : SectorMap[i, j + 1]);
+
+                            int sector =Math.Max(leftID, Math.Max(topID, Math.Max(rightID, botID)));
+
+                            if (wallDoorwayDict[sector] == null)
+                            {
+                                wallDoorwayDict[sector] = new List<Vector3>();
+                            }
+
+                            wallDoorwayDict[sector].Add(tile);   
+                        }
+                    }
+                    else SetMapTileToType(tile, TileType.Floor);
+
+
+
+                    //TODO: for each sector, make random doorways.
                 }
             }
+
+            foreach (var tileEntry in wallDoorwayDict)
+            {
+                int maxRange = tileEntry.Value.Count();
+                Vector3 doorwayTile = tileEntry.Value.ElementAt(rand.GetInt(maxRange));
+
+            }
+        }
+
+        private Vector3 GetDiffSectorDirection(Vector3 tile)
+        {
+
+            return Vector3.zero;
         }
 
         private void SetMapTileToType(Vector3 tile, TileType type)
         {
-            Debug.Log(tile);
             GeneratorMap[(int)tile.x, (int)tile.z] = type;
+        }
+
+        private int GetSectorIDfromTile(Vector3 tile)
+        {
+            if (tile.x < 0 || tile.z < 0 || tile.x >= MapParams.MapBounds.x || tile.z >= MapParams.MapBounds.z)
+            {
+                return 0;
+            }
+            return 
         }
 
         private TileType GetMapTileType(Vector3 tile)
         {
+            if(tile.x < 0 || tile.z < 0 || tile.x >= MapParams.MapBounds.x || tile.z >= MapParams.MapBounds.z)
+            {
+                return TileType.Floor;
+            }
             return GeneratorMap[(int)tile.x, (int)tile.z];
         }
     }

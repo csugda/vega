@@ -125,11 +125,6 @@ namespace Assets.Scripts.Map
 
         private Vector3 GetScaledPositionVector(GameObject obj, Vector3 pos)
         {
-            Bounds bounds = new Bounds();
-            foreach(var rend in obj.GetComponentsInChildren<Renderer>())
-            {
-                bounds.Encapsulate(rend.bounds);
-            }
             return Vector3.Scale(new Vector3(10,0,10), pos);
         }
 

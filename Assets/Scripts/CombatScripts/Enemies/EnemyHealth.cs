@@ -3,15 +3,14 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class EnemyDamageEvent : UnityEvent<int, Transform>
-{
-}
+public class EnemyDamageEvent : UnityEvent<int, Transform>  {   }
 
 public class EnemyHealth : MonoBehaviour {
     public int health = 100;
     public EnemyDamageEvent onDammaged;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         onDammaged.AddListener(RecieveDamage);
 	}
 	

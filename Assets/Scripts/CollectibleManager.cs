@@ -6,6 +6,7 @@ public class ScrapEvent : UnityEvent<int> { }
 public class CollectibleManager : MonoBehaviour
 {
     public static ScrapEvent onScrapChanged = new ScrapEvent();
+
     public int scrapCount = 0;
     public Text scrapText;
 

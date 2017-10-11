@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -19,12 +20,13 @@ namespace Assets.Scripts.Menu.Journal
         public JournalEntryUnlockedEvent onEntryUnlocked;
         private JournalEntry[] entries;
         public bool[] unlocked;
-        // Use this for initialization
+
         void Start()
         {
             entries = ReadJournalEntries();
             unlocked = new bool[entries.Length];
-            /*TEMP*/ unlocked[0] = true;
+            /*TEMP*/
+            unlocked[0] = true;
         }
 
         public int GetEntriesCount()
@@ -35,17 +37,53 @@ namespace Assets.Scripts.Menu.Journal
         private JournalEntry[] ReadJournalEntries()
         {
             JournalEntry[] temp = new JournalEntry[EntriesPerArea * AREAS];
-            temp[0] = new JournalEntry { title = "one", text = "Hey, this actully worked!"};
-            temp[1] = new JournalEntry { title = "two", text = "Entry Two Unlocked!\nCongrats, it worked."};
-            for (int i = 2; i < EntriesPerArea * AREAS; ++i)
+            try
             {
-                temp[i] = new JournalEntry { title = i.ToString(), text = "You Dont see anything :)" };
+                string line;
+                StreamReader reader = new StreamReader("Assets/Resources/JournalEntries.txt");
+                using (reader)
+                {
+                    int area = 0, entry = 0;
+                    do
+                    {
+                        line = reader.ReadLine();
+                        Debug.Log(line);
+
+                        if (line != null)
+                        {
+                            area = int.Parse(line.Substring(1, 1));
+                            entry = int.Parse(line.Substring(3, 1));
+                            JournalEntry j = new JournalEntry { title = reader.ReadLine() };
+                            while (reader.Peek() != -1 && (char)reader.Peek() != '<')
+                            {
+                                string text = reader.ReadLine();
+                                j.text += (text + "\n");
+                            }
+                            temp[(area * EntriesPerArea) + entry] = j;
+                        }
+
+                    }
+                    while (line != null);
+                    reader.Close();
+                    for (int i = ((area * EntriesPerArea) + entry)+1; i < EntriesPerArea * AREAS; ++i)
+                    {
+                        temp[i] = new JournalEntry { title = i.ToString(), text = "You Dont see anything :)" };
+                    }
+                    return temp;
+                }
             }
-            return temp;
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+                return null;
+            }
+
+
+
 
         }
 
-        public void UnlockNextJournalEntry (int area)
+        public void UnlockNextJournalEntry(int area)
         {
             for (int i = area * EntriesPerArea; i < (area * EntriesPerArea) + EntriesPerArea; ++i)
             {

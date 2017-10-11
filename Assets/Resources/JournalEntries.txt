@@ -1,0 +1,10 @@
+<0,0>
+Reader.Works("Yay");
+hey, look. the reader is reading entries sucuessfully!
+even ones that take up more then one line
+<0,1>
+Unlock(True);
+It even can unlock the next entry in a series of entries, say different biomes. 
+and then, when it gets to the end of the file...
+
+filler.

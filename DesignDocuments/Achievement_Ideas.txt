@@ -1,0 +1,28 @@
+Achievements:
+
+Trip To The Zoo : All 5 Zoo Logs
+Mean Streets : All 5 Street Logs
+Sewer Crawl : All 5 Sewer Logs
+Rooftop Riot : All 5 Rooftop Logs
+Factory Friction : All 5 Factory Logs
+Downtown Damage : All 5 Downtown Logs
+Cat Tales : All 6 Cat Logs
+Breathing Room : Finish The Game As The Hero
+Broke The Nth Law : Finish The Game As The Villain
+Nobody Gets Left Behind : Survive The Game As The Hero
+Or Forgotten : Survive The Game As The Hero Along With Tenth
+Tradeless : Finish The Game Without Trading With Merchant
+Entrepreneur : Trade With The Merchant Every Time Offered
+Light Touch : Finish The Game Using Mantis
+Medium Massacre : Finish The Game Using Jerome
+Heavy Metal : Finish The Game Using Brutus
+Metalsmith : Finish The Game Using All Robots
+Trasha Panda-Monium : Win The Raccoon Boss Fight
+Going Ape : Win The Apes Boss Fight
+Jump The Shark : Win The Sharks Boss Fight
+Pigeon Pounder : Win The Pigeon Boss Fight
+Rampaging Rhino : Win The Rhinocerous Boss Fight
+The Cat Came Back : Defeat All Cat-Directed Mini-Bosses
+Minor Malfunction : Beat Merchant Without Boss Upgrades
+Major Malfunction : Beat Merchant With Boss Upgrades
+Have Your Sweets And Eat Them Too: Finish The Game Without Using Portals

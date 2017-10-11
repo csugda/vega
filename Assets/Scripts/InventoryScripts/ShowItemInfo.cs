@@ -14,6 +14,8 @@ public class ShowItemInfo : MonoBehaviour {
     }
     public void OnDisable()
     {
+        if (infoBox == null)
+            infoBox = this.transform.Find("InfoPanel");
         infoBox.gameObject.SetActive(false);
     }
     public void ShowInfoPannel()

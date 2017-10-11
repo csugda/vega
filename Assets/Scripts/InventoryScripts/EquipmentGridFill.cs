@@ -14,7 +14,6 @@ public class EquipmentGridFill : MonoBehaviour {
     // Use this for initialization
     void Awake ()
     {
-
         inventory = inventoryGO.GetComponent<Inventory>();
         Inventory.onInventoryChanged.AddListener(RedrawGrid);
     }

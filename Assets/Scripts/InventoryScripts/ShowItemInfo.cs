@@ -6,13 +6,19 @@ public class ShowItemInfo : MonoBehaviour {
 
     private Transform infoBox;
     private Transform parent;
+    public GameObject parentGO;
 	void Start () {
         infoBox = this.transform.Find("InfoPanel");
-        parent = this.gameObject.transform.parent.parent;
+        parent = parentGO != null ? parentGO.transform : this.gameObject.transform.parent.parent;
         //parent.parent because the first parent has a gridLayoutGroup that throws everything off when you give it a new child
         infoBox.gameObject.SetActive(false);
     }
-
+    public void OnDisable()
+    {
+        if (infoBox == null)
+            infoBox = this.transform.Find("InfoPanel");
+        infoBox.gameObject.SetActive(false);
+    }
     public void ShowInfoPannel()
     {
         if (infoBox.GetComponentInChildren<Text>().text != "") //dont show text if there is no text
@@ -33,4 +39,6 @@ public class ShowItemInfo : MonoBehaviour {
         if (infoBox != null && infoBox.gameObject != null)
         Destroy(infoBox.gameObject);
     }
+
+    
 }

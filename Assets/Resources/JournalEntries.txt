@@ -1,10 +1,32 @@
-<0,0>
-Reader.Works("Yay");
-hey, look. the reader is reading entries sucuessfully!
-even ones that take up more then one line
+﻿<0,0>
+Zoo Log 1:
+Mariana Tobin – Director of the Cybernetically Enhanced Animal Sanctuary Environments (CEASE)
+Director’s Log: April 20, 2047
+    Before I get too far, I wish to lay blame for this incident on the automated food delivery robots.  If food deliveries had continued, the animals would not have become prone to escape their enclosures.  Instead, all deliveries stopped and our enhanced wards broke out of the enclosures in search of food.
+    Per the report I filed, the enhanced rhinocerous Abada broke down a series of barriers, freeing numerous other wards and eventually damaging the nearby robot fabrication plant.  The apes damaged the guard server, so all of our guards are now killing anything they can catch.  It has been two days since I filed my report, but I have yet to hear back.  My personal food supplies have thinned and I cannot leave my office for fear of the… trash pandas… no, that’s a bad translation… raccoons.  Who decided to give raccoons water cannons on their paws anyway?  Either way, if I do not hear back soon I will file a report with the Physical Securities Department.
 <0,1>
-Unlock(True);
-It even can unlock the next entry in a series of entries, say different biomes. 
-and then, when it gets to the end of the file...
-
-filler.
+Zoo Log 2:
+Mariana Tobin – Director of the Cybernetically Enhanced Animal Sanctuary Environments (CEASE)
+Director’s Log: April 21, 2047
+   I managed to escape my office for just a short time, enough to get some food, water and a survey of the grounds.  It looks like the great cormorant 调节器 , escaped along with its flock of pigeons.  As long as people keep off the rooftops it shouldn’t be an issue.  The apes have posed even more issues though, they drained out the shark tank into the sewers.  People used to be worried about goldfish… I can’t even imagine the nightmares they’ll have now.
+   I filed the report with the Physical Securities Department, but have received no reply.
+<0,2>
+Zoo Log 3:
+Mariana Tobin – Director of the Cybernetically Enhanced Animal Sanctuary Environments (CEASE)
+Director’s Log: April 21, 2047
+   The apes were prowling the grounds today, making extra modifications to the robots.  We knew their cybernetic put them near human intelligence, but it seems they have exceeded those boundaries through continued manipulation.  I need to figure out how much they have changed the systems of my facility, I’ll be sneaking into the security booth at the front of the park to access a linked-in terminal.
+<0,3>
+Zoo Log 4:
+Mariana Tobin – Director of the Cybernetically Enhanced Animal Sanctuary Environments (CEASE)
+Director’s Log: April 21, 2047
+   Thankfully the apes have been unable to set our security bots loose on the city, but appear to have modified some of the robots from other parts of the city.  They have turned off the external terminals that I checked… no… they removed the main circuit boards.  Likely these have been moved to our main server room.
+<0,4>
+Zoo Log 5:
+Mariana Tobin – Director of the Cybernetically Enhanced Animal Sanctuary Environments (CEASE)
+Director’s Log: April 21, 2047
+   Finding what the apes were doing is a bit more of a surprise than I expected.  They stepped out to do some repairs, giving me a chance to look through their notes.  It looks like the haze is poisonous to both humans and apes.  So they developed some kind of air filtration system that is cleaning up a small area’s air supply, including reducing the amount seen throughout the facility.  Likely it is much thicker outside.  In case I don’t make it, I hereby bequeath all my worldly possessions to my daughter.  Hmmm… odds are she’s dead.  In the case that my daughter is dead, I leave my worldly possessions to my daughter’s cat.  It’s like a damned cockroach… I swear it could live through anything.
+<0,5>
+Tenth Log 1:
+Isabella Tobin – Daughter of Mariana Tobin – Saved To Files of Mariana Tobin
+Director’s Log: September 6th, 2042
+   My mom took me to her animal sanctuary today.  She said that the animals there all needed our help.  That doctors took the poor creatures apart and put them back together again, leaving them disfigured and angry.  I really liked the trash pandas… they’re so fluffy.  I asked my mom if I could have one, but she said that they would attack me.  She promised she would get me a cat.

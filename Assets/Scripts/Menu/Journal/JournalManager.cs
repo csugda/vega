@@ -47,7 +47,6 @@ namespace Assets.Scripts.Menu.Journal
                     do
                     {
                         line = reader.ReadLine();
-                        Debug.Log(line);
 
                         if (line != null)
                         {

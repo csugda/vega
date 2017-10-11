@@ -42,12 +42,12 @@ namespace Assets.Scripts.Menu.Journal
                (() => ShowEntry(int.Parse(button.transform.name)));
 
         }
-
+        public GameObject EntryText;
         private void ShowEntry(int i)
         {
             JournalEntry e = manager.GetEntry(i);
             entryPanel.transform.Find("TitleText").GetComponent<Text>().text = e.title;
-            entryPanel.transform.Find("EntryText").GetComponent<Text>().text = e.text;
+            EntryText.GetComponent<Text>().text = e.text;
         }
 
         

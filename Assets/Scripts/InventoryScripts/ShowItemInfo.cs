@@ -4,18 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ShowItemInfo : MonoBehaviour {
 
-    private Transform infoBox;
+    public Transform infoBox;
     private Transform parent;
     public GameObject parentGO;
 	void Start () {
-        infoBox = this.transform.Find("InfoPanel");
         parent = parentGO != null ? parentGO.transform : this.gameObject.transform.parent.parent;
         //parent.parent because the first parent has a gridLayoutGroup that throws everything off when you give it a new child
         infoBox.gameObject.SetActive(false);
     }
     public void OnDisable()
     {
-        infoBox = this.transform.Find("InfoPanel");
         infoBox.gameObject.SetActive(false);
     }
     public void ShowInfoPannel()

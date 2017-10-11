@@ -9,7 +9,7 @@ namespace Assets.Scripts.InventoryScripts
         protected GameObject ManagerGO;
         public void Start()
         {
-            ManagerGO = GameObject.Find("MangerGO");
+            ManagerGO = GameObject.Find("ManagerGO");
         }
         [SerializeField]
         private string _Name;

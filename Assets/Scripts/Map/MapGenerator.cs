@@ -185,32 +185,40 @@ namespace Assets.Scripts.Map
             }
         }
 
+        private bool IsTileOutOfMapBounds(Vector3 tile)
+        {
+            if (tile.x < 0 || tile.z < 0 || tile.x >= MapParams.MapBounds.x || tile.z >= MapParams.MapBounds.z)
+            {
+                return true;
+            }
+            return false;
+        }
+
         private Vector3 GetDiffSectorDirection(Vector3 tile)
         {
-
+            var query = 
+                from vector in Vector3.
             return Vector3.zero;
         }
 
+
         private void SetMapTileToType(Vector3 tile, TileType type)
         {
+            if (IsTileOutOfMapBounds(tile)) return;
+
             GeneratorMap[(int)tile.x, (int)tile.z] = type;
         }
 
         private int GetSectorIDfromTile(Vector3 tile)
         {
-            if (tile.x < 0 || tile.z < 0 || tile.x >= MapParams.MapBounds.x || tile.z >= MapParams.MapBounds.z)
-            {
-                return 0;
-            }
-            return 
+            if (IsTileOutOfMapBounds(tile)) return 0;
+
+            return SectorMap[(int)tile.x, (int)tile.z];
         }
 
         private TileType GetMapTileType(Vector3 tile)
         {
-            if(tile.x < 0 || tile.z < 0 || tile.x >= MapParams.MapBounds.x || tile.z >= MapParams.MapBounds.z)
-            {
-                return TileType.Floor;
-            }
+            if (IsTileOutOfMapBounds(tile)) return TileType.Floor;
             return GeneratorMap[(int)tile.x, (int)tile.z];
         }
     }

@@ -24,4 +24,12 @@ public class EnemyHealth : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
+
+    public void Damage(int damageAmount)
+    {
+        health -= damageAmount;
+
+        if (health <= 0)
+            Destroy(this.gameObject);
+    }
 }

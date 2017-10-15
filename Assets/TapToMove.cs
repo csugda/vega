@@ -11,12 +11,25 @@ public class TapToMove : MonoBehaviour
     //alter this to change the speed of the movement of player / gameobject
     //vertical position of the gameobject
     private float yAxis;
+    Rigidbody playerRigidBody;
+    float camRayLength = 100f;
+    float rotationSpeed = 5f;
+
+    void Awake()
+    {
+        playerRigidBody = GetComponent<Rigidbody>();
+    }
 
     void Start()
     {
         //save the y axis value of gameobject
         yAxis = gameObject.transform.position.y;
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    void FixedUpdate()
+    {
+        Turn();
     }
 
 	public void OnMouseButtonDown(int button, Vector3 pos, Transform obj) {
@@ -43,5 +56,20 @@ public class TapToMove : MonoBehaviour
         //save the click/tap position with object's original y axis value
         endPoint = new Vector3(pos.x, yAxis, pos.z);
         agent.SetDestination(endPoint);
+    }
+
+    public void Turn()
+    {
+        Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit floorHit;
+        if (Physics.Raycast(camRay, out floorHit, camRayLength))
+        {
+            Vector3 playerToMouse = floorHit.point - transform.position;
+            playerToMouse.y = 0f;
+
+            Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
+            transform.rotation = Quaternion.Slerp(playerRigidBody.transform.rotation, newRotation, Time.deltaTime * rotationSpeed);
+            //playerRigidBody.MoveRotation(newRotation);
+        }
     }
 }

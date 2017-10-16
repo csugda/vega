@@ -8,7 +8,7 @@ public class PlayerShooting : MonoBehaviour
     public float fireRate = 0.25f;
     public float weaponRange = 50f;
 
-    private WaitForSeconds shotDuration = new WaitForSeconds(0.70f);
+    private WaitForSeconds shotDuration = new WaitForSeconds(0.4f);
     Ray shootRay;
     RaycastHit shootHit;
     LineRenderer weaponLine;
@@ -26,28 +26,32 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-            StartCoroutine(Shoot());
+            StartCoroutine(Shoot(transform.forward));
         }
 
     }
-
-    private IEnumerator Shoot()
+    public void Shoot(Vector3 location, Transform target)
+    {
+        if (Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            StartCoroutine(Shoot(target.position-transform.position));
+        }
+    }
+    private IEnumerator Shoot(Vector3 target)
     {
         weaponAudio.Play();
         weaponLine.enabled = true;
         weaponLine.SetPosition(0, transform.position);
         shootRay.origin = transform.position;
-        shootRay.direction = transform.forward;
+        shootRay.direction = target;
 
         if(Physics.Raycast(shootRay, out shootHit, weaponRange))
         {
-            EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
-
-            if (enemyHealth != null)
+            if (shootHit.collider.gameObject.tag == "Enemy")
             {
-                enemyHealth.Damage(weaponDamage, shootHit.point);
+                shootHit.collider.gameObject.GetComponent<EnemyHealth>().onDammaged.Invoke(weaponDamage, this.transform);
             }
-
             weaponLine.SetPosition(1, shootHit.point);
         } else
         {

@@ -29,18 +29,4 @@ public class EnemyHealth : MonoBehaviour {
         }
     }
 
-    public void Damage(int damageAmount, Vector3 hitPoint)
-    {
-        currHealth -= damageAmount;
-
-        if (currHealth <= 0)
-            Destroy(this.gameObject);
-
-        healthBar.transform.localScale =
-             new Vector3(Mathf.Clamp(
-                 (currHealth / maxHealth), 0f, 1f),
-                 healthBar.transform.localScale.y,
-                 healthBar.transform.localScale.z);
-    }
-
 }

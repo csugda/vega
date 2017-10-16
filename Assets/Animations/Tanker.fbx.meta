@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3ee7a344398f9c44f95b89f89fae3a22
-timeCreated: 1506472934
+guid: da8917333cb31064293a933936bbfe6a
+timeCreated: 1507090723
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -14,10 +14,11 @@ ModelImporter:
     100012: Cylinder.003
     100014: Eye
     100016: //RootNode
-    100018: TurretL
-    100020: TurretR
-    100022: WheelL
-    100024: WheelR
+    100018: Tanker
+    100020: TurretL
+    100022: TurretR
+    100024: WheelL
+    100026: WheelR
     400000: Armature
     400002: Body
     400004: Bone
@@ -27,10 +28,11 @@ ModelImporter:
     400012: Cylinder.003
     400014: Eye
     400016: //RootNode
-    400018: TurretL
-    400020: TurretR
-    400022: WheelL
-    400024: WheelR
+    400018: Tanker
+    400020: TurretL
+    400022: TurretR
+    400024: WheelL
+    400026: WheelR
     2300000: Body
     2300002: Eye
     2300004: TurretL
@@ -45,61 +47,85 @@ ModelImporter:
     3300010: WheelR
     4300000: Body
     4300002: Eye
-    4300004: TurretL
-    4300006: TurretR
-    4300008: WheelR
-    4300010: WheelL
+    4300004: WheelR
+    4300006: WheelL
+    4300008: TurretR
+    4300010: TurretL
     4300012: Cylinder.003
-    7400000: Body|BodyAction
-    7400002: Body|Cylinder.003Action
-    7400004: Body|EyeAction
-    7400006: Body|TurretLAction
-    7400008: Body|TurretRAction
-    7400010: Body|WheelLAction
-    7400012: Body|WheelRAction
-    7400014: TurretL|BodyAction
-    7400016: TurretL|Cylinder.003Action
-    7400018: TurretL|EyeAction
-    7400020: TurretL|TurretLAction
-    7400022: TurretL|TurretRAction
-    7400024: TurretL|WheelLAction
-    7400026: TurretL|WheelRAction
-    7400028: TurretR|BodyAction
-    7400030: TurretR|Cylinder.003Action
-    7400032: TurretR|EyeAction
-    7400034: TurretR|TurretLAction
-    7400036: TurretR|TurretRAction
-    7400038: TurretR|WheelLAction
-    7400040: TurretR|WheelRAction
-    7400042: WheelR|BodyAction
-    7400044: WheelR|Cylinder.003Action
-    7400046: WheelR|EyeAction
-    7400048: WheelR|TurretLAction
-    7400050: WheelR|TurretRAction
-    7400052: WheelR|WheelLAction
-    7400054: WheelR|WheelRAction
-    7400056: WheelL|BodyAction
-    7400058: WheelL|Cylinder.003Action
-    7400060: WheelL|EyeAction
-    7400062: WheelL|TurretLAction
-    7400064: WheelL|TurretRAction
-    7400066: WheelL|WheelLAction
-    7400068: WheelL|WheelRAction
-    7400070: Armature|ArmatureAction
-    7400072: Armature|BodyAction
-    7400074: Armature|Cylinder.003Action
-    7400076: Armature|EyeAction
-    7400078: Armature|TurretLAction
-    7400080: Armature|TurretRAction
-    7400082: Armature|WheelLAction
-    7400084: Armature|WheelRAction
-    7400086: Eye|BodyAction
-    7400088: Eye|Cylinder.003Action
-    7400090: Eye|EyeAction
-    7400092: Eye|TurretLAction
-    7400094: Eye|TurretRAction
-    7400096: Eye|WheelLAction
-    7400098: Eye|WheelRAction
+    7400000: WheelRAction
+    7400002: WheelLAction
+    7400004: TurretRAction
+    7400006: TurretLAction
+    7400008: EyeAction
+    7400010: Cylinder.003Action
+    7400012: BodyAction
+    7400014: ArmatureAction
+    7400016: Action
+    7400018: Tanker|Action
+    7400020: Tanker|BodyAction
+    7400022: Tanker|Cylinder.003Action
+    7400024: Tanker|EyeAction
+    7400026: Tanker|TurretLAction
+    7400028: Tanker|TurretRAction
+    7400030: Tanker|WheelLAction
+    7400032: Tanker|WheelRAction
+    7400034: Body|Action
+    7400036: Body|BodyAction
+    7400038: Body|Cylinder.003Action
+    7400040: Body|EyeAction
+    7400042: Body|TurretLAction
+    7400044: Body|TurretRAction
+    7400046: Body|WheelLAction
+    7400048: Body|WheelRAction
+    7400050: Armature|Action
+    7400052: Armature|ArmatureAction
+    7400054: Armature|BodyAction
+    7400056: Armature|Cylinder.003Action
+    7400058: Armature|EyeAction
+    7400060: Armature|TurretLAction
+    7400062: Armature|TurretRAction
+    7400064: Armature|WheelLAction
+    7400066: Armature|WheelRAction
+    7400068: Eye|Action
+    7400070: Eye|BodyAction
+    7400072: Eye|Cylinder.003Action
+    7400074: Eye|EyeAction
+    7400076: Eye|TurretLAction
+    7400078: Eye|TurretRAction
+    7400080: Eye|WheelLAction
+    7400082: Eye|WheelRAction
+    7400084: WheelR|Action
+    7400086: WheelR|BodyAction
+    7400088: WheelR|Cylinder.003Action
+    7400090: WheelR|EyeAction
+    7400092: WheelR|TurretLAction
+    7400094: WheelR|TurretRAction
+    7400096: WheelR|WheelLAction
+    7400098: WheelR|WheelRAction
+    7400100: WheelL|Action
+    7400102: WheelL|BodyAction
+    7400104: WheelL|Cylinder.003Action
+    7400106: WheelL|EyeAction
+    7400108: WheelL|TurretLAction
+    7400110: WheelL|TurretRAction
+    7400112: WheelL|WheelLAction
+    7400114: WheelL|WheelRAction
+    7400116: TurretR|Action
+    7400118: TurretR|BodyAction
+    7400120: TurretR|Cylinder.003Action
+    7400122: TurretR|EyeAction
+    7400124: TurretR|TurretLAction
+    7400126: TurretR|TurretRAction
+    7400128: TurretR|WheelLAction
+    7400130: TurretR|WheelRAction
+    7400132: TurretL|Action
+    7400134: TurretL|BodyAction
+    7400136: TurretL|Cylinder.003Action
+    7400138: TurretL|EyeAction
+    7400140: TurretL|TurretLAction
+    7400142: TurretL|TurretRAction
+    7400144: TurretL|WheelLAction
+    7400146: TurretL|WheelRAction
     9500000: //RootNode
     13700000: Cylinder.003
   materials:

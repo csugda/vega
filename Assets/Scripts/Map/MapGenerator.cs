@@ -98,14 +98,9 @@ namespace Assets.Scripts.Map
                 currRoomSize = CreateSector(currBoundsLeft);
 
                 PlaceSector(currRoomStart, currRoomSize, sectorID);
-                PlaceSectorBordersAndDoorways(currRoomStart, prevRoomSize);
                 prevRoomStart = currRoomStart;
                 prevRoomSize = currRoomSize;
             }
-        }
-
-        private void PlaceSectorBordersAndDoorways(Vector3 currRoomStart, Vector3 prevRoomSize)
-        {
         }
 
         private bool MinimumSectorCanFit(Vector3 boundsLeft)
@@ -148,41 +143,62 @@ namespace Assets.Scripts.Map
                 {
                     SectorMap[i, j] = sectorID;
                     var tile = new Vector3(i, 0, j);
-                    if (i == startTile.x || i == endTile.x || j == startTile.z || j == endTile.z)
+                    if (i == startTile.x || i == endTile.x-1 || j == startTile.z || j == endTile.z-1)
                     {
                         SetMapTileToType(tile, TileType.Border);
-                        if (!((i == startTile.x || i == endTile.x) && (j == startTile.z || j == endTile.z)))
+
+                        Vector3 diffTile = GetDiffSectorTile(tile);
+                        int diffSector = GetSectorIDfromTile(diffTile);
+
+                        if(!TileIsCorner(tile) && !TileIsCorner(diffTile) && diffSector != 0)
                         {
-                            int otherID = 0;
-                            int leftID= (i == 0 ? 0 : SectorMap[i - 1, j] == sectorID ? 0 : SectorMap[i - 1, j]);
-                            int topID = (j == 0 ? 0 : SectorMap[i, j - 1] == sectorID ? 0 : SectorMap[i, j - 1]);
-                            int rightID = (i == mapSize.x ? 0 : SectorMap[i + 1, j] == sectorID ? 0 : SectorMap[i + 1, j]);
-                            int botID = (j == mapSize.z ? 0 : SectorMap[i, j + 1] == sectorID ? 0 : SectorMap[i, j + 1]);
-
-                            int sector =Math.Max(leftID, Math.Max(topID, Math.Max(rightID, botID)));
-
-                            if (wallDoorwayDict[sector] == null)
+                            if (!wallDoorwayDict.ContainsKey(diffSector))
                             {
-                                wallDoorwayDict[sector] = new List<Vector3>();
+                                wallDoorwayDict.Add(diffSector, new List<Vector3>());
                             }
-
-                            wallDoorwayDict[sector].Add(tile);   
+                            wallDoorwayDict[diffSector].Add(tile);   
                         }
                     }
                     else SetMapTileToType(tile, TileType.Floor);
-
-
-
-                    //TODO: for each sector, make random doorways.
                 }
             }
 
-            foreach (var tileEntry in wallDoorwayDict)
+            //value is list of valid tiles for that sector
+            foreach (var tileSector in wallDoorwayDict.Keys)
             {
-                int maxRange = tileEntry.Value.Count();
-                Vector3 doorwayTile = tileEntry.Value.ElementAt(rand.GetInt(maxRange));
-
+                int maxRange = wallDoorwayDict[tileSector].Count();
+                Vector3 doorwayTile = wallDoorwayDict[tileSector].ElementAt(rand.GetInt(maxRange));
+                SetMapTileToType(doorwayTile, TileType.Doorway);
+                SetMapTileToType(GetDiffSectorTile(doorwayTile), TileType.Doorway);
             }
+        }
+
+        private Vector3 GetDiffSectorTile(Vector3 tile)
+        {
+            Vector3 ForwardTile = tile + Vector3.forward;
+            Vector3 BackTile = tile + Vector3.back;
+            Vector3 RightTile = tile + Vector3.right;
+            Vector3 LeftTile = tile + Vector3.left;
+
+            int currID = GetSectorIDfromTile(tile);
+            if (currID != GetSectorIDfromTile(LeftTile) && GetSectorIDfromTile(LeftTile) != 0) return LeftTile;
+            if (currID != GetSectorIDfromTile(BackTile) && GetSectorIDfromTile(BackTile) != 0) return BackTile;
+            if (currID != GetSectorIDfromTile(ForwardTile) && GetSectorIDfromTile(ForwardTile) != 0) return ForwardTile;
+            if (currID != GetSectorIDfromTile(RightTile) && GetSectorIDfromTile(RightTile) != 0) return RightTile;
+
+            return Vector3.positiveInfinity;
+        }
+
+        private bool TileIsCorner(Vector3 tile)
+        {
+            int forwardSector = GetSectorIDfromTile(tile + Vector3.forward);
+            int backSector = GetSectorIDfromTile(tile + Vector3.back);
+            int rightSector = GetSectorIDfromTile(tile + Vector3.right);
+            int leftSector = GetSectorIDfromTile(tile + Vector3.left);
+
+            if(forwardSector != backSector && rightSector != leftSector)
+                return true;
+            else return false;
         }
 
         private bool IsTileOutOfMapBounds(Vector3 tile)
@@ -194,18 +210,13 @@ namespace Assets.Scripts.Map
             return false;
         }
 
-        private Vector3 GetDiffSectorDirection(Vector3 tile)
-        {
-            var query = 
-                from vector in Vector3.
-            return Vector3.zero;
-        }
-
-
         private void SetMapTileToType(Vector3 tile, TileType type)
         {
-            if (IsTileOutOfMapBounds(tile)) return;
-
+            if (IsTileOutOfMapBounds(tile))
+            {
+                Debug.LogWarning("SetMapTileToType trying to set tile out of bounds!");
+                return;
+            }
             GeneratorMap[(int)tile.x, (int)tile.z] = type;
         }
 

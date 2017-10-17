@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3203e8b778927046b8653829b5f2eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoBox: {fileID: 224937648295711618}
   parentGO: {fileID: 0}
 --- !u!114 &114454701740424776
 MonoBehaviour:

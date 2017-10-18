@@ -37,6 +37,8 @@ public class MenuController : MonoBehaviour
         this.gameObject.GetComponent<MenuTabSwitcher>().OpenTab("0");
     }
 
+    public GameObject insertMeleeWeapon;
+
     private void Update()
     {
         if (Input.GetKeyDown(inventoryButton))
@@ -51,6 +53,15 @@ public class MenuController : MonoBehaviour
         {
             menuOpen = this.gameObject.GetComponent<MenuTabSwitcher>().ToggleTab("3");
         }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            insertMeleeWeapon.SetActive(true);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            insertMeleeWeapon.SetActive(false);
+        }
+        
     }
 
     public void OpenMenuButtonPressed(int button, Vector3 pos, Transform target)

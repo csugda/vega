@@ -66,8 +66,8 @@ namespace Assets.Scripts.Map
 
                 if(!MinimumSectorCanFit(currBoundsLeft))
                 {
-                    int z = (int)MapParams.MinimumRoomSize.z;
-                    var startX = rand.GetInt((int)MapParams.MinimumRoomSize.x);
+                    int z = (int)MapParams.MinimumRoomSize.z + 1 + rand.GetInt(4);
+                    var startX = rand.GetInt((int)MapParams.MinimumRoomSize.x-1);
                     int x = startX;
                     bool placed = false;
                     while(placed == false)
@@ -97,7 +97,7 @@ namespace Assets.Scripts.Map
 
                 currRoomSize = CreateSector(currBoundsLeft);
 
-                PlaceSector(currRoomStart, currRoomSize, sectorID);
+                PlaceSector(currRoomStart, currRoomSize,prevRoomStart,prevRoomSize, sectorID);
                 prevRoomStart = currRoomStart;
                 prevRoomSize = currRoomSize;
             }
@@ -131,7 +131,7 @@ namespace Assets.Scripts.Map
         /// <param name="roomSize"></param>
         /// <param name="sectorID"></param>
         /// <returns></returns>
-        private void PlaceSector(Vector3 startTile, Vector3 roomSize, int sectorID)
+        private void PlaceSector(Vector3 startTile, Vector3 roomSize, Vector3 prevStart, Vector3 prevRoomSize, int sectorID)
         {
             Vector3 endTile = startTile + roomSize;
             Vector3 mapSize = MapParams.MapBounds;
@@ -141,6 +141,7 @@ namespace Assets.Scripts.Map
             {
                 for (int j = (int)startTile.z; j < endTile.z; ++j)
                 {
+                    //TODO: Break Sector into a new class!!! (This is mucho el biggo)
                     SectorMap[i, j] = sectorID;
                     var tile = new Vector3(i, 0, j);
                     if (i == startTile.x || i == endTile.x-1 || j == startTile.z || j == endTile.z-1)
@@ -150,7 +151,10 @@ namespace Assets.Scripts.Map
                         Vector3 diffTile = GetDiffSectorTile(tile);
                         int diffSector = GetSectorIDfromTile(diffTile);
 
-                        if(!TileIsCorner(tile) && !TileIsCorner(diffTile) && diffSector != 0)
+                        if (diffSector == 0 || diffTile == tile || diffTile == Vector3.positiveInfinity) continue;
+                        bool tileCorner = TileIsCorner(tile, startTile,endTile);
+                        bool difftileCorner = TileIsCorner(diffTile, prevStart, prevStart+prevRoomSize);
+                        if (!tileCorner && !difftileCorner)
                         {
                             if (!wallDoorwayDict.ContainsKey(diffSector))
                             {
@@ -189,16 +193,10 @@ namespace Assets.Scripts.Map
             return Vector3.positiveInfinity;
         }
 
-        private bool TileIsCorner(Vector3 tile)
+        private bool TileIsCorner(Vector3 tile, Vector3 startTile, Vector3 endTile)
         {
-            int forwardSector = GetSectorIDfromTile(tile + Vector3.forward);
-            int backSector = GetSectorIDfromTile(tile + Vector3.back);
-            int rightSector = GetSectorIDfromTile(tile + Vector3.right);
-            int leftSector = GetSectorIDfromTile(tile + Vector3.left);
-
-            if(forwardSector != backSector && rightSector != leftSector)
-                return true;
-            else return false;
+            return ((tile.x == startTile.x || tile.x == endTile.x-1) && 
+                    (tile.z == startTile.z || tile.z == endTile.z-1));
         }
 
         private bool IsTileOutOfMapBounds(Vector3 tile)

@@ -8,13 +8,20 @@ public class EquipmentGridFill : MonoBehaviour {
     public GameObject buttonPrefab;
     public GameObject inventoryGO;
     private Inventory inventory;
-	// Use this for initialization
-	void Awake () {
-        inventory = inventoryGO.GetComponent<Inventory>();
+
         
-	}
-	
-	public void RedrawGrid()
+
+    // Use this for initialization
+    void Awake ()
+    {
+        inventory = inventoryGO.GetComponent<Inventory>();
+        Inventory.onInventoryChanged.AddListener(RedrawGrid);
+    }
+    private void OnEnable()
+    {
+        Inventory.onInventoryChanged.Invoke();
+    }
+    public void RedrawGrid()
     {
         foreach (Transform ch in this.transform)
             Destroy(ch.gameObject);

@@ -21,7 +21,6 @@ public class MouseInput : MonoBehaviour {
 	void Start () {
 		menuController = GetComponent<MenuController>();
 	}
-
 	void Update () {
 		for (int i = 0; i < 2; i++) {
             if (menuController.menuOpen) continue;

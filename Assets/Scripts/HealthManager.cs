@@ -20,11 +20,11 @@ namespace Assets.Scripts
             onMaxHealthChanged.AddListener(ChangeMaxHealth);
             onHealthChanged.AddListener(healthUI.GetComponent<HealthBarTestScript>().DecreaseHealth);
             onMaxHealthChanged.AddListener(healthUI.GetComponent<HealthBarTestScript>().ChangeMaxHealth);
-            
             healthUI.GetComponent<HealthBarTestScript>().curHealth = currentHealth;
             healthUI.GetComponent<HealthBarTestScript>().maxHealth = maxHealth;
             onHealthChanged.Invoke(0);
             onMaxHealthChanged.Invoke(0);
+            
         }
         public void ChangeHealth(int ammount)
         {

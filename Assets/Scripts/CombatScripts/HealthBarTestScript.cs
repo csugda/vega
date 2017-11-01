@@ -7,12 +7,10 @@ public class HealthBarTestScript : MonoBehaviour {
     public float maxHealth;
     public float curHealth;
     public GameObject healthBar;
-    Vector3 initalScale;
+    Vector3 initalScale= Vector3.one; //NOTE make sure that the local scale is actully one to begin with..
 	// Use this for initialization
-	void Start ()
+	public void Start ()
     {
-        curHealth = maxHealth; // sets curHealth on play
-        initalScale = this.gameObject.transform.localScale;
        // InvokeRepeating("decreaseHealth", 1f, 1f); // decreases the health bar by x amount every second
 	}
 
@@ -35,14 +33,15 @@ public class HealthBarTestScript : MonoBehaviour {
     public void DecreaseHealth(int damage, Transform source)
     {
         curHealth -= damage; // reduces health by damage
+        if (initalScale == Vector3.zero)
+            this.Start();
         healthBar.transform.localScale = 
             new Vector3(Mathf.Clamp(
                 (curHealth / maxHealth), 0f, 1f)*initalScale.x,initalScale.y,initalScale.z);
     }
     public void ChangeMaxHealth(int ammount)
     {
-        if (maxHealth + ammount < 0)
-            return;
+        Debug.Log("change Max health by " + ammount);
         maxHealth += ammount;
         DecreaseHealth(0);
     }

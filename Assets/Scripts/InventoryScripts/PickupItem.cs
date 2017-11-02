@@ -6,7 +6,19 @@ namespace Assets.Scripts.InventoryScripts
     [Serializable]
     public class PickupItem : MonoBehaviour, IInventoryItem
     {
-        protected GameObject ManagerGO;
+        private GameObject _ManagerGO;
+        protected GameObject ManagerGO {
+            get
+            {
+                if (_ManagerGO == null)
+                    _ManagerGO = GameObject.Find("ManagerGO");
+                return _ManagerGO;
+            }
+            private set
+            {
+                _ManagerGO = value;
+            }
+        }
         public void Start()
         {
             ManagerGO = GameObject.Find("ManagerGO");

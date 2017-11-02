@@ -22,7 +22,6 @@ public class PlayerEnergy : MonoBehaviour {
     {
         Energy = Energy + ammount < 0 ? 0 : Energy + ammount > 100 ? 100 : Energy + ammount;
         onEnergyChanged.Invoke(Energy);
-
     }
 
 }

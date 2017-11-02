@@ -13,6 +13,10 @@ public class MenuTabSwitcher : MonoBehaviour
         Time.timeScale = closed ? 0 : 1;
         return closed;
     }
+    public void ToggleTabV(string tab)
+    {
+        ToggleTab(tab);
+    }
     public void OpenTab(string tab)
     {
         OpenTab(tab, false);

@@ -18,7 +18,7 @@ public class CollectibleManager : MonoBehaviour
     public void IncrementScrap(int ammount)
     {
         scrapCount += ammount;
-        scrapText.text = "Piles of Scrap: " + scrapCount;
+        scrapText.text = "" + scrapCount;
     }
 
 }

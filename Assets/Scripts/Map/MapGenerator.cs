@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -27,7 +28,6 @@ namespace Assets.Scripts.Map
             SectorMap = new int[(int)MapParams.MapBounds.x, (int)MapParams.MapBounds.z];
 
             CreateMapSectors();
-            PlaceBorderTiles();
         }
 
         /// <summary>
@@ -50,119 +50,185 @@ namespace Assets.Scripts.Map
         /// </summary>
         private void CreateMapSectors()
         {
-            Vector3 mapBoundsUsed = Vector3.zero;
-            Vector3 mapPlaceStart = Vector3.zero;
+            Vector3 prevRoomStart = Vector3.zero;
+            Vector3 prevRoomSize = Vector3.zero;
+            Vector3 currRoomStart = Vector3.zero;
             var mapSize = MapParams.MapBounds;
             int sectorID = 1;
             for(sectorID = 1; sectorID <= MapParams.MapSectors; ++sectorID)
             {
-                mapPlaceStart.x += mapBoundsUsed.x;
+                Vector3 currRoomSize = Vector3.zero;
 
-                int row = 0;
-                int col = 0;
-                if (mapPlaceStart.x + MapParams.MinimumRoomSize.x > mapSize.x)
+                var randZ = Math.Max(0, prevRoomStart.z + (1-rand.GetInt(4)));
+
+                currRoomStart = new Vector3(prevRoomStart.x + prevRoomSize.x, 0, randZ);
+                Vector3 currBoundsLeft = mapSize - currRoomStart;
+
+                if(!MinimumSectorCanFit(currBoundsLeft))
                 {
-                    mapPlaceStart.x = 0;
-                    for(row = 0; row < mapSize.z; ++row)
+                    int z = (int)MapParams.MinimumRoomSize.z + 1 + rand.GetInt(4);
+                    var startX = rand.GetInt((int)MapParams.MinimumRoomSize.x-1);
+                    int x = startX;
+                    bool placed = false;
+                    while(placed == false)
                     {
-                        if(SectorMap[0, row] == 0)
+                        while (SectorMap[x, z] != 0)
                         {
-                            mapPlaceStart.z = row;
-                            break;
+                            ++z;
+                            if (z >= mapSize.z) return;
+                        }
+
+                        x = startX;
+                        while (x <= MapParams.MinimumRoomSize.x)
+                        {
+                            ++x;
+                            if (SectorMap[x, z] != 0) break;
+                        }
+
+                        if (SectorMap[x, z] == 0)
+                        {
+                            currRoomStart = new Vector3(startX, 0, z);
+                            placed = true;
                         }
                     }
+                    currBoundsLeft = mapSize - currRoomStart;
                 }
+                if (!MinimumSectorCanFit(currBoundsLeft)) break;
 
-                if (mapPlaceStart.z + MapParams.MinimumRoomSize.z > mapSize.z)
-                {
-                    mapPlaceStart.z = 0;
-                    for (col = 0; col < mapSize.x; ++col)
-                    {
-                        if (SectorMap[col, 0] == 0)
-                        {
-                            mapPlaceStart.x = col;
-                            break;
-                        }
-                    }
-                }
-                mapBoundsUsed = CreateSector(mapSize - mapBoundsUsed);
-                PlaceSector(mapPlaceStart,mapBoundsUsed,sectorID);
+                currRoomSize = CreateSector(currBoundsLeft);
+
+                PlaceSector(currRoomStart, currRoomSize,prevRoomStart,prevRoomSize, sectorID);
+                prevRoomStart = currRoomStart;
+                prevRoomSize = currRoomSize;
             }
         }
 
-        private Vector3 CreateSector(Vector3 boundsAvailable)
+        private bool MinimumSectorCanFit(Vector3 boundsLeft)
+        {
+            return (boundsLeft.x >= MapParams.MinimumRoomSize.x &&
+                    boundsLeft.z >= MapParams.MinimumRoomSize.z);
+        }
+
+        private Vector3 CreateSector(Vector3 boundsLeft)
         {
             Vector3 roomBounds = Vector3.zero;
             Vector3 minSize = MapParams.MinimumRoomSize;
+            Vector3 maxSize = MapParams.MaximumRoomSize;
 
-            roomBounds.x = minSize.x + rand.GetInt((int)(boundsAvailable.x - minSize.x));
-            roomBounds.z = minSize.z + rand.GetInt((int)(boundsAvailable.z - minSize.z));
+            var randX = Math.Min(rand.GetInt((int)(maxSize.x - minSize.x)), boundsLeft.x - minSize.x);
+            var randZ = Math.Min(rand.GetInt((int)(maxSize.z - minSize.z)), boundsLeft.z - minSize.z);
 
-            if(boundsAvailable.x - roomBounds.x <= minSize.x)
-            {
-                roomBounds.x = boundsAvailable.x;
-            }
-            if(boundsAvailable.z - roomBounds.z <= minSize.z)
-            {
-                roomBounds.z = boundsAvailable.z;
-            }
-
-            if(roomBounds.x > MapParams.MaximumRoomSize.x)
-            {
-                roomBounds.x = MapParams.MaximumRoomSize.x;
-            }
-
-            if (roomBounds.z > MapParams.MaximumRoomSize.z)
-            {
-                roomBounds.z = MapParams.MaximumRoomSize.z;
-            }
+            roomBounds.x = minSize.x + randX;
+            roomBounds.z = minSize.z + randZ;
 
             return roomBounds;
         }
 
-        private void PlaceSector(Vector3 startTile, Vector3 roomSize, int sectorID)
+        /// <summary>
+        /// Place the actual sector that was randomly bounded previously.
+        /// </summary>
+        /// <param name="startTile"></param>
+        /// <param name="roomSize"></param>
+        /// <param name="sectorID"></param>
+        /// <returns></returns>
+        private void PlaceSector(Vector3 startTile, Vector3 roomSize, Vector3 prevStart, Vector3 prevRoomSize, int sectorID)
         {
             Vector3 endTile = startTile + roomSize;
+            Vector3 mapSize = MapParams.MapBounds;
+            Dictionary<int, List<Vector3>> wallDoorwayDict = new Dictionary<int, List<Vector3>>();
+
             for (int i = (int)startTile.x; i < endTile.x; ++i)
             {
-                if (i >= MapParams.MapBounds.x) break;
-                for(int j = (int)startTile.z; j < endTile.z; ++j)
+                for (int j = (int)startTile.z; j < endTile.z; ++j)
                 {
-                    if (j >= MapParams.MapBounds.z) break;
+                    //TODO: Break Sector into a new class!!! (This is mucho el biggo)
                     SectorMap[i, j] = sectorID;
+                    var tile = new Vector3(i, 0, j);
+                    if (i == startTile.x || i == endTile.x-1 || j == startTile.z || j == endTile.z-1)
+                    {
+                        SetMapTileToType(tile, TileType.Border);
+
+                        Vector3 diffTile = GetDiffSectorTile(tile);
+                        int diffSector = GetSectorIDfromTile(diffTile);
+
+                        if (diffSector == 0 || diffTile == tile || diffTile == Vector3.positiveInfinity) continue;
+                        bool tileCorner = TileIsCorner(tile, startTile,endTile);
+                        bool difftileCorner = TileIsCorner(diffTile, prevStart, prevStart+prevRoomSize);
+                        if (!tileCorner && !difftileCorner)
+                        {
+                            if (!wallDoorwayDict.ContainsKey(diffSector))
+                            {
+                                wallDoorwayDict.Add(diffSector, new List<Vector3>());
+                            }
+                            wallDoorwayDict[diffSector].Add(tile);   
+                        }
+                    }
+                    else SetMapTileToType(tile, TileType.Floor);
                 }
+            }
+
+            //value is list of valid tiles for that sector
+            foreach (var tileSector in wallDoorwayDict.Keys)
+            {
+                int maxRange = wallDoorwayDict[tileSector].Count();
+                Vector3 doorwayTile = wallDoorwayDict[tileSector].ElementAt(rand.GetInt(maxRange));
+                SetMapTileToType(doorwayTile, TileType.Doorway);
+                SetMapTileToType(GetDiffSectorTile(doorwayTile), TileType.Doorway);
             }
         }
 
-        private void PlaceBorderTiles()
+        private Vector3 GetDiffSectorTile(Vector3 tile)
         {
-            for (int i = 0; i < MapParams.MapBounds.x; ++i)
+            Vector3 ForwardTile = tile + Vector3.forward;
+            Vector3 BackTile = tile + Vector3.back;
+            Vector3 RightTile = tile + Vector3.right;
+            Vector3 LeftTile = tile + Vector3.left;
+
+            int currID = GetSectorIDfromTile(tile);
+            if (currID != GetSectorIDfromTile(LeftTile) && GetSectorIDfromTile(LeftTile) != 0) return LeftTile;
+            if (currID != GetSectorIDfromTile(BackTile) && GetSectorIDfromTile(BackTile) != 0) return BackTile;
+            if (currID != GetSectorIDfromTile(ForwardTile) && GetSectorIDfromTile(ForwardTile) != 0) return ForwardTile;
+            if (currID != GetSectorIDfromTile(RightTile) && GetSectorIDfromTile(RightTile) != 0) return RightTile;
+
+            return Vector3.positiveInfinity;
+        }
+
+        private bool TileIsCorner(Vector3 tile, Vector3 startTile, Vector3 endTile)
+        {
+            return ((tile.x == startTile.x || tile.x == endTile.x-1) && 
+                    (tile.z == startTile.z || tile.z == endTile.z-1));
+        }
+
+        private bool IsTileOutOfMapBounds(Vector3 tile)
+        {
+            if (tile.x < 0 || tile.z < 0 || tile.x >= MapParams.MapBounds.x || tile.z >= MapParams.MapBounds.z)
             {
-                for (int j = 0; j < MapParams.MapBounds.z; ++j)
-                {
-                    int up = i - 1;
-                    int down = i + 1;
-                    int left = j - 1;
-                    int right = j + 1;
-
-                    if (up < 0 || down > MapParams.MapBounds.x-1 ||
-                       left < 0 || right > MapParams.MapBounds.z-1)
-                    {
-                        GeneratorMap[i, j] = TileType.Border;
-                        continue;
-                    }
-
-                    int currentSect = SectorMap[i, j];
-
-                    if (currentSect != SectorMap[up,j]       ||
-                        currentSect != SectorMap[i, left]    ||
-                        currentSect != SectorMap[i, right]   ||
-                        currentSect != SectorMap[down, j])
-                    {
-                        GeneratorMap[i, j] = TileType.Border;
-                    }
-                }
+                return true;
             }
+            return false;
+        }
+
+        private void SetMapTileToType(Vector3 tile, TileType type)
+        {
+            if (IsTileOutOfMapBounds(tile))
+            {
+                Debug.LogWarning("SetMapTileToType trying to set tile out of bounds!");
+                return;
+            }
+            GeneratorMap[(int)tile.x, (int)tile.z] = type;
+        }
+
+        private int GetSectorIDfromTile(Vector3 tile)
+        {
+            if (IsTileOutOfMapBounds(tile)) return 0;
+
+            return SectorMap[(int)tile.x, (int)tile.z];
+        }
+
+        private TileType GetMapTileType(Vector3 tile)
+        {
+            if (IsTileOutOfMapBounds(tile)) return TileType.Floor;
+            return GeneratorMap[(int)tile.x, (int)tile.z];
         }
     }
 }

@@ -59,16 +59,20 @@ MonoBehaviour:
   - Tile: {fileID: 1628990484276438, guid: 40509f4c0a3a484479bce193adca06cb, type: 2}
     Weight: 10
     Type: 0
-    Rotate: 0
+    Rotate: 1
   - Tile: {fileID: 1305946911065414, guid: c1de8af5732ab6e4cad4d165d46b1d1d, type: 2}
     Weight: 3
     Type: 0
-    Rotate: 0
+    Rotate: 1
   - Tile: {fileID: 1485153891490394, guid: c7f82fe4527e9a8428a3c6c1ad499a06, type: 2}
     Weight: 2
     Type: 0
-    Rotate: 0
+    Rotate: 1
   - Tile: {fileID: 1408727865490112, guid: c4aae608980f6e049b71b781f85817c1, type: 2}
     Weight: 1
     Type: 1
+    Rotate: 0
+  - Tile: {fileID: 1194733158115194, guid: d70d9320d4fde994b9fd329bd1a5bd94, type: 2}
+    Weight: 1
+    Type: 2
     Rotate: 0

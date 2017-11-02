@@ -32,6 +32,10 @@ public class HealthBarTestScript : MonoBehaviour {
     }
     public void DecreaseHealth(int damage, Transform source)
     {
+        if (curHealth - damage < 0)
+            curHealth = 0;
+        if (curHealth - damage > maxHealth)
+            curHealth = maxHealth;
         curHealth -= damage; // reduces health by damage
         if (initalScale == Vector3.zero)
             this.Start();
@@ -41,7 +45,6 @@ public class HealthBarTestScript : MonoBehaviour {
     }
     public void ChangeMaxHealth(int ammount)
     {
-        Debug.Log("change Max health by " + ammount);
         maxHealth += ammount;
         DecreaseHealth(0);
     }

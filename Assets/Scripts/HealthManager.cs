@@ -11,17 +11,19 @@ namespace Assets.Scripts
     {
         public int currentHealth, maxHealth;
         public GameObject healthUI;
+        private HealthBarTestScript healthBar;
         public static HealthEvent onHealthChanged = new HealthEvent();
         public static HealthEvent onMaxHealthChanged = new HealthEvent();
 
         public void Start()
         {
+            healthBar = healthUI.GetComponent<HealthBarTestScript>();
             onHealthChanged.AddListener(ChangeHealth);
             onMaxHealthChanged.AddListener(ChangeMaxHealth);
-            onHealthChanged.AddListener(healthUI.GetComponent<HealthBarTestScript>().DecreaseHealth);
-            onMaxHealthChanged.AddListener(healthUI.GetComponent<HealthBarTestScript>().ChangeMaxHealth);
-            healthUI.GetComponent<HealthBarTestScript>().curHealth = currentHealth;
-            healthUI.GetComponent<HealthBarTestScript>().maxHealth = maxHealth;
+            onHealthChanged.AddListener(healthBar.DecreaseHealth);
+            onMaxHealthChanged.AddListener(healthBar.ChangeMaxHealth);
+            healthBar.curHealth = currentHealth;
+            healthBar.maxHealth = maxHealth;
             onHealthChanged.Invoke(0);
             onMaxHealthChanged.Invoke(0);
             

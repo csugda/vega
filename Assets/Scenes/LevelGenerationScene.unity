@@ -2782,6 +2782,8 @@ MonoBehaviour:
     MapSectors: 8
     MinimumRoomSize: {x: 8, y: 0, z: 8}
     MaximumRoomSize: {x: 15, y: 0, z: 15}
+    MaxDoorsPerSectorWall: 0
+    DoorPercentChance: 0
 --- !u!1 &614581227
 GameObject:
   m_ObjectHideFlags: 0
@@ -6701,6 +6703,57 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1376862349}
+--- !u!1001 &1417967908
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1947139665}
+    m_Modifications:
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490470618032320, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_Name
+      value: Welder (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114925873409267562, guid: 57d72d33dfdea44439c69c03d0b3f0a2,
+        type: 2}
+      propertyPath: healAmount
+      value: 20
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1428304311
 GameObject:
   m_ObjectHideFlags: 0
@@ -7769,6 +7822,57 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1543637395}
+--- !u!1001 &1550573137
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1947139665}
+    m_Modifications:
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490470618032320, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+      propertyPath: m_Name
+      value: Welder (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114925873409267562, guid: 57d72d33dfdea44439c69c03d0b3f0a2,
+        type: 2}
+      propertyPath: healAmount
+      value: 20
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1568256474
 GameObject:
   m_ObjectHideFlags: 0
@@ -8719,6 +8823,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1689373284}
+--- !u!4 &1737598391 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1550573137}
 --- !u!1 &1746673408
 GameObject:
   m_ObjectHideFlags: 0
@@ -10024,6 +10133,8 @@ Transform:
   - {fileID: 1998100242}
   - {fileID: 207503592}
   - {fileID: 2127117205}
+  - {fileID: 1737598391}
+  - {fileID: 2049665754}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10471,6 +10582,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: MenuButtonEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!4 &2049665754 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4508954117213836, guid: 57d72d33dfdea44439c69c03d0b3f0a2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1417967908}
 --- !u!1 &2063459123
 GameObject:
   m_ObjectHideFlags: 0

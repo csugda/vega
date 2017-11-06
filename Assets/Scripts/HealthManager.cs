@@ -11,14 +11,22 @@ namespace Assets.Scripts
     {
         public int currentHealth, maxHealth;
         public GameObject healthUI;
+        private HealthBarTestScript healthBar;
         public static HealthEvent onHealthChanged = new HealthEvent();
         public static HealthEvent onMaxHealthChanged = new HealthEvent();
 
         public void Start()
         {
+            healthBar = healthUI.GetComponent<HealthBarTestScript>();
             onHealthChanged.AddListener(ChangeHealth);
             onMaxHealthChanged.AddListener(ChangeMaxHealth);
-            UpdateHelthDisplay();
+            onHealthChanged.AddListener(healthBar.DecreaseHealth);
+            onMaxHealthChanged.AddListener(healthBar.ChangeMaxHealth);
+            healthBar.curHealth = currentHealth;
+            healthBar.maxHealth = maxHealth;
+            onHealthChanged.Invoke(0);
+            onMaxHealthChanged.Invoke(0);
+            
         }
         public void ChangeHealth(int ammount)
         {
@@ -35,7 +43,7 @@ namespace Assets.Scripts
                 return;
             }
             currentHealth += ammount;
-            UpdateHelthDisplay();
+           // UpdateHelthDisplay();
         }
 
         public void ChangeMaxHealth(int ammount)
@@ -54,7 +62,7 @@ namespace Assets.Scripts
             {
                 maxHealth += ammount;
             }
-            UpdateHelthDisplay();
+            //UpdateHelthDisplay();
         }
 
         private void UpdateHelthDisplay()

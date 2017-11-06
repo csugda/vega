@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.Map
 {
+    public class MapEvent : UnityEvent { }
+
     /// <summary>
     /// The Map class holds all static information about the map.
     /// This includes height and width, tile type map, tile set(s)
@@ -13,7 +16,7 @@ namespace Assets.Scripts.Map
         public TileType[,] TileTypeMap;
         public int[,] SectorMap;
         public Map_Tiles.MapTileSet[] SectorTileSets;
-
+        public MapEvent onMapChanged = new MapEvent();
         public MapParameters MapParams;
 
         MapRandom rand;
@@ -25,7 +28,6 @@ namespace Assets.Scripts.Map
 
         private void Start()
         {
-
             GenerateMap();
         }
 
@@ -35,6 +37,7 @@ namespace Assets.Scripts.Map
         /// </summary>
         public void GenerateMap()
         {
+            
             if (MapParams.MaximumRoomSize.x < MapParams.MinimumRoomSize.x)
             {
                 MapParams.MaximumRoomSize.x = MapParams.MinimumRoomSize.x;
@@ -57,7 +60,9 @@ namespace Assets.Scripts.Map
             
             foreach(Transform child in transform)
                 Destroy(child.gameObject);
+
             InstantiateMap();
+            onMapChanged.Invoke();
         }
 
         /// <summary>
@@ -126,6 +131,11 @@ namespace Assets.Scripts.Map
         private Vector3 GetScaledPositionVector(GameObject obj, Vector3 pos)
         {
             return Vector3.Scale(new Vector3(10,0,10), pos);
+        }
+
+        public Vector3 MapPositionFromWorld (Vector3 worldPos)
+        {
+            return new Vector3((worldPos.x / 10), 0, (worldPos.z / 10));
         }
 
         public void OnDestroy()

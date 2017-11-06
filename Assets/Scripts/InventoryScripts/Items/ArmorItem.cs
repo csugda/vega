@@ -7,17 +7,13 @@ namespace Assets.Scripts.InventoryScripts.Items
 
         public override void OnEquipped()
         {
-            if (ManagerGO == null)
-                ManagerGO = GameObject.Find("ManagerGO");
-            ManagerGO.GetComponent<HealthManager>().ChangeMaxHealth(armorValue);
+            HealthManager.onMaxHealthChanged.Invoke(armorValue);
             //this is where we would but the things to change the player model when equiping stuff
         }
 
         public override void OnUnequipped()
         {
-            if (ManagerGO == null)
-                ManagerGO = GameObject.Find("ManagerGO");
-            ManagerGO.GetComponent<HealthManager>().ChangeMaxHealth(-armorValue);
+            HealthManager.onMaxHealthChanged.Invoke(-armorValue);
         }
 
 

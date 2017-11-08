@@ -52,6 +52,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -67,6 +68,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -107,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Name: Flowerpot
   _StackSize: 1
-  _Image: {fileID: 0}
+  _Image: {fileID: 21300000, guid: ade87d020e7429446bb2af79b6f97630, type: 3}
   _ItemInfo: "A ceramic flowerpot that was lying around. No one seemed to want it,
     and it fits on your head. \nEffect when equiped: +10 health"
   EquipmentPrefab: {fileID: 0}

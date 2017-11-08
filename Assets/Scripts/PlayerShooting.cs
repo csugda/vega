@@ -8,7 +8,7 @@ public class PlayerShooting : MonoBehaviour
     public float fireRate = 0.25f;
     public float weaponRange = 50f;
 
-    private WaitForSeconds shotDuration = new WaitForSeconds(0.4f);
+    private WaitForSeconds shotDuration = new WaitForSeconds(0.1f);
     Ray shootRay;
     RaycastHit shootHit;
     LineRenderer weaponLine;

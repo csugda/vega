@@ -33,7 +33,7 @@ public class EquipmentGridFill : MonoBehaviour {
 
             if (inventory.GetItem(i).Image != null)
             {
-                //button.GetComponent<SpriteRenderer>().sprite = inventory.GetItem(i).Image;
+                button.GetComponent<Image>().sprite = inventory.GetItem(i).Image;
             }
 
             button.transform.Find("NameText").gameObject.GetComponent<Text>().text = 
@@ -46,7 +46,7 @@ public class EquipmentGridFill : MonoBehaviour {
 
             button.transform.Find("InfoPanel").GetComponentInChildren<Text>().text =
                 inventory.GetItem(i).ItemInfo;
-
+            
             button.GetComponent<Button>().onClick.AddListener
                 (() => inventory.UseItem(int.Parse(button.transform.name)));
 

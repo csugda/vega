@@ -38,7 +38,6 @@ namespace Assets.Scripts
             {
                 //DEATH
                 currentHealth = 0;
-                UpdateHelthDisplay();
                 Debug.LogError("Player Died");
                 return;
             }

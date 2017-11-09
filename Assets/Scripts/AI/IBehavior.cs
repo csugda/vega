@@ -3,6 +3,4 @@
 public interface IBehavior
 {
     BehaviorState CurrentState { get; }
-
-    IEnumerator Tick();
 }

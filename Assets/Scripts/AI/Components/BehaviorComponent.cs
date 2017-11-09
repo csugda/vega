@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class BehaviorComponent : MonoBehaviour, IBehavior
 {
     LinkedList<IBehavior> SubBehaviors;
+    LinkedList<IBehavior> RunningChildren;
 
     private BehaviorState _CurrentState;
     public BehaviorState CurrentState
@@ -15,6 +16,5 @@ public abstract class BehaviorComponent : MonoBehaviour, IBehavior
         }
     }
 
-    public IEnumerator Tick()
-    { yield return null; }
+    public abstract IEnumerator Tick();
 }

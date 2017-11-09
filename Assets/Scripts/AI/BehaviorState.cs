@@ -1,6 +1,6 @@
-﻿
-public enum BehaviorState
+﻿public enum BehaviorState
 {
+    Null,
     Fail,
     Success,
     Running

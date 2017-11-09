@@ -6,19 +6,15 @@ public abstract class BehaviorComponent : MonoBehaviour, IBehavior
 {
     LinkedList<IBehavior> SubBehaviors;
 
+    private BehaviorState _CurrentState;
     public BehaviorState CurrentState
     {
         get
         {
-            throw new System.NotImplementedException();
+            return _CurrentState;
         }
     }
 
     public IEnumerator Tick()
-    {
-        foreach(var behavior in SubBehaviors)
-        {
-            yield return StartCoroutine(behavior.Tick());
-        }
-    }
+    { yield return null; }
 }

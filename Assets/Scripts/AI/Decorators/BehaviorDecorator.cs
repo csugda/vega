@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
-public abstract class BehaviorDecorator : IBehavior
+public abstract class BehaviorDecorator : MonoBehaviour, IBehavior
 {
     IBehavior DecoratedBehavior;
 
@@ -17,8 +18,5 @@ public abstract class BehaviorDecorator : IBehavior
         }
     }
 
-    public IEnumerator Tick()
-    {
-        yield return null;
-    }
+    public abstract IEnumerator Tick();
 }

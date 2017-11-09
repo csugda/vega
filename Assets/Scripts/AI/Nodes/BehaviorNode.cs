@@ -13,6 +13,5 @@ public abstract class BehaviorNode : IBehavior
         }
     }
 
-    public IEnumerator Tick()
-    { yield return null; }
+    public abstract IEnumerator Tick();
 }

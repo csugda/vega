@@ -2,19 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BehaviorComponent : MonoBehaviour, IBehavior
+public abstract class BehaviorComponent : Behavior
 {
-    LinkedList<IBehavior> SubBehaviors;
-    LinkedList<IBehavior> RunningChildren;
-
-    private BehaviorState _CurrentState;
-    public BehaviorState CurrentState
-    {
-        get
-        {
-            return _CurrentState;
-        }
-    }
-
-    public abstract IEnumerator Tick();
+    protected LinkedList<Behavior> SubBehaviors;
+    protected HashSet<Behavior> RunningChildren;
 }

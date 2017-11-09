@@ -2,16 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BehaviorNode : IBehavior
+public abstract class BehaviorNode : Behavior
 {
-    private BehaviorState _CurrentState;
-    public BehaviorState CurrentState
-    {
-        get
-        {
-            return _CurrentState;
-        }
-    }
-
-    public abstract IEnumerator Tick();
 }

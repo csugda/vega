@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BehaviorNode : IBehavior
+public abstract class BehaviorNode : IBehavior
 {
     private BehaviorState _CurrentState;
     public BehaviorState CurrentState

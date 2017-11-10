@@ -7,5 +7,5 @@ using UnityEngine;
 
 public abstract class BehaviorDecorator : Behavior
 {
-    Behavior DecoratedBehavior;
+    protected Behavior DecoratedBehavior;
 }

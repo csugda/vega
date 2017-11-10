@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sequencer : BehaviorComponent
 {
     
-    public Sequencer(LinkedList<IBehavior> subBehaviors)
+    public Sequencer(LinkedList<Behavior> subBehaviors)
     {
         this.SubBehaviors = subBehaviors;
     }
@@ -16,26 +16,29 @@ public class Sequencer : BehaviorComponent
 
         foreach (var behaviorRun in RunningChildren)
         {
-            //StartCoroutine(behaviorRun.Tick());
+            StartCoroutine(behaviorRun.Tick());
         }
 
         foreach (var behavior in SubBehaviors)
         {
             if (behavior.CurrentState == BehaviorState.Running) continue;
-            //StartCoroutine(behavior.Tick());
+            StartCoroutine(behavior.Tick());
             switch (behavior.CurrentState)
             {
                 case BehaviorState.Fail:
-                    this._CurrentState = BehaviorState.Fail;
+                    this.CurrentState = BehaviorState.Fail;
                     break;
                 case BehaviorState.Success:
+                    CurrentState = BehaviorState.Running;
                     continue;
                 case BehaviorState.Running:
+                    CurrentState = BehaviorState.Running;
                     childRunning = true;
-                    this.RunningChildren.add(behavior);
+                    this.RunningChildren.Add(behavior);
                     continue;
                 default:
                     Debug.LogError("Not a valid BehaviorState. Go perform sexual acts on a pig.");
+                    break;
             }
             
         }

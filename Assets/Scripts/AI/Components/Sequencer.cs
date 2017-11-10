@@ -43,7 +43,7 @@ public class Sequencer : BehaviorComponent
             
         }
 
-        this._CurrentState = !childRunning ? BehaviorState.Success : BehaviorState.Running;
+        this.CurrentState = !childRunning ? BehaviorState.Success : BehaviorState.Running;
         yield return null;
     }
 }

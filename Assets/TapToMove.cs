@@ -3,7 +3,9 @@ using UnityEngine.AI;
 
 public class TapToMove : MonoBehaviour
 {
-	public GameObject menuGO;
+    public bool isMoving = false;
+    public bool isShooting = false;
+    public GameObject menuGO;
     NavMeshAgent agent;
 
     //destination point

@@ -22,8 +22,6 @@ namespace Assets.Scripts.InventoryScripts
         }
         public override void OnCollisionEnter(Collision collision)
         {
-            if (ManagerGO == null)
-                ManagerGO = GameObject.Find("ManagerGO");
             if (collision.gameObject.tag == "Player")
             {
                 if (ManagerGO.GetComponent<Inventory>().AddItem(this))

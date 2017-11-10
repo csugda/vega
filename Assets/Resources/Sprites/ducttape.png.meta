@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: fcfec9ac1e8868b45bdf4adf50ae9e36
-timeCreated: 1510285619
+guid: 0af82faed0370d4409ac7e8ed98dcf4b
+timeCreated: 1510286849
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Battery-02_1
-    21300002: Battery-02_2
+    21300000: ducttape_0
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -98,29 +97,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Battery-02_1
+      name: ducttape_0
       rect:
         serializedVersion: 2
-        x: 305
-        y: 853
-        width: 1467
-        height: 621
+        x: 40
+        y: 45
+        width: 418
+        height: 449
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 64, y: 59, z: 63, w: 63}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Battery-02_2
-      rect:
-        serializedVersion: 2
-        x: 218
-        y: 1025
-        width: 90
-        height: 270
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

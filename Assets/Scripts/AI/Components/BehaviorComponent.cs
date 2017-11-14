@@ -6,4 +6,5 @@ public abstract class BehaviorComponent : Behavior
 {
     protected LinkedList<Behavior> SubBehaviors;
     protected HashSet<Behavior> RunningChildren;
+    protected HashSet<Behavior> FinishedRunningChildren;
 }

@@ -6,15 +6,19 @@ public class Selector : BehaviorComponent
 {
     public override IEnumerator Tick()
     {
-        foreach(var behavior in RunningChildren)
+        foreach (var behaviorRun in RunningChildren)
         {
-            StartCoroutine(behavior.Tick());
+            StartCoroutine(behaviorRun.Tick());
+            if (behaviorRun.CurrentState != BehaviorState.Running)
+            {
+                FinishedRunningChildren.Add(behaviorRun);
+            }
         }
 
-        foreach(var behavior in SubBehaviors)
+        foreach (var behavior in SubBehaviors)
         {
-            //If behavior is still in running state here, it already had its turn.
-            if (behavior.CurrentState == BehaviorState.Running) continue;
+            if (behavior.CurrentState == BehaviorState.Running ||
+                FinishedRunningChildren.Contains(behavior)) continue;
             //if the behavior is NOT in Running right now, it has finished or has 
             //not started yet. Give it some sugah.
             StartCoroutine(behavior.Tick());
@@ -37,6 +41,8 @@ public class Selector : BehaviorComponent
                     break;
             }
         }
+        RunningChildren.RemoveWhere(a => FinishedRunningChildren.Contains(a));
+
         yield return null;
     }
 }

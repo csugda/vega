@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Sequencer : BehaviorComponent
 {
-    
     public Sequencer(LinkedList<Behavior> subBehaviors)
     {
         this.SubBehaviors = subBehaviors;
@@ -17,11 +16,16 @@ public class Sequencer : BehaviorComponent
         foreach (var behaviorRun in RunningChildren)
         {
             StartCoroutine(behaviorRun.Tick());
+            if (behaviorRun.CurrentState != BehaviorState.Running)
+            {
+                FinishedRunningChildren.Add(behaviorRun);
+            }
         }
 
         foreach (var behavior in SubBehaviors)
         {
-            if (behavior.CurrentState == BehaviorState.Running) continue;
+            if (behavior.CurrentState == BehaviorState.Running ||
+                FinishedRunningChildren.Contains(behavior)) continue;
             StartCoroutine(behavior.Tick());
             switch (behavior.CurrentState)
             {
@@ -37,12 +41,13 @@ public class Sequencer : BehaviorComponent
                     this.RunningChildren.Add(behavior);
                     continue;
                 default:
-                    Debug.LogError("Not a valid BehaviorState. Go perform sexual acts on a pig.");
+                    Debug.LogError("Not a valid BehaviorState.");
                     break;
             }
             
         }
 
+        RunningChildren.RemoveWhere(a => FinishedRunningChildren.Contains(a));
         this.CurrentState = !childRunning ? BehaviorState.Success : BehaviorState.Running;
         yield return null;
     }

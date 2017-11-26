@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.AI.Components
 {
-    public sealed class Runner : BehaviorComponent
+    public sealed class BehaviorManager : BehaviorComponent
     {
         //TODO:: This needs to return to the first element whenever a sub element fails
         //       and there are no more running sub-tasks.

@@ -7,8 +7,8 @@ namespace Assets.Scripts.AI
     {
         [SerializeField]
         public Behavior[] SubBehaviors;
-        private HashSet<Behavior> RunningChildren;
-        private HashSet<Behavior> FinishedRunningChildren;
+        private HashSet<Behavior> RunningChildren = new HashSet<Behavior>();
+        private HashSet<Behavior> FinishedRunningChildren = new HashSet<Behavior>();
 
         //TODO:: This needs to return to the first element whenever a sub element fails
         //       and there are no more running sub-tasks.

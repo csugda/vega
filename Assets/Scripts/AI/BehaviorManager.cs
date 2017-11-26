@@ -12,7 +12,7 @@ namespace Assets.Scripts.AI
 
         //TODO:: This needs to return to the first element whenever a sub element fails
         //       and there are no more running sub-tasks.
-        //TODO: INFINITELY RUNNING!
+
         void Update()
         {
             bool childRunning = false;
@@ -28,7 +28,8 @@ namespace Assets.Scripts.AI
 
             foreach (var behavior in SubBehaviors)
             {
-                if (behavior.CurrentState == BehaviorState.Running) continue;
+                if (behavior.CurrentState == BehaviorState.Running ||
+                    FinishedRunningChildren.Contains(behavior)) continue;
                 StartCoroutine(behavior.Tick());
 
                 switch (behavior.CurrentState)
@@ -45,7 +46,8 @@ namespace Assets.Scripts.AI
                     default:
                         Debug.LogError("Not a valid BehaviorState.");
                         break;
-                }   
+                }
+                FinishedRunningChildren.Clear();
             }
         }
     }

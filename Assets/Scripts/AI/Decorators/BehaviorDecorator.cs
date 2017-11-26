@@ -5,7 +5,10 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public abstract class BehaviorDecorator : Behavior
+namespace Assets.Scripts.AI.Decorators
 {
-    protected Behavior DecoratedBehavior;
+    public abstract class BehaviorDecorator : Behavior
+    {
+        protected Behavior DecoratedBehavior;
+    } 
 }

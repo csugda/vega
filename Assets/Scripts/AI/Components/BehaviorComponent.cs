@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BehaviorComponent : Behavior
+
+namespace Assets.Scripts.AI.Components
 {
-    protected LinkedList<Behavior> SubBehaviors;
-    protected HashSet<Behavior> RunningChildren;
-    protected HashSet<Behavior> FinishedRunningChildren;
+    public abstract class BehaviorComponent : Behavior
+    {
+        protected LinkedList<Behavior> SubBehaviors;
+        protected HashSet<Behavior> RunningChildren;
+        protected HashSet<Behavior> FinishedRunningChildren;
+    }
 }

@@ -1,20 +1,26 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public abstract class Behavior : MonoBehaviour
+namespace Assets.Scripts.AI
 {
-    private BehaviorState _CurrentState;
-    public BehaviorState CurrentState
+    [System.Serializable]
+    public abstract class Behavior : ScriptableObject
     {
-        get
-        {
-            return _CurrentState;
-        }
-        protected set
-        {
-            _CurrentState = value;
-        }
-    }
+        public BehaviorManager BehaviorTreeManager;
 
-    public abstract IEnumerator Tick();
+        private BehaviorState _CurrentState;
+        public BehaviorState CurrentState
+        {
+            get
+            {
+                return _CurrentState;
+            }
+            protected set
+            {
+                _CurrentState = value;
+            }
+        }
+
+        public abstract IEnumerator Tick();
+    }
 }

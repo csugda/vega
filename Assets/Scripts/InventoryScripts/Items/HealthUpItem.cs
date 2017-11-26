@@ -7,11 +7,11 @@ namespace Assets.Scripts.InventoryScripts.Items
 {
     class HealthUpItem : PickupItem
     {
-        public int ammount;
+        public int amount;
 
         public override void OnItemUsed()
         {
-            HealthManager.onMaxHealthChanged.Invoke(ammount);
+            HealthManager.onMaxHealthChanged.Invoke(amount);
         }
     }
 }

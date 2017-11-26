@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BehaviorNode : Behavior
+
+namespace Assets.Scripts.AI.Nodes
 {
+    public abstract class BehaviorNode : Behavior
+    {
+    }
 }

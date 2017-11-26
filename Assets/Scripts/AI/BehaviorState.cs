@@ -1,7 +1,10 @@
-﻿public enum BehaviorState
+﻿namespace Assets.Scripts.AI
 {
-    Null,
-    Fail,
-    Success,
-    Running
+    public enum BehaviorState
+    {
+        Null,
+        Fail,
+        Success,
+        Running
+    } 
 }

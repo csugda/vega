@@ -2,53 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sequencer : BehaviorComponent
+namespace Assets.Scripts.AI.Components
 {
-    public Sequencer(LinkedList<Behavior> subBehaviors)
+    public class Sequencer : BehaviorComponent
     {
-        this.SubBehaviors = subBehaviors;
-    }
-
-    public override IEnumerator Tick()
-    {
-        bool childRunning = false;
-
-        foreach (var behaviorRun in RunningChildren)
+        public Sequencer(LinkedList<Behavior> subBehaviors)
         {
-            StartCoroutine(behaviorRun.Tick());
-            if (behaviorRun.CurrentState != BehaviorState.Running)
-            {
-                FinishedRunningChildren.Add(behaviorRun);
-            }
+            this.SubBehaviors = subBehaviors;
         }
 
-        foreach (var behavior in SubBehaviors)
+        public override IEnumerator Tick()
         {
-            if (behavior.CurrentState == BehaviorState.Running ||
-                FinishedRunningChildren.Contains(behavior)) continue;
-            StartCoroutine(behavior.Tick());
-            switch (behavior.CurrentState)
-            {
-                case BehaviorState.Fail:
-                    this.CurrentState = BehaviorState.Fail;
-                    break;
-                case BehaviorState.Success:
-                    CurrentState = BehaviorState.Running;
-                    continue;
-                case BehaviorState.Running:
-                    CurrentState = BehaviorState.Running;
-                    childRunning = true;
-                    this.RunningChildren.Add(behavior);
-                    continue;
-                default:
-                    Debug.LogError("Not a valid BehaviorState.");
-                    break;
-            }
-            
-        }
+            bool childRunning = false;
 
-        RunningChildren.RemoveWhere(a => FinishedRunningChildren.Contains(a));
-        this.CurrentState = !childRunning ? BehaviorState.Success : BehaviorState.Running;
-        yield return null;
+            foreach (var behaviorRun in RunningChildren)
+            {
+                this.BehaviorTreeManager.StartCoroutine(behaviorRun.Tick());
+                if (behaviorRun.CurrentState != BehaviorState.Running)
+                {
+                    FinishedRunningChildren.Add(behaviorRun);
+                }
+            }
+
+            foreach (var behavior in SubBehaviors)
+            {
+                if (behavior.CurrentState == BehaviorState.Running ||
+                    FinishedRunningChildren.Contains(behavior)) continue;
+                this.BehaviorTreeManager.StartCoroutine(behavior.Tick());
+                switch (behavior.CurrentState)
+                {
+                    case BehaviorState.Fail:
+                        this.CurrentState = BehaviorState.Fail;
+                        break;
+                    case BehaviorState.Success:
+                        CurrentState = BehaviorState.Running;
+                        continue;
+                    case BehaviorState.Running:
+                        CurrentState = BehaviorState.Running;
+                        childRunning = true;
+                        this.RunningChildren.Add(behavior);
+                        continue;
+                    default:
+                        Debug.LogError("Not a valid BehaviorState.");
+                        break;
+                }
+
+            }
+
+            RunningChildren.RemoveWhere(a => FinishedRunningChildren.Contains(a));
+            this.CurrentState = !childRunning ? BehaviorState.Success : BehaviorState.Running;
+            yield return null;
+        }
     }
+
 }

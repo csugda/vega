@@ -4,8 +4,9 @@ using UnityEngine;
 namespace Assets.Scripts.AI
 {
     [System.Serializable]
-    public abstract class Behavior : ScriptableObject
+    public class Behavior : ScriptableObject
     {
+        public string behaviorName = "New Behavior";
         public BehaviorManager BehaviorTreeManager;
 
         private BehaviorState _CurrentState;
@@ -21,6 +22,9 @@ namespace Assets.Scripts.AI
             }
         }
 
-        public abstract IEnumerator Tick();
+        public virtual IEnumerator Tick()
+        {
+            yield return null;
+        }
     }
 }

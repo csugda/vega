@@ -16,7 +16,7 @@ namespace Assets.Scripts.AI.Components
 
             foreach (var behaviorRun in RunningChildren)
             {
-                this.BehaviorTreeanager.StartCoroutine(behaviorRun.Tick());
+                this.BehaviorTreeManager.StartCoroutine(behaviorRun.Tick());
                 if (behaviorRun.CurrentState != BehaviorState.Running)
                 {
                     FinishedRunningChildren.Add(behaviorRun);

@@ -15,7 +15,7 @@ namespace Assets.Scripts.AI.Components
         {
             foreach (var behaviorRun in RunningChildren)
             {
-                this.BehaviorTreeAssetManager.StartCoroutine(behaviorRun.Tick());
+                this.BehaviorTreeManager.StartCoroutine(behaviorRun.Tick());
                 if (behaviorRun.CurrentState != BehaviorState.Running)
                 {
                     FinishedRunningChildren.Add(behaviorRun);
@@ -28,7 +28,7 @@ namespace Assets.Scripts.AI.Components
                     FinishedRunningChildren.Contains(behavior)) continue;
                 //if the behavior is NOT in Running right now, it has finished or has 
                 //not started yet. Give it some sugah.
-                this.BehaviorTreeAssetManager.StartCoroutine(behavior.Tick());
+                this.BehaviorTreeManager.StartCoroutine(behavior.Tick());
                 switch (behavior.CurrentState)
                 {
                     case BehaviorState.Success:

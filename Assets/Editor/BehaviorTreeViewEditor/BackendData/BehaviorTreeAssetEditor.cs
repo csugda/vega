@@ -61,19 +61,20 @@ namespace BehaviorTreeViewEditor.BackEndData
 
 		public override void OnInspectorGUI ()
 		{
-			GUILayout.Space (5f);
-			ToolBar ();
-			GUILayout.Space (3f);
+            GUILayout.Space(5f);
+            ToolBar();
+            GUILayout.Space(3f);
 
-			const float topToolbarHeight = 20f;
-			const float spacing = 2f;
-			float totalHeight = _TreeView.totalHeight + topToolbarHeight + 2 * spacing;
-			Rect rect = GUILayoutUtility.GetRect (0, 10000, 0, totalHeight);
-			Rect toolbarRect = new Rect (rect.x, rect.y, rect.width, topToolbarHeight);
-			Rect multiColumnTreeViewRect = new Rect (rect.x, rect.y + topToolbarHeight + spacing, rect.width, rect.height - topToolbarHeight - 2 * spacing);
-			SearchBar (toolbarRect);
-			DoTreeView (multiColumnTreeViewRect);
-		}
+            const float topToolbarHeight = 20f;
+            const float spacing = 2f;
+            float totalHeight = _TreeView.totalHeight + topToolbarHeight + 2 * spacing;
+            Rect rect = GUILayoutUtility.GetRect(0, 10000, 0, totalHeight);
+            Rect toolbarRect = new Rect(rect.x, rect.y, rect.width, topToolbarHeight);
+            Rect multiColumnTreeViewRect = new Rect(rect.x, rect.y + topToolbarHeight + spacing, rect.width, rect.height - topToolbarHeight - 2 * spacing);
+            SearchBar(toolbarRect);
+            DoTreeView(multiColumnTreeViewRect);
+
+        }
 
 		void SearchBar (Rect rect)
 		{
@@ -87,10 +88,11 @@ namespace BehaviorTreeViewEditor.BackEndData
 
 		void ToolBar ()
 		{
-			using (new EditorGUILayout.HorizontalScope ())
+
+            var style = "miniButton";
+            using (new EditorGUILayout.HorizontalScope ())
 			{
-				var style = "miniButton";
-				if (GUILayout.Button ("Expand All", style))
+	            if (GUILayout.Button ("Expand All", style))
 				{
 					_TreeView.ExpandAll ();
 				}
@@ -125,7 +127,41 @@ namespace BehaviorTreeViewEditor.BackEndData
 					_TreeView.treeModel.RemoveElements (selection);
 				}
 			}
-		}
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
+            if (GUILayout.Button("Add Selector", style))
+            {
+                //TODO
+                Debug.Log("Selector: Do Me!");
+            }
+            GUILayout.Space(5);
+            if (GUILayout.Button("Add Sequencer", style))
+            {
+                //TODO
+                Debug.Log("Sequencer: Do Me!");
+            }
+            GUILayout.Space(5);
+            if (GUILayout.Button("Add Inverter", style))
+            {
+                //TODO
+                Debug.Log("Inverter: Do Me!");
+            }
+            GUILayout.Space(5);
+
+            if (GUILayout.Button("Add Behavior", style))
+            {
+                //AddBehavior();
+            }
+            GUILayout.Space(5);
+            if (GUILayout.Button("Delete Behavior", style))
+            {
+                //DeleteBehavior(viewIndex - 1);
+            }
+
+            GUILayout.EndHorizontal();
+
+        }
 
 
 		class BehaviorTreeView : TreeViewWithTreeModel<BehaviorTreeElement>

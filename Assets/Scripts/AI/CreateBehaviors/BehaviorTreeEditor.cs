@@ -37,15 +37,15 @@ public class BehaviorTreeEditor : EditorWindow
                 Selection.activeObject = behaviorTree;
             }
         }
-        if (GUILayout.Button("Open Behavior Tree"))
-        {
-            OpenBehaviorTree();
-        }
-        if (GUILayout.Button("New Behavior Tree"))
-        {
-            EditorUtility.FocusProjectWindow();
-            Selection.activeObject = behaviorTree;
-        }
+        //if (GUILayout.Button("Open Behavior Tree"))
+        //{
+        //    OpenBehaviorTree();
+        //}
+        //if (GUILayout.Button("New Behavior Tree"))
+        //{
+        //    EditorUtility.FocusProjectWindow();
+        //    Selection.activeObject = behaviorTree;
+        //}
         GUILayout.EndHorizontal();
 
         if (behaviorTree == null)
@@ -107,7 +107,7 @@ public class BehaviorTreeEditor : EditorWindow
                 EditorGUILayout.LabelField("of   " + behaviorTree.behaviorTree.Count.ToString() + "  behaviors", "", GUILayout.ExpandWidth(false));
                 GUILayout.EndHorizontal();
 
-                behaviorTree.behaviorTree[viewIndex - 1].behaviorName = EditorGUILayout.TextField("Behavior Name", behaviorTree.behaviorTree[viewIndex - 1].behaviorName as string);
+                behaviorTree.behaviorTree[viewIndex - 1].BehaviorName = EditorGUILayout.TextField("Behavior Name", behaviorTree.behaviorTree[viewIndex - 1].BehaviorName as string);
                 //inventoryItemList.itemList[viewIndex - 1].itemIcon = EditorGUILayout.ObjectField("Item Icon", inventoryItemList.itemList[viewIndex - 1].itemIcon, typeof(Texture2D), false) as Texture2D;
                 //inventoryItemList.itemList[viewIndex - 1].itemObject = EditorGUILayout.ObjectField("Item Object", inventoryItemList.itemList[viewIndex - 1].itemObject, typeof(Rigidbody), false) as Rigidbody;
 
@@ -175,7 +175,7 @@ public class BehaviorTreeEditor : EditorWindow
     void AddBehavior()
     {
         Behavior newBehavior = new Behavior();
-        newBehavior.behaviorName = "New Behavior";
+        newBehavior.BehaviorName = "New Behavior";
         behaviorTree.behaviorTree.Add(newBehavior);
         viewIndex = behaviorTree.behaviorTree.Count;
     }

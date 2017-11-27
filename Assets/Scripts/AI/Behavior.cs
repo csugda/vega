@@ -6,7 +6,7 @@ namespace Assets.Scripts.AI
     [System.Serializable]
     public class Behavior : ScriptableObject
     {
-        public string behaviorName = "New Behavior";
+        public string BehaviorName = "New Behavior";
         public BehaviorManager BehaviorTreeManager;
 
         private BehaviorState _CurrentState;

@@ -1,15 +1,22 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.AI.TreeModel;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.AI
 {
     [System.Serializable]
-    public class Behavior : ScriptableObject
+    public class BehaviorTreeElement : TreeElement
     {
         public string BehaviorName = "New Behavior";
         public BehaviorManager BehaviorTreeManager;
 
         private BehaviorState _CurrentState;
+
+        public BehaviorTreeElement(string name, int depth, int id) 
+            : base(name, depth, id)
+        {
+        }
+
         public BehaviorState CurrentState
         {
             get

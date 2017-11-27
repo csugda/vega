@@ -6,9 +6,9 @@ namespace Assets.Scripts.AI
     public class BehaviorManager : MonoBehaviour
     {
         [SerializeField]
-        public Behavior[] SubBehaviors;
-        private HashSet<Behavior> RunningChildren = new HashSet<Behavior>();
-        private HashSet<Behavior> FinishedRunningChildren = new HashSet<Behavior>();
+        public BehaviorTreeElement[] SubBehaviors;
+        private HashSet<BehaviorTreeElement> RunningChildren = new HashSet<BehaviorTreeElement>();
+        private HashSet<BehaviorTreeElement> FinishedRunningChildren = new HashSet<BehaviorTreeElement>();
 
         //TODO:: This needs to return to the first element whenever a sub element fails
         //       and there are no more running sub-tasks.

@@ -4,15 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.AI;
 
-public class BehaviorTreeEditor : EditorWindow
+public class BehaviorTreeAssetEditor : EditorWindow
 {
-    public BehaviorTree behaviorTree;
+    public BehaviorTreeAsset behaviorTree;
     private int viewIndex = 1;
 
     [MenuItem("Window/Behavior Tree Editor %#e")]
     static void Init()
     {
-        EditorWindow.GetWindow(typeof(BehaviorTreeEditor));
+        EditorWindow.GetWindow(typeof(BehaviorTreeAssetEditor));
     }
 
     void OnEnable()
@@ -20,7 +20,7 @@ public class BehaviorTreeEditor : EditorWindow
         if (EditorPrefs.HasKey("ObjectPath"))
         {
             string objectPath = EditorPrefs.GetString("ObjectPath");
-            behaviorTree = AssetDatabase.LoadAssetAtPath(objectPath, typeof(BehaviorTree)) as BehaviorTree;
+            behaviorTree = AssetDatabase.LoadAssetAtPath(objectPath, typeof(BehaviorTreeAsset)) as BehaviorTreeAsset;
         }
 
     }
@@ -39,7 +39,7 @@ public class BehaviorTreeEditor : EditorWindow
         }
         //if (GUILayout.Button("Open Behavior Tree"))
         //{
-        //    OpenBehaviorTree();
+        //    OpenBehaviorTreeAsset();
         //}
         //if (GUILayout.Button("New Behavior Tree"))
         //{
@@ -54,11 +54,11 @@ public class BehaviorTreeEditor : EditorWindow
             GUILayout.Space(10);
             if (GUILayout.Button("Create New Behavior Tree", GUILayout.ExpandWidth(false)))
             {
-                CreateNewBehaviorTree();
+                CreateNewBehaviorTreeAsset();
             }
             if (GUILayout.Button("Open Existing Behavior Tree", GUILayout.ExpandWidth(false)))
             {
-                OpenBehaviorTree();
+                OpenBehaviorTreeAsset();
             }
             GUILayout.EndHorizontal();
         }
@@ -141,30 +141,30 @@ public class BehaviorTreeEditor : EditorWindow
         }
     }
 
-    void CreateNewBehaviorTree()
+    void CreateNewBehaviorTreeAsset()
     {
         // There is no overwrite protection here!
         // There is No "Are you sure you want to overwrite your existing object?" if it exists.
         // This should probably get a string from the user to create a new name and pass it ...
         viewIndex = 1;
-        behaviorTree = CreateBehaviorTree.Create();
+        behaviorTree = CreateBehaviorTreeAsset.Create();
         if (behaviorTree)
         {
-            behaviorTree.behaviorTree = new List<Behavior>();
+            behaviorTree.behaviorTree = new List<BehaviorTreeElement>();
             string relPath = AssetDatabase.GetAssetPath(behaviorTree);
             EditorPrefs.SetString("ObjectPath", relPath);
         }
     }
 
-    void OpenBehaviorTree()
+    void OpenBehaviorTreeAsset()
     {
         string absPath = EditorUtility.OpenFilePanel("Select Behavior Tree", "", "");
         if (absPath.StartsWith(Application.dataPath))
         {
             string relPath = absPath.Substring(Application.dataPath.Length - "Assets".Length);
-            behaviorTree = AssetDatabase.LoadAssetAtPath(relPath, typeof(BehaviorTree)) as BehaviorTree;
+            behaviorTree = AssetDatabase.LoadAssetAtPath(relPath, typeof(BehaviorTreeAsset)) as BehaviorTreeAsset;
             if (behaviorTree.behaviorTree == null)
-                behaviorTree.behaviorTree = new List<Behavior>();
+                behaviorTree.behaviorTree = new List<BehaviorTreeElement>();
             if (behaviorTree)
             {
                 EditorPrefs.SetString("ObjectPath", relPath);
@@ -174,10 +174,6 @@ public class BehaviorTreeEditor : EditorWindow
 
     void AddBehavior()
     {
-        Behavior newBehavior = new Behavior();
-        newBehavior.BehaviorName = "New Behavior";
-        behaviorTree.behaviorTree.Add(newBehavior);
-        viewIndex = behaviorTree.behaviorTree.Count;
     }
 
     void DeleteBehavior(int index)

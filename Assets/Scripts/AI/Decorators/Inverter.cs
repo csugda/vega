@@ -1,12 +1,15 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 namespace Assets.Scripts.AI.Decorators
 {
     public class Inverter : BehaviorDecorator
     {
+        public Inverter(string name, int depth, int id) 
+            : base(name, depth, id)
+        {
+        }
+
         public override IEnumerator Tick()
         {
             this.BehaviorTreeManager.StartCoroutine(DecoratedBehavior.Tick());
@@ -29,5 +32,4 @@ namespace Assets.Scripts.AI.Decorators
             yield return null;
         }
     }
-
 }

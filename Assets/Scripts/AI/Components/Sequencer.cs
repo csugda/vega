@@ -1,14 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.AI.Components
 {
     public class Sequencer : BehaviorComponent
     {
-        public Sequencer(LinkedList<Behavior> subBehaviors)
+        public Sequencer(string name, int depth, int id) 
+            : base(name, depth, id)
         {
-            this.SubBehaviors = subBehaviors;
         }
 
         public override IEnumerator Tick()
@@ -17,7 +16,7 @@ namespace Assets.Scripts.AI.Components
 
             foreach (var behaviorRun in RunningChildren)
             {
-                this.BehaviorTreeManager.StartCoroutine(behaviorRun.Tick());
+                this.BehaviorTreeAssetManager.StartCoroutine(behaviorRun.Tick());
                 if (behaviorRun.CurrentState != BehaviorState.Running)
                 {
                     FinishedRunningChildren.Add(behaviorRun);
@@ -28,7 +27,7 @@ namespace Assets.Scripts.AI.Components
             {
                 if (behavior.CurrentState == BehaviorState.Running ||
                     FinishedRunningChildren.Contains(behavior)) continue;
-                this.BehaviorTreeManager.StartCoroutine(behavior.Tick());
+                this.BehaviorTreeAssetManager.StartCoroutine(behavior.Tick());
                 switch (behavior.CurrentState)
                 {
                     case BehaviorState.Fail:
@@ -46,7 +45,6 @@ namespace Assets.Scripts.AI.Components
                         Debug.LogError("Not a valid BehaviorState.");
                         break;
                 }
-
             }
 
             RunningChildren.RemoveWhere(a => FinishedRunningChildren.Contains(a));

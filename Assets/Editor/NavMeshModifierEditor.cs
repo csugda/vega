@@ -6,17 +6,17 @@ namespace UnityEditor.AI
     [CustomEditor(typeof(NavMeshModifier))]
     class NavMeshModifierEditor : Editor
     {
-        SerializedProperty m_AffectedAgents;
-        SerializedProperty m_Area;
-        SerializedProperty m_IgnoreFromBuild;
-        SerializedProperty m_OverrideArea;
+        SerializedProperty _AffectedAgents;
+        SerializedProperty _Area;
+        SerializedProperty _IgnoreFromBuild;
+        SerializedProperty _OverrideArea;
 
         void OnEnable()
         {
-            m_AffectedAgents = serializedObject.FindProperty("m_AffectedAgents");
-            m_Area = serializedObject.FindProperty("m_Area");
-            m_IgnoreFromBuild = serializedObject.FindProperty("m_IgnoreFromBuild");
-            m_OverrideArea = serializedObject.FindProperty("m_OverrideArea");
+            _AffectedAgents = serializedObject.FindProperty("_AffectedAgents");
+            _Area = serializedObject.FindProperty("_Area");
+            _IgnoreFromBuild = serializedObject.FindProperty("_IgnoreFromBuild");
+            _OverrideArea = serializedObject.FindProperty("_OverrideArea");
 
             NavMeshVisualizationSettings.showNavigation++;
         }
@@ -30,17 +30,17 @@ namespace UnityEditor.AI
         {
             serializedObject.Update();
 
-            EditorGUILayout.PropertyField(m_IgnoreFromBuild);
+            EditorGUILayout.PropertyField(_IgnoreFromBuild);
 
-            EditorGUILayout.PropertyField(m_OverrideArea);
-            if (m_OverrideArea.boolValue)
+            EditorGUILayout.PropertyField(_OverrideArea);
+            if (_OverrideArea.boolValue)
             {
                 EditorGUI.indentLevel++;
-                NavMeshComponentsGUIUtility.AreaPopup("Area Type", m_Area);
+                NavMeshComponentsGUIUtility.AreaPopup("Area Type", _Area);
                 EditorGUI.indentLevel--;
             }
 
-            NavMeshComponentsGUIUtility.AgentMaskPopup("Affected Agents", m_AffectedAgents);
+            NavMeshComponentsGUIUtility.AgentMaskPopup("Affected Agents", _AffectedAgents);
             EditorGUILayout.Space();
 
             serializedObject.ApplyModifiedProperties();

@@ -7,8 +7,13 @@ using UnityEngine;
 
 namespace Assets.Scripts.AI.Decorators
 {
-    public abstract class BehaviorDecorator : Behavior
+    public abstract class BehaviorDecorator : BehaviorTreeElement
     {
-        protected Behavior DecoratedBehavior;
+        protected BehaviorTreeElement DecoratedBehavior;
+
+        public BehaviorDecorator(string name, int depth, int id) 
+            : base(name, depth, id)
+        {
+        }
     } 
 }

@@ -16,7 +16,7 @@ namespace Assets.Scripts.AI.Components
 
             foreach (var behaviorRun in RunningChildren)
             {
-                this.BehaviorTreeAssetManager.StartCoroutine(behaviorRun.Tick());
+                this.BehaviorTreeanager.StartCoroutine(behaviorRun.Tick());
                 if (behaviorRun.CurrentState != BehaviorState.Running)
                 {
                     FinishedRunningChildren.Add(behaviorRun);
@@ -27,7 +27,7 @@ namespace Assets.Scripts.AI.Components
             {
                 if (behavior.CurrentState == BehaviorState.Running ||
                     FinishedRunningChildren.Contains(behavior)) continue;
-                this.BehaviorTreeAssetManager.StartCoroutine(behavior.Tick());
+                this.BehaviorTreeManager.StartCoroutine(behavior.Tick());
                 switch (behavior.CurrentState)
                 {
                     case BehaviorState.Fail:

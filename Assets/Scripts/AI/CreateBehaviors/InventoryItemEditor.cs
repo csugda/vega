@@ -9,7 +9,7 @@ public class InventoryItemEditor : EditorWindow
     public InventoryItemList inventoryItemList;
     private int viewIndex = 1;
 
-    [MenuItem("Window/Inventory Item Editor %#e")]
+    //[MenuItem("Window/Inventory Item Editor %#e")]
     static void Init()
     {
         EditorWindow.GetWindow(typeof(InventoryItemEditor));

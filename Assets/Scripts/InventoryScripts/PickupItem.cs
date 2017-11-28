@@ -50,6 +50,19 @@ namespace Assets.Scripts.InventoryScripts
                 _StackSize = value;
             }
         }
+        [SerializeField]
+        private int _ItemPrice;
+        public int ItemPrice
+        {
+            get
+            {
+                return _ItemPrice;
+            }
+            set
+            {
+                _ItemPrice = value;
+            }
+        }
 
         [SerializeField]
         private Sprite _Image;

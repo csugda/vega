@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Name: Energy Cell
   _StackSize: 5
+  _ItemPrice: 100
   _Image: {fileID: 0}
   _ItemInfo: 'A cublc containment cell around a semi-sphere of pure eneergy. Works
     just like a battery, only more so.

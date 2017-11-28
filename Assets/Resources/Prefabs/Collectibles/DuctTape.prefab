@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Name: Duct Tape
   _StackSize: 10
+  _ItemPrice: 20
   _Image: {fileID: 21300000, guid: 0af82faed0370d4409ac7e8ed98dcf4b, type: 3}
   _ItemInfo: "Duct Tape\nA roll of duct tape. It fixes everything, including robots
     who went and got chunks torn out of them. \n\nEffect: \n+5 Health"

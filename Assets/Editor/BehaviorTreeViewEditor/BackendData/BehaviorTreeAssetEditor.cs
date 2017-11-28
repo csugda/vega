@@ -10,7 +10,7 @@ namespace BehaviorTreeViewEditor.BackEndData
     [CustomEditor (typeof(BehaviorTreeAsset))]
 	public class BehaviorTreeAssetEditor : UnityEditor.Editor
     {
-		BehaviorTreeView _TreeView;
+        BehaviorTreeView _TreeView;
 		SearchField _SearchField;
 		const string kSessionStateKeyPrefix = "TVS";
 
@@ -23,8 +23,8 @@ namespace BehaviorTreeViewEditor.BackEndData
 		{
 			Undo.undoRedoPerformed += OnUndoRedoPerformed;
 
-			var treeViewState = new TreeViewState ();
-			var jsonState = SessionState.GetString (kSessionStateKeyPrefix + asset.GetInstanceID (), "");
+			var treeViewState = new TreeViewState();
+			var jsonState = SessionState.GetString (kSessionStateKeyPrefix + asset.GetInstanceID(), "");
 			if (!string.IsNullOrEmpty (jsonState))
 				JsonUtility.FromJsonOverwrite (jsonState, treeViewState);
 			var treeModel = new TreeModel<BehaviorTreeElement> (asset.treeElements);

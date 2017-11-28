@@ -18,7 +18,7 @@ namespace Assets.Scripts.AI.TreeModel
 	{
 		IList<T> m_Data;
 		T m_Root;
-		int m_MaxID;
+        int m_MaxID;
 	
 		public T root { get { return m_Root; } set { m_Root = value; } }
 		public event Action modelChanged;
@@ -48,10 +48,13 @@ namespace Assets.Scripts.AI.TreeModel
 				throw new ArgumentNullException("data", "Input data is null. Ensure input is a non-null list.");
 
 			m_Data = data;
-			if (m_Data.Count > 0)
-				m_Root = TreeElementUtility.ListToTree(data);
+            if (m_Data.Count > 0)
+            {
+                m_Root = TreeElementUtility.ListToTree(data);
+                m_MaxID = m_Data.Max(e => e.id);
+            }
+            else m_MaxID = -1;
 
-			m_MaxID = m_Data.Max(e => e.id);
 		}
 
 		public int GenerateUniqueID ()

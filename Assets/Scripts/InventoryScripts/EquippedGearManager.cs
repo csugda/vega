@@ -8,7 +8,7 @@ namespace Assets.Scripts.InventoryScripts
 
         public GameObject equipmentUI;
 
-        public EquipableItem lArm, rArm, head, torso, legs;
+        public EquipableItem /*lArm, rArm, */head, torso, legs;
         private void Start()
         {
             head.OnEquipped();
@@ -30,14 +30,14 @@ namespace Assets.Scripts.InventoryScripts
                     oldItem = legs;
                     legs = item;
                     break;
-                case EquipmentSlots.LArm:
-                    oldItem = lArm;
-                    lArm = item;
-                    break;
-                case EquipmentSlots.RArm:
-                    oldItem = rArm;
-                    rArm = item;
-                    break;
+                //case EquipmentSlots.LArm:
+                //    oldItem = lArm;
+                //    lArm = item;
+                //    break;
+                //case EquipmentSlots.RArm:
+                //    oldItem = rArm;
+                //    rArm = item;
+                //    break;
             }
             oldItem.OnUnequipped();
             item.OnEquipped();

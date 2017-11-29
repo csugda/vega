@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: fcfec9ac1e8868b45bdf4adf50ae9e36
-timeCreated: 1510285619
+guid: ade87d020e7429446bb2af79b6f97630
+timeCreated: 1510104295
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Battery-02_1
-    21300002: Battery-02_2
+    21300000: flowerpot_0
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -98,35 +97,98 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Battery-02_1
+      name: flowerpot_0
       rect:
         serializedVersion: 2
-        x: 305
-        y: 853
-        width: 1467
-        height: 621
+        x: 33
+        y: 59
+        width: 390
+        height: 379
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 64, y: 59, z: 63, w: 63}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Battery-02_2
-      rect:
-        serializedVersion: 2
-        x: 218
-        y: 1025
-        width: 90
-        height: 270
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     outline: []
-    physicsShape: []
+    physicsShape:
+    - - {x: 43, y: -185}
+      - {x: 66, y: -184}
+      - {x: 88, y: -181}
+      - {x: 122, y: -174}
+      - {x: 128, y: -172}
+      - {x: 141, y: -167}
+      - {x: 154, y: -161}
+      - {x: 166, y: -151}
+      - {x: 170, y: -142}
+      - {x: 172, y: -134}
+      - {x: 172, y: -101}
+      - {x: 168, y: -86}
+      - {x: 162, y: -77}
+      - {x: 154, y: -68}
+      - {x: 144, y: -62}
+      - {x: 144, y: -54}
+      - {x: 141, y: -46}
+      - {x: 137, y: -25}
+      - {x: 132, y: 16}
+      - {x: 131, y: 37}
+      - {x: 130, y: 61}
+      - {x: 129, y: 80}
+      - {x: 128, y: 91}
+      - {x: 127, y: 92}
+      - {x: 127, y: 133}
+      - {x: 125, y: 137}
+      - {x: 115, y: 138}
+      - {x: 108, y: 136}
+      - {x: 104, y: 135}
+      - {x: 94, y: 150}
+      - {x: 87, y: 165}
+      - {x: 82, y: 173}
+      - {x: 78, y: 178}
+      - {x: 67, y: 183}
+      - {x: 34, y: 187}
+      - {x: 1, y: 187}
+      - {x: -14, y: 185}
+      - {x: -21, y: 184}
+      - {x: -41, y: 183}
+      - {x: -42, y: 184}
+      - {x: -59, y: 184}
+      - {x: -65, y: 179}
+      - {x: -74, y: 163}
+      - {x: -79, y: 157}
+      - {x: -87, y: 147}
+      - {x: -105, y: 151}
+      - {x: -108, y: 150}
+      - {x: -111, y: 146}
+      - {x: -115, y: 135}
+      - {x: -120, y: 116}
+      - {x: -133, y: 72}
+      - {x: -136, y: 62}
+      - {x: -138, y: 52}
+      - {x: -153, y: 4}
+      - {x: -163, y: -22}
+      - {x: -169, y: -38}
+      - {x: -171, y: -48}
+      - {x: -200, y: -65}
+      - {x: -208, y: -72}
+      - {x: -214, y: -89}
+      - {x: -215, y: -98}
+      - {x: -215, y: -129}
+      - {x: -212, y: -136}
+      - {x: -200, y: -147}
+      - {x: -192, y: -154}
+      - {x: -172, y: -163}
+      - {x: -142, y: -172}
+      - {x: -121, y: -176}
+      - {x: -109, y: -179}
+      - {x: -66, y: -184}
+      - {x: -40, y: -186}
+      - {x: -32, y: -187}
+      - {x: -9, y: -187}
+      - {x: -5, y: -186}
+      - {x: -1, y: -177}
+      - {x: 16, y: -178}
+      - {x: 31, y: -178}
   spritePackingTag: 
   userData: 
   assetBundleName: 

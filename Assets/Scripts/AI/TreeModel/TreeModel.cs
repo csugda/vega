@@ -53,7 +53,10 @@ namespace Assets.Scripts.AI.TreeModel
                 m_Root = TreeElementUtility.ListToTree(data);
                 m_MaxID = m_Data.Max(e => e.id);
             }
-            else m_MaxID = -1;
+            else
+            {
+                m_MaxID = -1;
+            }
 
 		}
 

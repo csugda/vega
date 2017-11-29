@@ -10,7 +10,7 @@ namespace BehaviorTreeViewEditor.BackEndData
 		[SerializeField] List<BehaviorTreeElement> _TreeElements = 
             new List<BehaviorTreeElement>();
 
-		internal List<Assets.Scripts.AI.BehaviorTreeElement> treeElements
+		internal List<BehaviorTreeElement> treeElements
 		{
 			get { return _TreeElements; }
 			set { _TreeElements = value; }

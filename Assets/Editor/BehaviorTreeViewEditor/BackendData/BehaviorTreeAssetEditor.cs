@@ -27,7 +27,13 @@ namespace BehaviorTreeViewEditor.BackEndData
 			var jsonState = SessionState.GetString (kSessionStateKeyPrefix + asset.GetInstanceID(), "");
 			if (!string.IsNullOrEmpty (jsonState))
 				JsonUtility.FromJsonOverwrite (jsonState, treeViewState);
-			var treeModel = new TreeModel<BehaviorTreeElement> (asset.treeElements);
+
+
+            if(asset.treeElements.Count == 0)
+            {
+                asset.treeElements.Add(new BehaviorTreeElement("root", -1, 0));
+            }
+			var treeModel = new TreeModel<BehaviorTreeElement>(asset.treeElements);
 			_TreeView = new BehaviorTreeView(treeViewState, treeModel);
 			_TreeView.beforeDroppingDraggedItems += OnBeforeDroppingDraggedItems;
 			_TreeView.Reload ();

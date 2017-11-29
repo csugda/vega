@@ -58,7 +58,13 @@ namespace BehaviorTreeViewEditor.BackEndData
 		protected override TreeViewItem BuildRoot()
 		{
 			int depthForHiddenRoot = -1;
-			return new TreeViewItem<T>(_TreeModel.root.id, depthForHiddenRoot, _TreeModel.root.name, _TreeModel.root);
+
+            if(null == _TreeModel.root)
+            {
+                Debug.LogError("Tree Model root is null!!");
+            }
+
+            return new TreeViewItem<T>(_TreeModel.root.id, depthForHiddenRoot, _TreeModel.root.name, _TreeModel.root);
 		}
 
 		protected override IList<TreeViewItem> BuildRows (TreeViewItem root)

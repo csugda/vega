@@ -33,12 +33,13 @@ public class TapToMove : MonoBehaviour
     }
 
 	public void OnMouseButtonDown(int button, Vector3 pos, Transform obj) {
-		if (button == 0) {
+		if (button == 1) {
 			MoveTo(pos);
 		}
 	}
+    
 	public void OnMouseButton(int button, Vector3 pos, Transform obj) {
-		if (button == 0) {
+		if (button == 1) {
 			MoveTo(pos);
 		}
 	}

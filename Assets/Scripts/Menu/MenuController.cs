@@ -18,10 +18,6 @@ public class MenuController : MonoBehaviour
     public string inventoryButton, mapButton, menuButton;
     public bool menuOpen;
    
-
-
-
-
     /*
      * menuOptions maps a string to a string[]. the string must be an object tag and the strings in the array must be buttons in the editor.
      * these options are read in from the file "Assets/Resources/MenuOptions.txt" so any new options should be added as tags, and in the .txt
@@ -57,27 +53,30 @@ public class MenuController : MonoBehaviour
     {
         if (button != popupMenuButton)
             return;
-        if (popupMenuOpen)
-            ClosePopupMenu();
-        else
-        {
-            popupMenuGO.SetActive(true);
 
-            //set menu position 
-            popupMenuGO.transform.position = pos;
+        //Will need this later for shop right click menu
 
-            //set menu buttons based on tag of clicked object
-            string menuType = target.tag;
-            if (menuOptions.ContainsKey(menuType))
-            {
-                OpenPopupMenu(menuOptions[menuType], pos, target);
-            }
-            else
-            {
-                Debug.LogError("MenuController line 52: " + menuType + " is not a valid menu option. make sure that the tag is added to the text doccument");
-            }
-            popupMenuOpen = true;
-        }
+        // if (popupMenuOpen)
+        //     ClosePopupMenu();
+        // else
+        // {
+        //     popupMenuGO.SetActive(true);
+
+        //     //set menu position 
+        //     popupMenuGO.transform.position = pos;
+
+        //     //set menu buttons based on tag of clicked object
+        //     string menuType = target.tag;
+        //     if (menuOptions.ContainsKey(menuType))
+        //     {
+        //         OpenPopupMenu(menuOptions[menuType], pos, target);
+        //     }
+        //     else
+        //     {
+        //         Debug.LogError("MenuController line 52: " + menuType + " is not a valid menu option. make sure that the tag is added to the text doccument");
+        //     }
+        //     popupMenuOpen = true;
+        // }
     }
 
     //dynamically set which menu buttons are enabled based on the array passed in

@@ -28,7 +28,6 @@ namespace BehaviorTreeViewEditor.BackEndData
 			if (!string.IsNullOrEmpty (jsonState))
 				JsonUtility.FromJsonOverwrite (jsonState, treeViewState);
 
-
             if(asset.treeElements.Count == 0)
             {
                 asset.treeElements.Add(new BehaviorTreeElement("root", -1, 0));
@@ -79,7 +78,6 @@ namespace BehaviorTreeViewEditor.BackEndData
             Rect multiColumnTreeViewRect = new Rect(rect.x, rect.y + topToolbarHeight + spacing, rect.width, rect.height - topToolbarHeight - 2 * spacing);
             SearchBar(toolbarRect);
             DoTreeView(multiColumnTreeViewRect);
-
         }
 
 		void SearchBar (Rect rect)
@@ -94,7 +92,6 @@ namespace BehaviorTreeViewEditor.BackEndData
 
 		void ToolBar ()
 		{
-
             var style = "miniButton";
             using (new EditorGUILayout.HorizontalScope ())
 			{

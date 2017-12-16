@@ -15,5 +15,5 @@ MonoBehaviour:
   - _ID: 0
     _Name: root
     _Depth: -1
-    BehaviorName: New Behavior
+    BehaviorName: root
     BehaviorTreeManager: {fileID: 0}

@@ -1,5 +1,6 @@
 using Assets.Scripts.AI;
 using Assets.Scripts.AI.TreeModel;
+using Assets.Scripts.AI.Components;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
@@ -136,6 +137,20 @@ namespace BehaviorTreeViewEditor.BackEndData
             if (GUILayout.Button("Add Selector", style))
             {
                 //TODO
+
+                Undo.RecordObject(asset, "Add Selector To Asset");
+
+                // Add 'Selector' as child of selection
+                var selection = _TreeView.GetSelection();
+                BehaviorTreeElement parent = (selection.Count == 1 ? _TreeView.treeModel.Find(selection[0]) : null) ?? _TreeView.treeModel.root;
+                int depth = parent != null ? parent.depth + 1 : 0;
+                int id = _TreeView.treeModel.GenerateUniqueID();
+                var element = new Selector("Default Selector", depth, id);
+                _TreeView.treeModel.AddElement(element, parent, 0);
+
+                // Select newly created element
+                _TreeView.SetSelection(new[] { id }, TreeViewSelectionOptions.RevealAndFrame);
+
                 Debug.Log("Selector: Do Me!");
             }
             GUILayout.Space(5);
@@ -152,6 +167,9 @@ namespace BehaviorTreeViewEditor.BackEndData
             }
             GUILayout.Space(5);
 
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+
             if (GUILayout.Button("Add Behavior", style))
             {
                 //AddBehavior();
@@ -159,7 +177,9 @@ namespace BehaviorTreeViewEditor.BackEndData
             GUILayout.Space(5);
             if (GUILayout.Button("Delete Behavior", style))
             {
-                //DeleteBehavior(viewIndex - 1);
+                Undo.RecordObject(asset, "Remove Component From Asset");
+                var selection = _TreeView.GetSelection();
+                _TreeView.treeModel.RemoveElements(selection);
             }
 
             GUILayout.EndHorizontal();

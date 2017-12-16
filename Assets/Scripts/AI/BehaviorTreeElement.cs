@@ -15,6 +15,7 @@ namespace Assets.Scripts.AI
         public BehaviorTreeElement(string name, int depth, int id) 
             : base(name, depth, id)
         {
+            this.BehaviorName = name;
         }
 
         public BehaviorState CurrentState

@@ -10,7 +10,17 @@ namespace BehaviorTreeViewEditor.BackEndData
 		[SerializeField] List<BehaviorTreeElement> _TreeElements = 
             new List<BehaviorTreeElement>();
 
-		internal List<BehaviorTreeElement> treeElements
+        public static BehaviorTreeAsset Create(string treeName)
+        {
+            BehaviorTree asset = ScriptableObject.CreateInstance<BehaviorTree>();
+            string filePath = "Assets/AI/" + treeName + ".asset";
+
+            AssetDatabase.CreateAsset(asset, filePath);
+            AssetDatabase.SaveAssets();
+            return asset;
+        }
+
+        internal List<BehaviorTreeElement> treeElements
 		{
 			get { return _TreeElements; }
 			set { _TreeElements = value; }

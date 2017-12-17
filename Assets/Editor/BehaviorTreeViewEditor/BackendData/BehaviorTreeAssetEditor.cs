@@ -108,6 +108,12 @@ namespace BehaviorTreeViewEditor.BackEndData
 
 				GUILayout.FlexibleSpace ();
 
+                if (GUILayout.Button("Save Behavior Tree", style))
+                {
+                    SessionState.SetString(kSessionStateKeyPrefix + asset.GetInstanceID(), JsonUtility.ToJson(_TreeView.state));
+                    Debug.Log("Saved Behavior Tree");
+                }
+
 				if (GUILayout.Button ("Add Item", style))
 				{
 					Undo.RecordObject (asset, "Add Item To Asset");
@@ -145,7 +151,7 @@ namespace BehaviorTreeViewEditor.BackEndData
                 BehaviorTreeElement parent = (selection.Count == 1 ? _TreeView.treeModel.Find(selection[0]) : null) ?? _TreeView.treeModel.root;
                 int depth = parent != null ? parent.depth + 1 : 0;
                 int id = _TreeView.treeModel.GenerateUniqueID();
-                var element = new Selector("Default Selector", depth, id);
+                var element = new Selector("Selector Component", depth, id);
                 _TreeView.treeModel.AddElement(element, parent, 0);
 
                 // Select newly created element

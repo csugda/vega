@@ -17,6 +17,7 @@ namespace Assets.Scripts
 
         public void Start()
         {
+            ReadMaxHealth();
             healthBar = healthUI.GetComponent<HealthBarTestScript>();
             onHealthChanged.AddListener(ChangeHealth);
             onMaxHealthChanged.AddListener(ChangeMaxHealth);
@@ -27,6 +28,14 @@ namespace Assets.Scripts
             onHealthChanged.Invoke(0);
             onMaxHealthChanged.Invoke(0);
             
+        }
+        private void ReadMaxHealth()
+        {
+            ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
+            int bonushealth = 0;
+            for (int i = carry.upgradeLevels[0]; i > 0; --i)
+                bonushealth += 10 * i;
+            maxHealth = bonushealth + 100;
         }
         public void ChangeHealth(int ammount)
         {

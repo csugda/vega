@@ -24,6 +24,13 @@ namespace Assets.Scripts.InventoryScripts
             {
                 inventory[i] = new InventorySlot(new EmptySlot(), 1);
             }
+            ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
+            for (int i = 0; i < carry.itemCount; ++i)
+            {
+                Debug.Log("Adding " + carry.items[i].Name + " to inventory");
+                this.AddItem(carry.items[i]);
+            }
+            Destroy(carry.gameObject);
             Inventory.onInventoryChanged.Invoke();
         }
 

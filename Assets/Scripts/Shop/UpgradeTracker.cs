@@ -4,18 +4,20 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class UpgradeTracker : MonoBehaviour {
+public class UpgradeTracker : MonoBehaviour
+{
 
-    private int damageLevel, healthLevel, speedLevel, fireReateLevel;
+    public int damageLevel, healthLevel, speedLevel, fireReateLevel;
     public int HealthCost { get { return Cost(healthLevel); } }
     public int DamageCost { get { return Cost(damageLevel); } }
     public int FireRateCost { get { return Cost(fireReateLevel); } }
     public int SpeedCost { get { return Cost(speedLevel); } }
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         ReadLevels();
         UpdateShopUI();
-	}
+    }
     private void OnDestroy()
     {
         SaveLevels();
@@ -47,7 +49,11 @@ public class UpgradeTracker : MonoBehaviour {
     }
     private void SaveLevels()
     {
-        //save the levels to override the previous document
+        string path = "Assets/Resources/Upgrades.txt";
+
+        StreamWriter writer = new StreamWriter(path, false);
+        writer.WriteLine(healthLevel + ";" + speedLevel + ";" + damageLevel + ";" + fireReateLevel);
+        writer.Close();
     }
     private void UpdateShopUI()
     {

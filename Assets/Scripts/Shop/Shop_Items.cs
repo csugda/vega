@@ -17,7 +17,6 @@ public class Shop_Items : MonoBehaviour
         {
             PickupItem thisItem = availableItems[UnityEngine.Random.Range(0, availableItems.Length)];
 
-
             GameObject button = Instantiate(ItemPrefab, this.transform);
 
             if (thisItem.Image != null)
@@ -38,12 +37,16 @@ public class Shop_Items : MonoBehaviour
 
             button.GetComponent<ShowItemInfo>().parentGO = infoParent;
               
-            /*button.GetComponent<Button>().onClick.AddListener
-                (() => inventory.UseItem(int.Parse(button.transform.name)));
-
             button.GetComponent<Button>().onClick.AddListener
-                (() => RedrawGrid());
-                */
+                (() => this.Buy(thisItem));
+
+            //maybe remove the option to buy more then one. 
         }
+        
+    }
+    public void Buy(IInventoryItem i)
+    {
+        ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
+        carry.AddItem(i);
     }
 }

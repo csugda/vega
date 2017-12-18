@@ -54,8 +54,8 @@ ModelImporter:
     4300012: Cylinder_000
     7400000: Default Take
     7400002: ArmatureAction
-    7400004: Moving
-    7400006: Idle
+    7400004: Idle
+    7400006: Moving
     7400008: Shooting
     9500000: //RootNode
     13700000: Body
@@ -103,7 +103,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Moving
+      name: Idle
       takeName: Default Take
       firstFrame: 0
       lastFrame: 58
@@ -113,7 +113,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -131,7 +131,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle
+      name: Moving
       takeName: Default Take
       firstFrame: 60
       lastFrame: 75
@@ -141,7 +141,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -169,7 +169,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

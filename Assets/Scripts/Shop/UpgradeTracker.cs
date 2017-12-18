@@ -87,19 +87,43 @@ namespace Assets.Scripts.Shop
         }
         public void UpgradeHealth()
         {
+            if (healthLevel >= 10)
+            {
+                healthLevel = 10;
+                Debug.Log("upgrade level max is 10. need to make the button change to show that.");
+            }
+            else
             healthLevel++;
         }
         public void UpgradeFireRate()
         {
+            if (fireReateLevel >= 10)
+            {
+                fireReateLevel = 10;
+                Debug.Log("upgrade level max is 10. need to make the button change to show that.");
+            }
+            else
             fireReateLevel++;
         }
         public void UpgradeDamage()
         {
-            damageLevel++;
+            if (damageLevel>= 10)
+            {
+                damageLevel = 10;
+                Debug.Log("upgrade level max is 10. need to make the button change to show that.");
+            }
+            else
+                damageLevel++;
         }
         public void UpgradeSpeed()
         {
-            speedLevel++;
+            if (speedLevel >= 10)
+            {
+                speedLevel = 10;
+                Debug.Log("upgrade level max is 10. need to make the button change to show that.");
+            }
+            else
+                speedLevel++;
         }
         public void ResetLevels()
         {

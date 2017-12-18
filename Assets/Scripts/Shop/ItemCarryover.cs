@@ -20,4 +20,13 @@ public class ItemCarryover : MonoBehaviour {
         items[itemCount] = item;
         ++itemCount;
     }
+    private int done = 0;
+    public int needToUse = 2; //there are currently 2 things that need this, it will delete itself when they are both done
+                              // when something new needs it, increse this number.
+    public void Finished()
+    {
+        ++done;
+        if (done == needToUse)
+            Destroy(this.gameObject);
+    }
 }

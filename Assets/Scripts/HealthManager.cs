@@ -31,11 +31,21 @@ namespace Assets.Scripts
         }
         private void ReadMaxHealth()
         {
-            ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
-            int bonushealth = 0;
-            for (int i = carry.upgradeLevels[0]; i > 0; --i)
-                bonushealth += 10 * i;
-            maxHealth = bonushealth + 100;
+            if (GameObject.Find("SHOP_ITEM_CARRYOVER"))
+            {
+                ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
+                int bonushealth = 0;
+                for (int i = carry.upgradeLevels[0]; i > 0; --i)
+                    bonushealth += 10 * i;
+                maxHealth = bonushealth + 100;
+                carry.Finished();
+            }
+            else
+            {
+                Debug.LogWarning("SHOP_ITEM_CARRYOVER not present in scene, most likely game was not launched from shop scene. " +
+                    "\nUsing default health ammount");
+                maxHealth = 100;
+            }
         }
         public void ChangeHealth(int ammount)
         {

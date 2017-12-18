@@ -24,14 +24,25 @@ namespace Assets.Scripts.InventoryScripts
             {
                 inventory[i] = new InventorySlot(new EmptySlot(), 1);
             }
-            ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
-            for (int i = 0; i < carry.itemCount; ++i)
-            {
-                Debug.Log("Adding " + carry.items[i].Name + " to inventory");
-                this.AddItem(carry.items[i]);
-            }
-            Destroy(carry.gameObject);
+            ReadCarryItems();
             Inventory.onInventoryChanged.Invoke();
+        }
+
+        private void ReadCarryItems()
+        {
+            if (GameObject.Find("SHOP_ITEM_CARRYOVER"))
+            {
+                ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
+                for (int i = 0; i < carry.itemCount; ++i)
+                {
+                    //Debug.Log("Adding " + carry.items[i].Name + " to inventory");
+                    this.AddItem(carry.items[i]);
+                }
+                carry.Finished();
+            }
+            else
+                Debug.LogWarning("SHOP_ITEM_CARRYOVER not present in scene, most likely game was not launched from shop scene. " +
+                    "\nLoading default inventory");
         }
 
         public int invSize;

@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour {
     public EnemyDamageEvent onDammaged;
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
     {
         onDammaged.AddListener(RecieveDamage);
         currHealth = maxHealth;

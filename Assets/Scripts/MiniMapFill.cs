@@ -46,7 +46,7 @@ public class MiniMapFill : MonoBehaviour {
             Map = GameObject.Find("Map").GetComponent<Map>();
         Debug.Log("genMiniMap");
         GameObject CurRow;
-        Vector3 playerpos = Map.MapPositionFromWorld(player.transform.position);
+        //Vector3 playerpos = Map.MapPositionFromWorld(player.transform.position);
         for (int x = 0; x < Map.MapParams.MapBounds.x; ++x)
         {
             CurRow = Instantiate(row, this.transform);

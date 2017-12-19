@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 namespace Assets.Scripts.InventoryScripts.Items
 {
-    class ArmorItem : EquipableItem
+    public class ArmorItem : EquipableItem
     {
         public int armorValue;
 

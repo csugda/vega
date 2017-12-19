@@ -134,7 +134,7 @@ namespace Assets.Scripts.Map
         private void PlaceSector(Vector3 startTile, Vector3 roomSize, Vector3 prevStart, Vector3 prevRoomSize, int sectorID)
         {
             Vector3 endTile = startTile + roomSize;
-            Vector3 mapSize = MapParams.MapBounds;
+            //Vector3 mapSize = MapParams.MapBounds;
             Dictionary<int, List<Vector3>> wallDoorwayDict = new Dictionary<int, List<Vector3>>();
 
             for (int i = (int)startTile.x; i < endTile.x; ++i)

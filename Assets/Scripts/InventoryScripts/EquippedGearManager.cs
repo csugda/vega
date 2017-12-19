@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.InventoryScripts
 {
-    class EquippedGearManager : MonoBehaviour
+    public class EquippedGearManager : MonoBehaviour
     {
 
         public GameObject equipmentUI;

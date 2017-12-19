@@ -2,10 +2,10 @@
 
 namespace Assets.Scripts
 {
-    class RangedWeapon : MonoBehaviour
+    public class RangedWeapon : MonoBehaviour
     {
-        int damage;
-        float range;
+        public int damage;
+        public float range;
         public void Fire()
         {
             //probablly want some kind of targeting somewhere other then "this.transform.forward"

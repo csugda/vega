@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Assets.Scripts.InventoryScripts.Items
 {
     [Serializable]
-    class JournalUnlockItem : PickupItem
+    public class JournalUnlockItem : PickupItem
     {
         public int area;
         private JournalManager manager;

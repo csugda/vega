@@ -12,10 +12,13 @@ namespace Assets.Scripts.Shop
         public int DamageCost { get { return Cost(damageLevel); } }
         public int FireRateCost { get { return Cost(fireReateLevel); } }
         public int SpeedCost { get { return Cost(speedLevel); } }
+
+        private ShopScrapTracker money;
         // Use this for initialization
         void Awake()
         {
             ReadLevels();
+            money = GameObject.Find("Scrap").GetComponent<ShopScrapTracker>();
         }
         private void OnDestroy()
         {
@@ -25,11 +28,15 @@ namespace Assets.Scripts.Shop
 
         private void SaveUpgradesToCarryover()
         {
-            ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
-            carry.upgradeLevels[0] = healthLevel;
-            carry.upgradeLevels[1] = speedLevel;
-            carry.upgradeLevels[2] = damageLevel;
-            carry.upgradeLevels[3] = fireReateLevel;
+            //sometimes when closing the game from the shop screen the carry is destroyed first, avoiding nulls
+            if (GameObject.Find("SHOP_ITEM_CARRYOVER")) 
+            {
+                ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
+                carry.upgradeLevels[0] = healthLevel;
+                carry.upgradeLevels[1] = speedLevel;
+                carry.upgradeLevels[2] = damageLevel;
+                carry.upgradeLevels[3] = fireReateLevel;
+            }
         }
 
         private void ReadLevels()
@@ -93,7 +100,14 @@ namespace Assets.Scripts.Shop
                 Debug.Log("upgrade level max is 10. need to make the button change to show that.");
             }
             else
-            healthLevel++;
+            {
+                if (money.scrapCount >= HealthCost)
+                {
+                    money.ChangeScrap(-HealthCost);
+                    healthLevel++;
+                }
+            }
+
         }
         public void UpgradeFireRate()
         {
@@ -103,17 +117,29 @@ namespace Assets.Scripts.Shop
                 Debug.Log("upgrade level max is 10. need to make the button change to show that.");
             }
             else
-            fireReateLevel++;
+            {
+                if (money.scrapCount >= FireRateCost)
+                {
+                    money.ChangeScrap(-FireRateCost);
+                    fireReateLevel++;
+                }
+            }
         }
         public void UpgradeDamage()
         {
-            if (damageLevel>= 10)
+            if (damageLevel >= 10)
             {
                 damageLevel = 10;
                 Debug.Log("upgrade level max is 10. need to make the button change to show that.");
             }
             else
-                damageLevel++;
+            {
+                if (money.scrapCount >= DamageCost)
+                {
+                    money.ChangeScrap(-DamageCost);
+                    damageLevel++;
+                }
+            }
         }
         public void UpgradeSpeed()
         {
@@ -123,7 +149,13 @@ namespace Assets.Scripts.Shop
                 Debug.Log("upgrade level max is 10. need to make the button change to show that.");
             }
             else
-                speedLevel++;
+            {
+                if (money.scrapCount >= SpeedCost)
+                {
+                    money.ChangeScrap(-SpeedCost);
+                    speedLevel++;
+                }
+            }
         }
         public void ResetLevels()
         {
@@ -133,6 +165,6 @@ namespace Assets.Scripts.Shop
             speedLevel = 0;
         }
 
-        
+
     }
 }

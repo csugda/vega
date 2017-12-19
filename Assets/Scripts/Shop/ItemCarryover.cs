@@ -7,6 +7,8 @@ public class ItemCarryover : MonoBehaviour {
     //[0] = Health; [1] = speed; [2] = damage; [3] = fireRate
     public int[] upgradeLevels = new int[4];
 
+    public int scrapAmmount;
+
     public IInventoryItem[] items = new IInventoryItem[4];
     public int itemCount;
     public void Start()
@@ -21,7 +23,7 @@ public class ItemCarryover : MonoBehaviour {
         ++itemCount;
     }
     private int done = 0;
-    public int needToUse = 2; //there are currently 2 things that need this, it will delete itself when they are both done
+    public int needToUse = 3; //there are currently 3 things that need this, it will delete itself when they are all done
                               // when something new needs it, increse this number.
     public void Finished()
     {

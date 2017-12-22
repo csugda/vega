@@ -947,7 +947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115dfe7b0938447cbbf9507076f54049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentIndex: 0
+  agentIndex: 1
   m_Tracked: {fileID: 0}
   m_Size: {x: 80, y: 20, z: 80}
 --- !u!114 &114713821217357802
@@ -1449,7 +1449,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1947936207397220}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 1.5
   m_Speed: 2
   m_Acceleration: 8

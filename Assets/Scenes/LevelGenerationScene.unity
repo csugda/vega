@@ -137,7 +137,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4594911278838120, guid: 0d1ce968a651b634cbf110a68df0da5a, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4594911278838120, guid: 0d1ce968a651b634cbf110a68df0da5a, type: 2}
       propertyPath: m_LocalRotation.z
@@ -145,7 +145,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4594911278838120, guid: 0d1ce968a651b634cbf110a68df0da5a, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4594911278838120, guid: 0d1ce968a651b634cbf110a68df0da5a, type: 2}
       propertyPath: m_RootOrder
@@ -3625,8 +3625,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 1947936207397220, guid: 0d1ce968a651b634cbf110a68df0da5a, type: 2}
-  spawnTime: 3
-  spawnPoints: []
+  spawnTime: 10
+  spawnPoints:
+  - {fileID: 2044266361}
 --- !u!1 &757948908
 GameObject:
   m_ObjectHideFlags: 0

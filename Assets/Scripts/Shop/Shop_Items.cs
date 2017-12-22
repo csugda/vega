@@ -26,10 +26,15 @@ public class Shop_Items : MonoBehaviour
             if (thisItem.Image != null)
             {
                 button.GetComponent<Image>().sprite = thisItem.Image;
+                button.transform.Find("NameText").gameObject.GetComponent<Text>().text = "";
+            }
+            else
+            {
+                button.transform.Find("NameText").gameObject.GetComponent<Text>().text =
+                thisItem.Name;
             }
 
-            button.transform.Find("NameText").gameObject.GetComponent<Text>().text =
-                thisItem.Name;
+            
 
             button.transform.Find("PriceText").gameObject.GetComponent<Text>().text =
                 "" + thisItem.ItemPrice;
@@ -44,7 +49,16 @@ public class Shop_Items : MonoBehaviour
             button.GetComponent<Button>().onClick.AddListener
                 (() => this.Buy(thisItem));
 
-            //maybe remove the option to buy more then one. 
+            //deactivate the button once it is used
+            button.GetComponent<Button>().onClick.AddListener
+                (() =>
+                {
+                    //Color temp = button.GetComponent<Image>().color;
+                    Color temp = Color.red;
+                    button.GetComponent<Image>().color = temp;
+                    button.GetComponent<Button>().onClick.RemoveAllListeners();
+                }
+                );
         }
 
     }
@@ -52,7 +66,7 @@ public class Shop_Items : MonoBehaviour
     {
         if (money.scrapCount > i.ItemPrice)
         {
-            money.scrapCount -= i.ItemPrice;
+            money.ChangeScrap(-i.ItemPrice);
             ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
             carry.AddItem(i);
         }

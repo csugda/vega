@@ -23,7 +23,7 @@ public class ItemCarryover : MonoBehaviour {
         ++itemCount;
     }
     private int done = 0;
-    public int needToUse = 3; //there are currently 3 things that need this, it will delete itself when they are all done
+    public int needToUse = 4; //there are currently 3 things that need this, it will delete itself when they are all done
                               // when something new needs it, increse this number.
     public void Finished()
     {

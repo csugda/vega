@@ -46,30 +46,35 @@ public class Shop_Items : MonoBehaviour
 
             button.GetComponent<ShowItemInfo>().parentGO = infoParent;
 
-            button.GetComponent<Button>().onClick.AddListener
-                (() => this.Buy(thisItem));
+            //button.GetComponent<Button>().onClick.AddListener
+            //    (() => this.Buy(thisItem));
 
             //deactivate the button once it is used
             button.GetComponent<Button>().onClick.AddListener
                 (() =>
                 {
-                    //Color temp = button.GetComponent<Image>().color;
-                    Color temp = Color.red;
-                    button.GetComponent<Image>().color = temp;
-                    button.GetComponent<Button>().onClick.RemoveAllListeners();
+                    if (this.Buy(thisItem))
+                    {
+                        //Color temp = button.GetComponent<Image>().color;
+                        Color temp = Color.red;
+                        button.GetComponent<Image>().color = temp;
+                        button.GetComponent<Button>().onClick.RemoveAllListeners();
+                    }
                 }
                 );
         }
 
     }
-    public void Buy(IInventoryItem i)
+    public bool Buy(IInventoryItem i)
     {
         if (money.scrapCount > i.ItemPrice)
         {
             money.ChangeScrap(-i.ItemPrice);
             ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
             carry.AddItem(i);
+            return true;
         }
+        return false;
 
     }
 }

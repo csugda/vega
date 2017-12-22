@@ -7,11 +7,12 @@ public class EnemyMovement : MonoBehaviour
     //PlayerHealth playerHealth;      // Reference to the player's health.
     EnemyHealth enemyHealth;        // Reference to this enemy's health.
     UnityEngine.AI.NavMeshAgent nav;               // Reference to the nav mesh agent.
-
+    Animator anim;
 
     void Awake()
     {
         // Set up the references.
+        anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         //playerHealth = player.GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
@@ -25,7 +26,8 @@ public class EnemyMovement : MonoBehaviour
         //if (enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
         //{
         // ... set the destination of the nav mesh agent to the player.
-        //nav.SetDestination(player.position);
+        anim.SetBool("IsMoving", true);
+        nav.SetDestination(player.position);
         //}
         // Otherwise...
         //else

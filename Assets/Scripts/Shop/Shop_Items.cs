@@ -10,8 +10,12 @@ public class Shop_Items : MonoBehaviour
     public GameObject ItemPrefab;
     public int NumberOfItemsToShow;
     public GameObject infoParent;
+
+    private ShopScrapTracker money;
     private void Start()
     {
+        money = GameObject.Find("Scrap").GetComponent<ShopScrapTracker>();
+
         NumberOfItemsToShow = NumberOfItemsToShow < 1 ? 1 : NumberOfItemsToShow > 6 ? 6 : NumberOfItemsToShow;
         for (int i = 0; i < NumberOfItemsToShow; ++i)
         {
@@ -36,17 +40,22 @@ public class Shop_Items : MonoBehaviour
                 thisItem.ItemInfo;
 
             button.GetComponent<ShowItemInfo>().parentGO = infoParent;
-              
+
             button.GetComponent<Button>().onClick.AddListener
                 (() => this.Buy(thisItem));
 
             //maybe remove the option to buy more then one. 
         }
-        
+
     }
     public void Buy(IInventoryItem i)
     {
-        ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
-        carry.AddItem(i);
+        if (money.scrapCount > i.ItemPrice)
+        {
+            money.scrapCount -= i.ItemPrice;
+            ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
+            carry.AddItem(i);
+        }
+
     }
 }

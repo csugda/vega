@@ -6,7 +6,12 @@ public class LookToCamera : MonoBehaviour {
 
     public Camera targetCamera;
 	// Update is called once per frame
-	void Update ()
+    void Awake()
+    {
+        targetCamera = Camera.main;
+    }
+
+    void Update ()
     {
         transform.LookAt(transform.position +
             targetCamera.transform.rotation * Vector3.back,

@@ -2575,6 +2575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115dfe7b0938447cbbf9507076f54049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agentIndex: 0
   m_Tracked: {fileID: 0}
   m_Size: {x: 70, y: 6, z: 70}
 --- !u!4 &602161424

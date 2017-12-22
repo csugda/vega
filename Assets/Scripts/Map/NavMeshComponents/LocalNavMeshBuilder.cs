@@ -9,6 +9,7 @@ using NavMeshBuilder = UnityEngine.AI.NavMeshBuilder;
 public class LocalNavMeshBuilder : MonoBehaviour
 {
     // The center of the build
+    public int agentIndex = 0;
     public Transform m_Tracked;
 
     // The size of the build bounds
@@ -47,7 +48,7 @@ public class LocalNavMeshBuilder : MonoBehaviour
     void UpdateNavMesh(bool asyncUpdate = false)
     {
         NavMeshSourceTag.Collect(ref m_Sources);
-        var defaultBuildSettings = NavMesh.GetSettingsByID(0);
+        var defaultBuildSettings = NavMesh.GetSettingsByIndex(agentIndex);
         var bounds = QuantizedBounds();
 
         if (asyncUpdate)

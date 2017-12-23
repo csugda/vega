@@ -3077,6 +3077,11 @@ Prefab:
       propertyPath: damageAmmount
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 65439655623468442, guid: fe218fd3805c3b1468477af2d039d5e3,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe218fd3805c3b1468477af2d039d5e3, type: 2}
   m_IsPrefabParent: 0
@@ -4491,11 +4496,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114280725087926044, guid: e81e0a7aa996d7e4596cfdb2175544c1,
-        type: 2}
-      propertyPath: healAmount
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e81e0a7aa996d7e4596cfdb2175544c1, type: 2}
   m_IsPrefabParent: 0
@@ -5005,11 +5005,6 @@ Prefab:
     - target: {fileID: 1382126872118412, guid: fe218fd3805c3b1468477af2d039d5e3, type: 2}
       propertyPath: m_Name
       value: DamageItem (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114627568446841906, guid: fe218fd3805c3b1468477af2d039d5e3,
-        type: 2}
-      propertyPath: damageAmmount
-      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe218fd3805c3b1468477af2d039d5e3, type: 2}
@@ -10021,11 +10016,6 @@ Prefab:
     - target: {fileID: 1490470618032320, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}
       propertyPath: m_Name
       value: Welder (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114925873409267562, guid: 57d72d33dfdea44439c69c03d0b3f0a2,
-        type: 2}
-      propertyPath: healAmount
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57d72d33dfdea44439c69c03d0b3f0a2, type: 2}

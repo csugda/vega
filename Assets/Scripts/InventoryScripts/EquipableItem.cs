@@ -20,9 +20,9 @@ namespace Assets.Scripts.InventoryScripts
         {
             throw new NotImplementedException();
         }
-        public override void OnCollisionEnter(Collision collision)
+        public override void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player")
             {
                 if (ManagerGO.GetComponent<Inventory>().AddItem(this))
                     this.gameObject.SetActive(false);

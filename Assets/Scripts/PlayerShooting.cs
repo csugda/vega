@@ -6,7 +6,7 @@ public class PlayerShooting : MonoBehaviour
 {
     public int weaponDamage = 10;
     public float fireRate = 0.25f;
-    public float weaponRange = 50f;
+    public float weaponRange = 25f;
 
     private WaitForSeconds shotDuration = new WaitForSeconds(0.1f);
     Ray shootRay;

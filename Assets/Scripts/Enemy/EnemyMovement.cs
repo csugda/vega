@@ -3,37 +3,49 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
-    Transform player;               // Reference to the player's position.
+    GameObject player;                 // Reference to the player.
     //PlayerHealth playerHealth;      // Reference to the player's health.
-    EnemyHealth enemyHealth;        // Reference to this enemy's health.
-    UnityEngine.AI.NavMeshAgent nav;               // Reference to the nav mesh agent.
+    EnemyHealth enemyHealth;          // Reference to this enemy's health.
+    UnityEngine.AI.NavMeshAgent nav;  // Reference to the nav mesh agent.
+    public bool detectedPlayer = false;
     Animator anim;
 
     void Awake()
     {
-        // Set up the references.
         anim = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
         //playerHealth = player.GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
-    // TODO: Fix this
+    void onTriggerEnter(Collider other)
+    {
+        if (other.gameObject == player)
+        {
+            detectedPlayer = true;
+        }
+    }
+
+    void onTriggerExit (Collider other)
+    {
+        if (other.gameObject == player)
+        {
+            detectedPlayer = false;
+        }
+    }
+
     void Update()
     {
-        // If the enemy and the player have health left...
-        //if (enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
-        //{
-        // ... set the destination of the nav mesh agent to the player.
-        anim.SetBool("IsMoving", true);
-        nav.SetDestination(player.position);
-        //}
-        // Otherwise...
-        //else
-        //{
-            // ... disable the nav mesh agent.
-            //nav.enabled = false;
-        //}
+        // if enemy is alive and has detected the player
+        if (enemyHealth.currHealth > 0 && detectedPlayer)
+        {
+            anim.SetBool("IsMoving", true);
+            nav.SetDestination(player.transform.position);
+        }
+        else
+        {
+            anim.SetBool("IsMoving", false);
+        }
     }
 }

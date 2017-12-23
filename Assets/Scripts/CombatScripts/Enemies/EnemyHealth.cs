@@ -9,20 +9,24 @@ public class EnemyHealth : MonoBehaviour {
     public float maxHealth = 100f;
     public float currHealth = 0f;
     public GameObject healthBar;
-    public EnemyDamageEvent onDammaged;
+    Vector3 initalScale = Vector3.one; //NOTE make sure that the local scale is actully one to begin with..
+    public EnemyDamageEvent onDamaged;
 
 	// Use this for initialization
 	void Awake ()
     {
-        onDammaged.AddListener(RecieveDamage);
         currHealth = maxHealth;
+        onDamaged.AddListener(ReceiveDamage);
 	}
 	
-    private void RecieveDamage(int ammount, Transform source)
+    public void ReceiveDamage(int amount, Transform source)
     {
-        if (ammount < 0)
-            throw new ArgumentException("Cannot recieve negative dammage. Source: " + source.name);
-        currHealth -= ammount;
+        if (amount < 0)
+            throw new ArgumentException("Cannot recieve negative damage. Source: " + source.name);
+        currHealth -= amount;
+        healthBar.transform.localScale =
+            new Vector3(Mathf.Clamp(
+                (currHealth / maxHealth), 0f, 1f) * initalScale.x, initalScale.y, initalScale.z);
         if (currHealth <= 0)
         {
             Destroy(this.gameObject);

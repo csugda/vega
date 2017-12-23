@@ -390,7 +390,6 @@ GameObject:
   - component: {fileID: 114185209478465410}
   - component: {fileID: 114539326219970008}
   - component: {fileID: 114163370807301282}
-  - component: {fileID: 114713821217357802}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -743,7 +742,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 43ee986799ab7ab4a8a879791025d4fe, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -845,11 +844,11 @@ MonoBehaviour:
   maxHealth: 100
   currHealth: 0
   healthBar: {fileID: 1829828241774830}
-  onDammaged:
+  onDamaged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114713821217357802}
-        m_MethodName: DecreaseHealth
+      - m_Target: {fileID: 114163370807301282}
+        m_MethodName: ReceiveDamage
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -949,21 +948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agentIndex: 1
   m_Tracked: {fileID: 0}
-  m_Size: {x: 80, y: 20, z: 80}
---- !u!114 &114713821217357802
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1947936207397220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc6389950520dec41b54fb3ab0c8e352, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  curHealth: 0
-  healthBar: {fileID: 1829828241774830}
+  m_Size: {x: 70, y: 6, z: 70}
 --- !u!114 &114796098351399344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1544,7 +1529,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1455443485381570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.666667, y: 1.6666665, z: 1.666667}
   m_Children:
   - {fileID: 224126451387901908}
@@ -1565,7 +1550,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829828241774830}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9499995, y: 0, z: -0.00000012665987}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00000012665987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224376589122771744}

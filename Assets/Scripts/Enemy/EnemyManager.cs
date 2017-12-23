@@ -8,9 +8,7 @@ public class EnemyManager : MonoBehaviour
     public int maxEnemies = 3;
     public Transform[] spawnPoints;         // An array of the spawn points this enemy can spawn from.
     
-
     private int numEnemies;
-
 
     void Start()
     {

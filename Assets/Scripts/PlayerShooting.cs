@@ -50,7 +50,7 @@ public class PlayerShooting : MonoBehaviour
         {
             if (shootHit.collider.gameObject.tag == "Enemy")
             {
-                shootHit.collider.gameObject.GetComponent<EnemyHealth>().onDammaged.Invoke(weaponDamage, this.transform);
+                shootHit.collider.gameObject.GetComponent<EnemyHealth>().onDamaged.Invoke(weaponDamage, this.transform);
             }
             weaponLine.SetPosition(1, shootHit.point);
         } else

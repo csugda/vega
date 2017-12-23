@@ -848,8 +848,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114163370807301282}
-        m_MethodName: ReceiveDamage
-        m_Mode: 0
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -871,6 +871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d12695ebb8d64b45b0daa8cc5e37846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectedPlayer: 0
 --- !u!114 &114251849355666540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1026,7 +1027,7 @@ CapsuleCollider:
   m_Enabled: 1
   m_Radius: 1
   m_Height: 3.42
-  m_Direction: 2
+  m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137049249259235442
 SkinnedMeshRenderer:
@@ -1440,7 +1441,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 10
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

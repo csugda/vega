@@ -3,12 +3,12 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform player;                 // Reference to the player's position.
+    Transform player;                 // Reference to the player's position.
     //PlayerHealth playerHealth;      // Reference to the player's health.
     EnemyHealth enemyHealth;          // Reference to this enemy's health.
     UnityEngine.AI.NavMeshAgent nav;  // Reference to the nav mesh agent.
     Animator anim;
-    public bool detectedPlayer;
+    bool detectedPlayer;
 
     void Awake()
     {

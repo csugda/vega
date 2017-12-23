@@ -3,33 +3,33 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
-    GameObject player;                 // Reference to the player.
+    public Transform player;                 // Reference to the player's position.
     //PlayerHealth playerHealth;      // Reference to the player's health.
     EnemyHealth enemyHealth;          // Reference to this enemy's health.
     UnityEngine.AI.NavMeshAgent nav;  // Reference to the nav mesh agent.
-    public bool detectedPlayer = false;
     Animator anim;
+    public bool detectedPlayer;
 
     void Awake()
     {
         anim = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         //playerHealth = player.GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
-
-    void onTriggerEnter(Collider other)
+     
+    void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject.tag == "Player")
         {
             detectedPlayer = true;
         }
     }
 
-    void onTriggerExit (Collider other)
+    void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject.tag == "Player")
         {
             detectedPlayer = false;
         }
@@ -41,7 +41,7 @@ public class EnemyMovement : MonoBehaviour
         if (enemyHealth.currHealth > 0 && detectedPlayer)
         {
             anim.SetBool("IsMoving", true);
-            nav.SetDestination(player.transform.position);
+            nav.SetDestination(player.position);
         }
         else
         {

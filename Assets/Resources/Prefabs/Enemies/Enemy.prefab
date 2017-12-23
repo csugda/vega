@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 4594911278838120}
   - component: {fileID: 54351140125747278}
   - component: {fileID: 82304939803444034}
-  - component: {fileID: 65708860201408092}
+  - component: {fileID: 135936464363900884}
   - component: {fileID: 136415983508459652}
   - component: {fileID: 95051467658996498}
   - component: {fileID: 195115315482695382}
@@ -721,18 +721,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!65 &65708860201408092
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1947936207397220}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 40, y: 1, z: 40}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82304939803444034
 AudioSource:
   m_ObjectHideFlags: 1
@@ -871,6 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d12695ebb8d64b45b0daa8cc5e37846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   detectedPlayer: 0
 --- !u!114 &114251849355666540
 MonoBehaviour:
@@ -1016,6 +1005,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCamera: {fileID: 0}
+--- !u!135 &135936464363900884
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1947936207397220}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 20
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136415983508459652
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1441,7 +1442,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 5
+  m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

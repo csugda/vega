@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets.Scripts.InventoryScripts.Items
 {
-    class HealthUpItem : PickupItem
+    public class HealthUpItem : PickupItem
     {
         public int ammount;
 

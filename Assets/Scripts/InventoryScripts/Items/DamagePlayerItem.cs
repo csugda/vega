@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.InventoryScripts.Items
 {
-    class DamagePlayerItem : MonoBehaviour
+    public class DamagePlayerItem : MonoBehaviour
     {
         public int damageAmmount;
 

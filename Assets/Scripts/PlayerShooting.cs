@@ -9,7 +9,7 @@ public class PlayerShooting : MonoBehaviour
     public float weaponRange = 25f;
 
     private WaitForSeconds shotDuration = new WaitForSeconds(0.1f);
-    Ray shootRay;
+    Ray shootRay = new Ray();
     RaycastHit shootHit;
     LineRenderer weaponLine;
     AudioSource weaponAudio;
@@ -38,7 +38,7 @@ public class PlayerShooting : MonoBehaviour
             StartCoroutine(Shoot(target.position-transform.position));
         }
     }
-    private IEnumerator Shoot(Vector3 target)
+    private IEnumerator Shoot(Vector3 target) 
     {
         weaponAudio.Play();
         weaponLine.enabled = true;

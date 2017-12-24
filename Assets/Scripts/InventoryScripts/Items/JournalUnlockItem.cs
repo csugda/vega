@@ -8,11 +8,11 @@ using UnityEngine;
 namespace Assets.Scripts.InventoryScripts.Items
 {
     [Serializable]
-    class JournalUnlockItem : PickupItem
+    public class JournalUnlockItem : PickupItem
     {
         public int area;
         private JournalManager manager;
-        public void Start()
+        public new void Start()
         {
             //I dont think that this makes a difference as OnItemUsed only gets called once, but it is the way to do things.
             manager = GameObject.Find("ManagerGO").GetComponent<JournalManager>();

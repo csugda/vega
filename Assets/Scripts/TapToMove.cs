@@ -25,9 +25,22 @@ public class TapToMove : MonoBehaviour
         //save the y axis value of gameobject
         yAxis = gameObject.transform.position.y;
         agent = GetComponent<NavMeshAgent>();
+        if (GameObject.Find("SHOP_ITEM_CARRYOVER"))
+        {
+            //speed +.5/level
+            //angular speed + 10/level
+            //acceleration + .5/level
+            ItemCarryover carry = GameObject.Find("SHOP_ITEM_CARRYOVER").GetComponent<ItemCarryover>();
+            agent.speed = 5 + (.5f * carry.upgradeLevels[1]);
+            agent.angularSpeed = 120 + (10f * carry.upgradeLevels[1]);
+            agent.acceleration = 8 + (.5f * carry.upgradeLevels[1]);
+            carry.Finished();
+        }
+        else
+            Debug.LogWarning("SHOP_ITEM_CARRYOVER not present in scene, most likely game was not launched from shop scene. " +
+                "\nUsing default speed");
     }
-
-    void FixedUpdate()
+        void FixedUpdate()
     {
         Turn();
     }

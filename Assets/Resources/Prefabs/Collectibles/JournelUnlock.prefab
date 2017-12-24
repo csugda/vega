@@ -97,6 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Name: Factory Flash Drive
   _StackSize: 1
+  _ItemPrice: 1200
   _Image: {fileID: 0}
   _ItemInfo: This Flash Drive holds the decryption for a journel entry from the Factory
     area.

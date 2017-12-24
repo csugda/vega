@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Name: Welder
   _StackSize: 5
+  _ItemPrice: 80
   _Image: {fileID: 0}
   _ItemInfo: "Welder\nThis piece of hardware is designed to use heat to melt two pieces
     of metal together. looking directly at the business end can cause harm to optical

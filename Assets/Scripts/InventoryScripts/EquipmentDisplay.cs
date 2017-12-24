@@ -6,7 +6,7 @@ namespace Assets.Scripts.InventoryScripts
     {
         public GameObject managerGO;
         private EquippedGearManager manager;
-        private GameObject  H, T, L; //La, Ra
+        private GameObject H;//, T, L; //La, Ra
         public void Start()
         {
             manager = managerGO.GetComponent<EquippedGearManager>();
@@ -16,8 +16,8 @@ namespace Assets.Scripts.InventoryScripts
             //La = this.transform.Find("LArm").gameObject;
             //Ra = this.transform.Find("RArm").gameObject;
             H = this.transform.Find("Head").gameObject;
-            T = this.transform.Find("Torso").gameObject;
-            L = this.transform.Find("Legs").gameObject;
+            //T = this.transform.Find("Torso").gameObject;
+            //L = this.transform.Find("Legs").gameObject;
             this.Redraw();
             Inventory.onInventoryChanged.AddListener(Redraw);
         }
@@ -32,7 +32,6 @@ namespace Assets.Scripts.InventoryScripts
             H.GetComponent<Image>().sprite = manager.head.Image;
             // T.GetComponent<Text>().text = manager.torso.name;
             // L.GetComponent<Text>().text = manager.legs.name;
-            //TODO add popup info and sprites to this.
             H.transform.Find("InfoPanel").GetComponentInChildren<Text>().text =
                 manager.head.ItemInfo;
         }

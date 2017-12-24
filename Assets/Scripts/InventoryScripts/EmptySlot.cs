@@ -10,7 +10,7 @@ namespace Assets.Scripts.InventoryScripts
         public Sprite Image { get; set; }
         public string Name { get; set; }
         public String ItemInfo { get; set; }
-
+        public int ItemPrice { get; set; }
         public EmptySlot()
         {
             this.Name = "Empty";

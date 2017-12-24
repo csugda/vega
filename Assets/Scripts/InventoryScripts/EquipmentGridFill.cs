@@ -34,10 +34,12 @@ public class EquipmentGridFill : MonoBehaviour {
             if (inventory.GetItem(i).Image != null)
             {
                 button.GetComponent<Image>().sprite = inventory.GetItem(i).Image;
+                button.transform.Find("NameText").gameObject.GetComponent<Text>().text = "";
             }
-
-            button.transform.Find("NameText").gameObject.GetComponent<Text>().text = 
+            else
+                button.transform.Find("NameText").gameObject.GetComponent<Text>().text =
                 inventory.GetItem(i).Name;
+
 
             button.transform.Find("CountText").gameObject.GetComponent<Text>().text = 
                 inventory.GetItemCount(i) == 1 ? "" : "x" + inventory.GetItemCount(i);

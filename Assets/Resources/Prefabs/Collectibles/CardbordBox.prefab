@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Name: Cardboard Box
   _StackSize: 1
+  _ItemPrice: 20
   _Image: {fileID: 21300000, guid: 3ae17a97976a2114e8827d8f40ff8772, type: 3}
   _ItemInfo: "Its a box. it fits on your head. it may help. may not.\nEffect when
     equipped: \n+5 health"

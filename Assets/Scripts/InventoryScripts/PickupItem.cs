@@ -81,11 +81,11 @@ namespace Assets.Scripts.InventoryScripts
         }
 
 
-        public virtual void OnCollisionEnter(Collision collision)
+        public virtual void OnTriggerEnter(Collider other)
         {
             if (ManagerGO == null)
                 ManagerGO = GameObject.Find("ManagerGO");
-            if (collision.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player")
             {
                 if (ManagerGO.GetComponent<Inventory>().AddItem(this))
                     Destroy(this.gameObject);

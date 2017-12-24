@@ -13,7 +13,7 @@ namespace Assets.Scripts
             RaycastHit hit;
             if ( Physics.Raycast(ray, out hit, range) && hit.collider.gameObject.tag.Equals("Enemy"))
             {
-                hit.collider.gameObject.GetComponent<EnemyHealth>().onDammaged.Invoke(damage, this.transform);
+                hit.collider.gameObject.GetComponent<EnemyHealth>().onDamaged.Invoke(damage, this.transform);
             }
         }
     }

@@ -6,7 +6,7 @@ public class PlayerShooting : MonoBehaviour
 {
     public int weaponDamage = 10;
     public float fireRate = 0.25f;
-    public float weaponRange = 50f;
+    public float weaponRange = 25f;
 
     private WaitForSeconds shotDuration = new WaitForSeconds(0.1f);
     Ray shootRay = new Ray();
@@ -23,11 +23,11 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextFire)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             StartCoroutine(Shoot(transform.forward));
-        }
+        }       
 
     }
     public void Shoot(Vector3 location, Transform target)
@@ -50,7 +50,7 @@ public class PlayerShooting : MonoBehaviour
         {
             if (shootHit.collider.gameObject.tag == "Enemy")
             {
-                shootHit.collider.gameObject.GetComponent<EnemyHealth>().onDammaged.Invoke(weaponDamage, this.transform);
+                shootHit.collider.gameObject.GetComponent<EnemyHealth>().onDamaged.Invoke(weaponDamage, this.transform);
             }
             weaponLine.SetPosition(1, shootHit.point);
         } else

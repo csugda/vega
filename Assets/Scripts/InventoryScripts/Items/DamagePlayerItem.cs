@@ -7,9 +7,9 @@ namespace Assets.Scripts.InventoryScripts.Items
     {
         public int damageAmmount;
 
-        public void OnCollisionEnter(Collision c)
+        public void OnTriggerEnter(Collider other)
         {
-            if (c.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player")
                 HealthManager.onHealthChanged.Invoke(-damageAmmount);
             Destroy(this.gameObject);
         }

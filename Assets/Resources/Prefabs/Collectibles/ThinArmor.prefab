@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65675848655115426}
   - component: {fileID: 23962589743336820}
   - component: {fileID: 114388181446242392}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ThinArmor
   m_TagString: Pickup
   m_Icon: {fileID: 0}

@@ -400,7 +400,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4594911278838120}
   - component: {fileID: 54351140125747278}
-  - component: {fileID: 135936464363900884}
   - component: {fileID: 136415983508459652}
   - component: {fileID: 95051467658996498}
   - component: {fileID: 195115315482695382}
@@ -890,6 +889,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d12695ebb8d64b45b0daa8cc5e37846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 15
+  damp: 100
 --- !u!114 &114251849355666540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1137,18 +1138,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!135 &135936464363900884
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1947936207397220}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 20
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136415983508459652
 CapsuleCollider:
   m_ObjectHideFlags: 1

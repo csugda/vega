@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65391777962069312}
   - component: {fileID: 23245652345193628}
   - component: {fileID: 114925873409267562}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Welder
   m_TagString: Pickup
   m_Icon: {fileID: 0}

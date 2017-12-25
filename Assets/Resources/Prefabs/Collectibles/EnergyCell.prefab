@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23487672050310462}
   - component: {fileID: 114056561670219696}
   - component: {fileID: 108249425932691870}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnergyCell
   m_TagString: Pickup
   m_Icon: {fileID: 0}

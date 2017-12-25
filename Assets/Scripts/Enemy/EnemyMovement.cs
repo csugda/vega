@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
+    public float detectionRange = 15f;
+    public float damp = 10f;          // Higher means the enemy turns to face the player faster.
     Transform player;                 // Reference to the player's position.
     //PlayerHealth playerHealth;      // Reference to the player's health.
     EnemyHealth enemyHealth;          // Reference to this enemy's health.
@@ -18,30 +20,26 @@ public class EnemyMovement : MonoBehaviour
         enemyHealth = GetComponent<EnemyHealth>();
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
-     
-    void OnTriggerEnter(Collider other)
+  
+    public IEnumerator Aim()
     {
-        if (other.gameObject.tag == "Player")
-        {
-            detectedPlayer = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            detectedPlayer = false;
-        }
+        var rotationAngle = Quaternion.LookRotation(player.position - transform.position);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotationAngle, Time.deltaTime * damp);
+        yield return null;
     }
 
     void Update()
     {
         // if enemy is alive and has detected the player
-        if (enemyHealth.currHealth > 0 && detectedPlayer)
+        if (enemyHealth.currHealth > 0)
         {
-            anim.SetBool("IsMoving", true);
-            nav.SetDestination(player.position);
+            float distance = Vector3.Distance(transform.position, player.position);
+            bool detectedPlayer = distance < detectionRange;
+            if (detectedPlayer)
+            {
+                anim.SetBool("IsMoving", true);
+                nav.SetDestination(player.position);
+            }
         }
         else
         {

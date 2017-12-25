@@ -53,7 +53,7 @@ public class EnemyShooting : MonoBehaviour {
             if (shootHit.collider.gameObject.tag == "Player")
             {
                 // TODO: Damage Player
-                Debug.Log("Hit Player");
+                shootHit.collider.gameObject.GetComponent<PlayerHealth>().onDamaged.Invoke(weaponDamage, this.transform);
             }
             weaponLine.SetPosition(1, shootHit.point);
         }

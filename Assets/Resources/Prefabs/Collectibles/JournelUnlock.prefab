@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 135018830379338006}
   - component: {fileID: 23263143164956060}
   - component: {fileID: 114653724004000440}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: JournelUnlock
   m_TagString: Pickup
   m_Icon: {fileID: 0}

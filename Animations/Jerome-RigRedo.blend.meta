@@ -89,6 +89,21 @@ ModelImporter:
     100162: Trigger
     100164: Gun_Armature
     100166: Jerome_Armature
+    100168: Chest
+    100170: Head
+    100172: Left_Hand
+    100174: Left_Hip
+    100176: LeftLowerLeg
+    100178: LeftShoulder
+    100180: LeftUpperLeg
+    100182: Neck
+    100184: Right_hip
+    100186: Right_upper_leg
+    100188: RightFoot
+    100190: RightlowerLeg
+    100192: RightShoulder
+    100194: RightUpperArm
+    100196: Torso
     400000: Armature
     400002: Armature_001
     400004: Base
@@ -173,6 +188,21 @@ ModelImporter:
     400162: Trigger
     400164: Gun_Armature
     400166: Jerome_Armature
+    400168: Chest
+    400170: Head
+    400172: Left_Hand
+    400174: Left_Hip
+    400176: LeftLowerLeg
+    400178: LeftShoulder
+    400180: LeftUpperLeg
+    400182: Neck
+    400184: Right_hip
+    400186: Right_upper_leg
+    400188: RightFoot
+    400190: RightlowerLeg
+    400192: RightShoulder
+    400194: RightUpperArm
+    400196: Torso
     2100000: wire_086086086
     2100002: wire_176026026
     2100004: wire_135059008
@@ -228,12 +258,17 @@ ModelImporter:
     7400004: ArmatureAction
     7400006: PoseLib
     7400008: Walking Forward
-    7400010: Straffing
+    7400010: Strafing Left
     7400012: Equiping Gun
     7400014: Start Shooting
     7400016: Looped Shooting
     7400018: Reload
     7400020: Death
+    7400022: Strafing Right
+    7400024: Walking Backward
+    7400026: Unequipt
+    7400028: Idel Unarmed
+    7400030: Idle Armed
     9500000: //RootNode
     13700000: Cube
     13700002: Cube_001
@@ -441,7 +476,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Straffing
+      name: Strafing Right
       takeName: Default Take
       firstFrame: 61
       lastFrame: 85
@@ -592,6 +627,146 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walking Backward
+      takeName: Default Take
+      firstFrame: 230
+      lastFrame: 268
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Strafing Left
+      takeName: Default Take
+      firstFrame: 269
+      lastFrame: 293
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Unequipt
+      takeName: Default Take
+      firstFrame: 295
+      lastFrame: 323
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idel Unarmed
+      takeName: Default Take
+      firstFrame: 324
+      lastFrame: 362
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle Armed
+      takeName: Default Take
+      firstFrame: 365
+      lastFrame: 396
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

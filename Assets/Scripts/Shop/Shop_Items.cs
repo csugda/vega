@@ -62,6 +62,7 @@ public class Shop_Items : MonoBehaviour
                     }
                 }
                 );
+            button.GetComponent<RectTransform>().localScale.Set(2, 2, 2);
         }
 
     }

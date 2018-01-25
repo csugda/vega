@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class TapToMove : MonoBehaviour
@@ -25,6 +26,11 @@ public class TapToMove : MonoBehaviour
         //save the y axis value of gameobject
         yAxis = gameObject.transform.position.y;
         agent = GetComponent<NavMeshAgent>();
+        ReadUpgradeInfo();
+    }
+
+    private void ReadUpgradeInfo()
+    {
         if (GameObject.Find("SHOP_ITEM_CARRYOVER"))
         {
             //speed +.5/level
@@ -40,7 +46,8 @@ public class TapToMove : MonoBehaviour
             Debug.LogWarning("SHOP_ITEM_CARRYOVER not present in scene, most likely game was not launched from shop scene. " +
                 "\nUsing default speed");
     }
-        void FixedUpdate()
+
+    void FixedUpdate()
     {
         Turn();
     }

@@ -20,10 +20,14 @@ public class PlayerShooting : MonoBehaviour
         weaponLine = GetComponent<LineRenderer>();
         weaponAudio = GetComponent<AudioSource>();
     }
-
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > nextFire)
+        GameObject.Find("Input").GetComponent<MouseInput>().mouseButtonDown.AddListener(OnMouseButtonDown);
+
+    }
+    public void OnMouseButtonDown(int button, Vector3 pos, Transform obj)
+    {
+        if (button == 0 && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             StartCoroutine(Shoot(transform.forward));

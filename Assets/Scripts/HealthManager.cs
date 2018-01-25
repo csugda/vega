@@ -47,6 +47,7 @@ namespace Assets.Scripts
                 maxHealth = 100;
             }
         }
+        public GameObject gameOverUI;
         public void ChangeHealth(int ammount)
         {
             if (ammount > 0 && currentHealth + ammount > maxHealth)
@@ -57,7 +58,7 @@ namespace Assets.Scripts
             {
                 //DEATH
                 currentHealth = 0;
-                Debug.LogError("Player Died");
+                gameOverUI.SetActive(true);
                 return;
             }
             currentHealth += ammount;
@@ -86,6 +87,10 @@ namespace Assets.Scripts
         private void UpdateHelthDisplay()
         {
             healthUI.GetComponent<Text>().text = "Health: " + currentHealth + "/" + maxHealth;
+        }
+        public void KillPlayer()
+        {
+            onHealthChanged.Invoke(-currentHealth);
         }
     }
 }
